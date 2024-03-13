@@ -1,0 +1,14 @@
+.logo-text {
+  top: 65px;
+  right: 10px;
+}
+.active-link {
+  color: #00b562;
+}
+.button {
+  background-color: #00b562;
+  border: none;
+}
+.button:hover {
+  background-color: #5b9349;
+}
