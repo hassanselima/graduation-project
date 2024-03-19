@@ -1,0 +1,32 @@
+p {
+  margin: 0px;
+  font-weight: 600;
+}
+li {
+  list-style: none;
+}
+
+.join-box {
+  background-color: #d6eeec;
+}
+.join-head {
+  color: #242424;
+  font-size: 32px;
+  line-height: 36px;
+}
+.elem {
+  padding: 13px;
+  border-radius: 15px;
+}
+.elem1 {
+  background-color: #00b562;
+}
+.elem2 {
+  background-color: #23bdee;
+}
+.elem3 {
+  background-color: #ff9500;
+}
+.elem4 {
+  background-color: #4a81ec;
+}
