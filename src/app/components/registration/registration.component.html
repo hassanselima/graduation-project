@@ -1,0 +1,140 @@
+<div class="text-danger">
+  For Test <br />To be Removed:
+  <br />
+  {{ regForm | json }}
+</div>
+<div
+  class="container d-flex align-items-center justify-content-center log-container"
+>
+  <form class="form-box">
+    <div
+      class="py-5 bg-white d-flex flex-column align-items-stretch text-center gap-4"
+    >
+      <p class="login-head">انشاء حساب</p>
+      <div
+        class="mx-auto d-flex align-items-center justify-content-center border border-1 border-black rounded-2 loginWG"
+      >
+        <p class="google-text flex-shrink-0">تسجيل الدخول عبر قوقل</p>
+        <img src="assets/Google.svg" alt="" />
+      </div>
+      <div class="d-flex align-items-baseline gap-2 px-5">
+        <hr class="line" />
+        <p class="login-text">او سجل عبر الايميل</p>
+        <hr class="line" />
+      </div>
+      <div class="w-75 mx-auto row row-cols-1">
+        <div class="col d-flex flex-column align-items-end gap-2 p-0">
+          <label for="fName" class="form-label">الاسم الاول</label>
+          <input
+            type="text"
+            name="fname"
+            id="fName"
+            class="form-control"
+            [(ngModel)]="regForm.fName"
+          />
+        </div>
+        <div class="col d-flex flex-column align-items-end gap-2 p-0">
+          <label for="lName" class="form-label">الاسم الاخير</label>
+          <input
+            type="text"
+            name="lname"
+            id="lName"
+            class="form-control"
+            [(ngModel)]="regForm.lName"
+          />
+        </div>
+        <div class="col d-flex flex-column align-items-end gap-2 p-0">
+          <label for="uPhone" class="form-label">رقم الهاتف</label>
+          <div
+            class="d-flex form-control position-relative p-0 align-items-center justify-content-start"
+          >
+            <div class="position-absolute d-flex align-items-center gap-2 code">
+              <img src="assets/egypt-flag.svg" alt="" />
+              <span class="pre-num"> +20|</span>
+            </div>
+            <input
+              type="text"
+              name="phoneNo"
+              id="uPhone"
+              class="form-control border-0 phone-input"
+              [(ngModel)]="regForm.phoneNo"
+            />
+          </div>
+        </div>
+        <div class="col d-flex flex-column align-items-end gap-2 p-0">
+          <label for="uEmail" class="form-label">الايميل</label>
+          <input
+            type="email"
+            name="fname"
+            id="uEmail"
+            class="form-control email-input"
+            [(ngModel)]="regForm.email"
+          />
+        </div>
+        <div class="col d-flex flex-column align-items-end gap-2 p-0">
+          <label for="uPass" class="form-label">كلمة المرور</label>
+          <div
+            class="d-flex form-control position-relative p-0 align-items-center"
+          >
+            <img src="assets/Eye.svg" class="position-absolute eye" alt="" />
+            <input
+              type="password"
+              name="password"
+              id="uPass"
+              class="form-control border-0 pass-input py-2"
+              [(ngModel)]="regForm.password"
+            />
+          </div>
+          <div class="progress gap-3 align-self-stretch" style="height: 2px">
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              style="width: 0; transition: 0.4s"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            ></div>
+          </div>
+          <p class="pass-text">
+            استخدم 8 أحرف أو أكثر مع مزيج من الحروف والأرقام والرموز.
+          </p>
+        </div>
+        <div class="col d-flex flex-column align-items-end gap-2 p-0">
+          <label for="uPass" class="form-label">اعد كلمة المرور</label>
+          <div
+            class="d-flex form-control position-relative p-0 align-items-center"
+          >
+            <img src="assets/Eye.svg" class="position-absolute eye" alt="" />
+            <input
+              type="password"
+              name="password"
+              id="uPass"
+              class="form-control border-0 pass-input py-2"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-75 mx-auto form-check d-flex align-items-center justify-content-end gap-4 p-0"
+      >
+        <label class="form-check-label agree-txt me-2" for="flexCheckDefault">
+          اوافق على
+          <span class="agree"> الشروط و الاحكام </span>
+        </label>
+        <input
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="flexCheckDefault"
+        />
+      </div>
+      <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
+        <button class="btn w-100 text-white py-3" DarkGreen>انشاء حساب</button>
+        <p class="d-flex align-items-center gap-1 have-account">
+          <span class="login-acc" routerLink="/Login">تسجيل الدخول </span>هل
+          لديك حساب؟
+        </p>
+      </div>
+    </div>
+  </form>
+</div>

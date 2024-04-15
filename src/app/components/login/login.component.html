@@ -1,0 +1,61 @@
+<div
+  class="container d-flex align-items-center justify-content-center justify-content-lg-between log-container"
+>
+  <form class="form-box">
+    <div
+      class="py-5 bg-white d-flex flex-column align-items-stretch text-center gap-4"
+    >
+      <p class="login-head">تسجيل الدخول</p>
+      <div
+        class="mx-auto d-flex align-items-center justify-content-center border border-1 border-black rounded-2 loginWG"
+      >
+        <p class="google-text flex-shrink-0">تسجيل الدخول عبر قوقل</p>
+        <img src="assets/Google.svg" alt="" />
+      </div>
+      <div class="d-flex align-items-baseline gap-2 px-5">
+        <hr class="line" />
+        <p class="login-text">او سجل عبر الايميل</p>
+        <hr class="line" />
+      </div>
+      <div class="w-75 mx-auto d-flex flex-column gap-2">
+        <div class="d-flex flex-column align-items-end gap-2">
+          <label for="uEmail" class="form-label">الايميل</label>
+          <input
+            type="email"
+            name="email"
+            id="uEmail"
+            class="form-control"
+            placeholder="zeyad@gmail.com"
+          />
+        </div>
+        <div class="d-flex flex-column align-items-end gap-2">
+          <label for="uPass" class="form-label">كلمة المرور</label>
+          <div
+            class="d-flex form-control position-relative p-0 align-items-center"
+          >
+            <img src="assets/Eye.svg" class="position-absolute eye" alt="" />
+            <input
+              type="password"
+              name="password"
+              id="uPass"
+              class="form-control border-0 pass-input"
+              placeholder="****"
+            />
+          </div>
+          <p class="forget-text align-self-start">نسيت كلمة المرور؟</p>
+        </div>
+      </div>
+      <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
+        <button class="btn w-100" DarkGreen>تسجيل الدخول</button>
+        <p class="d-flex align-items-center no-account">
+          <span class="forget-text" routerLink="/Registration">
+            انشاء حساب الان</span
+          >لاتمتلك حساب؟
+        </p>
+      </div>
+    </div>
+  </form>
+  <div class="d-none d-lg-block">
+    <app-overview></app-overview>
+  </div>
+</div>

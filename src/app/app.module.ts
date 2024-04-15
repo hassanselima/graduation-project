@@ -15,6 +15,9 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DarkGreenDirective } from './directives/dark-green.directive';
 import { JoinToUsComponent } from './components/join-to-us/join-to-us.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,8 +31,10 @@ import { OverviewComponent } from './components/overview/overview.component';
     DarkGreenDirective,
     JoinToUsComponent,
     OverviewComponent,
+    LoginComponent,
+    RegistrationComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
