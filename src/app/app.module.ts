@@ -18,6 +18,8 @@ import { OverviewComponent } from './components/overview/overview.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { FormsModule } from '@angular/forms';
+import { VerficationComponent } from './components/verfication/verfication.component';
+import { PassResetComponent } from './components/pass-reset/pass-reset.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { FormsModule } from '@angular/forms';
     OverviewComponent,
     LoginComponent,
     RegistrationComponent,
+    VerficationComponent,
+    PassResetComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideClientHydration()],
