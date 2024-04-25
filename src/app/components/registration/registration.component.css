@@ -72,7 +72,8 @@ input {
 .pre-num {
   color: #9c9c9c;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
+  line-height: 18px;
 }
 .eye {
   left: 10px;

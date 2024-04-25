@@ -14,7 +14,8 @@ export class RegistrationComponent {
     phoneNumber: '',
     password: '',
   };
-
+  cPassword: string = '';
+  constaints: boolean = false;
   respone: any;
   confirmationCode: string | undefined;
   constructor(private auth: AuthService) {}

@@ -27,7 +27,7 @@
           <label for="fName" class="form-label">الاسم الاول</label>
           <input
             type="text"
-            name="fname"
+            name="firstName"
             id="fName"
             class="form-control"
             [(ngModel)]="regForm.firstName"
@@ -37,7 +37,7 @@
           <label for="lName" class="form-label">الاسم الاخير</label>
           <input
             type="text"
-            name="lname"
+            name="lastName"
             id="lName"
             class="form-control"
             [(ngModel)]="regForm.lastName"
@@ -49,12 +49,12 @@
             class="d-flex form-control position-relative p-0 align-items-center justify-content-start"
           >
             <div class="position-absolute d-flex align-items-center gap-2 code">
-              <img src="assets/egypt-flag.svg" alt="" />
-              <span class="pre-num"> +20|</span>
+              <img src="assets/egypt-flag.svg" alt="country flag" />
+              <span class="pre-num"> +20 |</span>
             </div>
             <input
               type="text"
-              name="phoneNo"
+              name="phoneNumber"
               id="uPhone"
               class="form-control border-0 phone-input"
               [(ngModel)]="regForm.phoneNumber"
@@ -65,7 +65,7 @@
           <label for="uEmail" class="form-label">الايميل</label>
           <input
             type="email"
-            name="fname"
+            name="email"
             id="uEmail"
             class="form-control email-input"
             [(ngModel)]="regForm.email"
@@ -109,6 +109,7 @@
               type="password"
               name="password"
               id="uPassC"
+              [(ngModel)]="cPassword"
               class="form-control border-0 pass-input py-2"
             />
           </div>
@@ -124,7 +125,9 @@
         <input
           class="form-check-input"
           type="checkbox"
-          value=""
+          name="constraints"
+          value="true"
+          [(ngModel)]="constaints"
           id="flexCheckDefault"
         />
       </div>
@@ -132,7 +135,7 @@
         <button
           class="btn w-100 text-white py-3"
           DarkGreen
-          routerLink="/confirmation"
+          (click)="registerOwner()"
         >
           انشاء حساب
         </button>
