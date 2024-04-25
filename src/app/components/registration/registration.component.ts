@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -7,11 +8,29 @@ import { Component } from '@angular/core';
 })
 export class RegistrationComponent {
   regForm: any = {
-    fName: '',
-    lName: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    phoneNo: '',
-    pass: '',
+    phoneNumber: '',
+    password: '',
   };
-  constructor() {}
+
+  respone: any;
+  confirmationCode: string | undefined;
+  constructor(private auth: AuthService) {}
+
+  registerOwner() {
+    const observer = {
+      next: (response: any) => {
+        this.confirmationCode = response.code;
+        console.log('Registration successful : ', response);
+      },
+      error: (error: any) => {
+        console.log('registeration failed');
+
+        // console.error('Registration failed:', error);
+      },
+    };
+    this.auth.registerOwner(this.regForm).subscribe(observer);
+  }
 }

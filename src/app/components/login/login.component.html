@@ -43,11 +43,15 @@
             />
           </div>
           routerLink="/Login"
-          <p class="forget-text align-self-start" routerLink="/Verfication">نسيت كلمة المرور؟</p>
+          <p class="forget-text align-self-start" routerLink="/Verfication">
+            نسيت كلمة المرور؟
+          </p>
         </div>
       </div>
       <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
-        <button class="btn w-100" DarkGreen>تسجيل الدخول</button>
+        <button class="btn w-100" DarkGreen (click)="login()">
+          تسجيل الدخول
+        </button>
         <p class="d-flex align-items-center no-account">
           <span class="forget-text" routerLink="/Registration">
             انشاء حساب الان</span

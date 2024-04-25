@@ -6,14 +6,16 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { VerficationComponent } from './components/verfication/verfication.component';
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
+import { ConfirmationCodeComponent } from './components/confirmation-code/confirmation-code.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/Home', pathMatch: 'full' },
   { path: 'Home', component: HomeComponent },
   { path: 'Login', component: LoginComponent },
   { path: 'Registration', component: RegistrationComponent },
-  {path:'Verfication', component: VerficationComponent},
-  {path:'Passreset', component:  PassResetComponent},
+  { path: 'confirmation', component: ConfirmationCodeComponent },
+  { path: 'Verfication', component: VerficationComponent },
+  { path: 'Passreset', component: PassResetComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

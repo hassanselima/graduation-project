@@ -30,7 +30,7 @@
             name="fname"
             id="fName"
             class="form-control"
-            [(ngModel)]="regForm.fName"
+            [(ngModel)]="regForm.firstName"
           />
         </div>
         <div class="col d-flex flex-column align-items-end gap-2 p-0">
@@ -40,7 +40,7 @@
             name="lname"
             id="lName"
             class="form-control"
-            [(ngModel)]="regForm.lName"
+            [(ngModel)]="regForm.lastName"
           />
         </div>
         <div class="col d-flex flex-column align-items-end gap-2 p-0">
@@ -57,7 +57,7 @@
               name="phoneNo"
               id="uPhone"
               class="form-control border-0 phone-input"
-              [(ngModel)]="regForm.phoneNo"
+              [(ngModel)]="regForm.phoneNumber"
             />
           </div>
         </div>
@@ -108,7 +108,7 @@
             <input
               type="password"
               name="password"
-              id="uPass"
+              id="uPassC"
               class="form-control border-0 pass-input py-2"
             />
           </div>
@@ -129,7 +129,13 @@
         />
       </div>
       <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
-        <button class="btn w-100 text-white py-3" DarkGreen>انشاء حساب</button>
+        <button
+          class="btn w-100 text-white py-3"
+          DarkGreen
+          routerLink="/confirmation"
+        >
+          انشاء حساب
+        </button>
         <p class="d-flex align-items-center gap-1 have-account">
           <span class="login-acc" routerLink="/Login">تسجيل الدخول </span>هل
           لديك حساب؟

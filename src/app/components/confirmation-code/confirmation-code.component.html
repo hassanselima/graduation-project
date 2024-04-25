@@ -1,0 +1,90 @@
+<div
+  class="vh-100 container-fluid d-flex justify-content-center align-items-center"
+>
+  <div
+    class="confirm-box d-flex flex-column justify-content-start align-items-center shadow rounded-2 py-5"
+  >
+    <div class="">
+      <img src="assets/email.svg" alt="email logo" />
+    </div>
+    <div class="d-flex flex-column gap-2 align-items-center">
+      <p class="head-text">وصلك رمز تحقق على ايميلك</p>
+      <p class="enter-text">أدخل رمز التحقق الذي أرسلناه إلى</p>
+    </div>
+    <p class="email-text py-3">{{ hiddenEmail }}</p>
+    <div class="w-75 d-flex flex-column align-items-center gap-2">
+      <p class="write-text">اكتب رمز الحماية الخاص بك والمكون من 5 أرقام</p>
+      <form id="otpForm">
+        <div
+          class="input-field d-flex align-items-center justify-content-center gap-2"
+        >
+          <input
+            type="number"
+            class="input"
+            name="otp0"
+            value=""
+            [(ngModel)]="otpDigits[0]"
+            (ngModelChange)="onOtpInputChange(0, $event)"
+            autofocus
+            id="otp0"
+          />
+          <input
+            type="number"
+            class="input"
+            name="otp1"
+            value=""
+            [(ngModel)]="otpDigits[1]"
+            (ngModelChange)="onOtpInputChange(1, $event)"
+            autofocus
+            id="otp1"
+          />
+          <input
+            type="number"
+            class="input"
+            name="otp2"
+            value=""
+            [(ngModel)]="otpDigits[2]"
+            (ngModelChange)="onOtpInputChange(2, $event)"
+            autofocus
+            id="otp2"
+          />
+          <input
+            type="number"
+            class="input"
+            name="otp3"
+            value=""
+            [(ngModel)]="otpDigits[3]"
+            (ngModelChange)="onOtpInputChange(3, $event)"
+            autofocus
+            id="otp3"
+          />
+          <input
+            type="number"
+            class="input"
+            name="otp4"
+            value=""
+            [(ngModel)]="otpDigits[4]"
+            (ngModelChange)="onOtpInputChange(4, $event)"
+            autofocus
+            id="otp4"
+          />
+        </div>
+        <div class="w-100 d-flex flex-column gap-2 py-3">
+          <button
+            class="btn btn-success w-100"
+            DarkGreen
+            [disabled]="isButtonDisabled"
+            (click)="onSubmit()"
+          >
+            تحقق
+          </button>
+          <p class="code-text">
+            لم تحصل على الرمز؟
+            <span class="green-text">أعد الإرسال</span>
+            أو <span class="green-text">تواصل معنا</span>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

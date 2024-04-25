@@ -17,9 +17,11 @@ import { JoinToUsComponent } from './components/join-to-us/join-to-us.component'
 import { OverviewComponent } from './components/overview/overview.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VerficationComponent } from './components/verfication/verfication.component';
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ConfirmationCodeComponent } from './components/confirmation-code/confirmation-code.component';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,15 @@ import { PassResetComponent } from './components/pass-reset/pass-reset.component
     RegistrationComponent,
     VerficationComponent,
     PassResetComponent,
+    ConfirmationCodeComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
