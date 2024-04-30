@@ -28,6 +28,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PgCardComponent } from './components/pg-card/pg-card.component';
 import { BookedPdayComponent } from './components/booked-pday/booked-pday.component';
 import { DashOverviewComponent } from './components/dash-overview/dash-overview.component';
+import { NgxApexchartsModule } from 'ngx-apexcharts';
+import { AreaChartComponent } from './components/area-chart/area-chart.component';
+import { DonutChartComponent } from './components/donut-chart/donut-chart.component';
 registerLocaleData(localeAr);
 @NgModule({
   declarations: [
@@ -51,6 +54,8 @@ registerLocaleData(localeAr);
     PgCardComponent,
     BookedPdayComponent,
     DashOverviewComponent,
+    AreaChartComponent,
+    DonutChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +63,7 @@ registerLocaleData(localeAr);
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxApexchartsModule,
   ],
   providers: [provideClientHydration(), { provide: LOCALE_ID, useValue: 'ar' }],
   bootstrap: [AppComponent],

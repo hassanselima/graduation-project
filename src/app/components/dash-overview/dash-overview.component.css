@@ -5,11 +5,19 @@ p {
   font-style: normal;
   font-weight: 600;
 }
-
+.booked-head {
+  color: #5e5d5d;
+  line-height: 27px;
+}
 .dash-content {
   scroll-behavior: smooth;
   height: calc(100vh - 125px);
   overflow-y: scroll;
+}
+.revenue-head {
+  color: #5e5d5d;
+  font-size: 24.624px;
+  line-height: 36.935px;
 }
 .avail-pg {
   color: #5e5d5d;
@@ -19,6 +27,10 @@ p {
   scroll-behavior: smooth;
   height: 300px;
   overflow-y: scroll;
+}
+.booking-head {
+  color: #5e5d5d;
+  line-height: 27px;
 }
 
 ::-webkit-scrollbar {
