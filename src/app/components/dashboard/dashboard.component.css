@@ -1,0 +1,19 @@
+p {
+  margin: 0px;
+  font-family: Cairo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+}
+img {
+  cursor: pointer;
+}
+.owner-name {
+  color: #242424;
+  font-size: 24px;
+  line-height: 36px;
+}
+.date {
+  color: #5e5d5d;
+  line-height: 27px;
+}

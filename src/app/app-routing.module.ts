@@ -7,15 +7,22 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { VerficationComponent } from './components/verfication/verfication.component';
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
 import { ConfirmationCodeComponent } from './components/confirmation-code/confirmation-code.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashOverviewComponent } from './components/dash-overview/dash-overview.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/Home', pathMatch: 'full' },
-  { path: 'Home', component: HomeComponent },
-  { path: 'Login', component: LoginComponent },
-  { path: 'Registration', component: RegistrationComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
   { path: 'confirmation', component: ConfirmationCodeComponent },
-  { path: 'Verfication', component: VerficationComponent },
-  { path: 'Passreset', component: PassResetComponent },
+  { path: 'verfication', component: VerficationComponent },
+  { path: 'passreset', component: PassResetComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [{ path: 'overview', component: DashOverviewComponent }],
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

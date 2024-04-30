@@ -1,0 +1,35 @@
+p {
+  margin: 0;
+  font-family: Cairo;
+  font-size: 16px;
+  font-weight: 400;
+}
+.pg-name {
+  color: #242424;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+}
+.location {
+  color: #5e5d5d;
+  line-height: 24px;
+}
+.price {
+  color: #5e5d5d;
+  line-height: 24px;
+}
+.booking-num {
+  background-color: #d0f3dd;
+}
+.done-no,
+.new-no {
+  color: #41be88;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+}
+.done,
+.new {
+  color: #242424;
+  line-height: 24px;
+}

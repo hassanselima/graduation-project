@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-
+import localeAr from '@angular/common/locales/ar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -22,7 +22,13 @@ import { VerficationComponent } from './components/verfication/verfication.compo
 import { PassResetComponent } from './components/pass-reset/pass-reset.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationCodeComponent } from './components/confirmation-code/confirmation-code.component';
-
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { registerLocaleData } from '@angular/common';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { PgCardComponent } from './components/pg-card/pg-card.component';
+import { BookedPdayComponent } from './components/booked-pday/booked-pday.component';
+import { DashOverviewComponent } from './components/dash-overview/dash-overview.component';
+registerLocaleData(localeAr);
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +46,11 @@ import { ConfirmationCodeComponent } from './components/confirmation-code/confir
     VerficationComponent,
     PassResetComponent,
     ConfirmationCodeComponent,
+    DashboardComponent,
+    SidebarComponent,
+    PgCardComponent,
+    BookedPdayComponent,
+    DashOverviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +59,7 @@ import { ConfirmationCodeComponent } from './components/confirmation-code/confir
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [provideClientHydration()],
+  providers: [provideClientHydration(), { provide: LOCALE_ID, useValue: 'ar' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

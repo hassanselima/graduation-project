@@ -1,0 +1,100 @@
+<div class="container-fluid p-2 rounded-2">
+  <div class="d-flex flex-column align-items-end gap-2">
+    <div class="text-end">
+      <p>اكثر الايام حجزا</p>
+    </div>
+    <div class="d-flex flex-column align-items-end gap-1">
+      <div class="dayRow">
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            [ngStyle]="{ width: progressWidth[0] }"
+            role="progressbar"
+            [ariaValueNow]="progressWidth[0]"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="day-name">الجمعة</p>
+      </div>
+      <div class="dayRow">
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            [ngStyle]="{ width: progressWidth[1] }"
+            role="progressbar"
+            [ariaValueNow]="progressWidth[1]"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="day-name">السبت</p>
+      </div>
+      <div class="dayRow">
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            [ngStyle]="{ width: progressWidth[2] }"
+            role="progressbar"
+            [ariaValueNow]="progressWidth[2]"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="day-name">الاحد</p>
+      </div>
+      <div class="dayRow">
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            [ngStyle]="{ width: progressWidth[3] }"
+            role="progressbar"
+            [ariaValueNow]="progressWidth[3]"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="day-name">الاثنين</p>
+      </div>
+      <div class="dayRow">
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            [ngStyle]="{ width: progressWidth[4] }"
+            role="progressbar"
+            [ariaValueNow]="progressWidth[4]"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="day-name">الثلاثاء</p>
+      </div>
+      <div class="dayRow">
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            [ngStyle]="{ width: progressWidth[5] }"
+            role="progressbar"
+            [ariaValueNow]="progressWidth[5]"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="day-name">الاربعاء</p>
+      </div>
+      <div class="dayRow">
+        <div class="progress">
+          <div
+            class="progress-bar bg-success"
+            [ngStyle]="{ width: progressWidth[6] }"
+            role="progressbar"
+            [ariaValueNow]="progressWidth[6]"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <p class="day-name">الخميس</p>
+      </div>
+    </div>
+  </div>
+</div>

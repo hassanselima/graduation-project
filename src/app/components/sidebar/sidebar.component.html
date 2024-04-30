@@ -1,0 +1,34 @@
+<div class="container-fluid p-0 d-flex border-start">
+  <div class="side-layout">
+    <div class="d-flex flex-column align-items-end me-4 position-relative">
+      <a class="p-0 m-0 navbar-brand" href="#"
+        ><img src="assets/logo.svg" alt="logo"
+      /></a>
+      <p class="position-absolute logo-text">خماسي</p>
+    </div>
+    <div class="nav-list">
+      <ul class="d-flex flex-column align-items-start gap-2 p-0">
+        <li [routerLink]="['overview']" routerLinkActive="active-route">
+          <p>نظرة عامه</p>
+          <img src="assets/icon-dashboard.svg" alt="" />
+        </li>
+        <li [routerLink]="['playgrounds']" routerLinkActive="active-route">
+          <p>ملاعبي</p>
+          <img src="assets/Football2.svg" alt="" />
+        </li>
+        <li [routerLink]="['booking']" routerLinkActive="active-route">
+          <p>الحجوزات</p>
+          <img src="assets/Calendar2.svg" alt="" />
+        </li>
+        <li [routerLink]="['wallet']" routerLinkActive="active-route">
+          <p>المحفظة</p>
+          <img src="assets/Wallet Money.svg" alt="" />
+        </li>
+        <li [routerLink]="['settings']" routerLinkActive="active-route">
+          <p>الاعدادات</p>
+          <img src="assets/Settings.svg" alt="" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
