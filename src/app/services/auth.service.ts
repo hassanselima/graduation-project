@@ -39,13 +39,12 @@ export class AuthService {
     );
   }
 
-  registerOwner(owenrObj: IOwner): Observable<any> {
+  registerOwner(owenrObj: object): Observable<any> {
     return this.httpClient
-      .post<any>(
+      .post(
         // `${environment.APIURL}/Account/register/owner`,
         'https://localhost:5001/api/Account/register/owner',
-        JSON.stringify(owenrObj),
-        this.httpOtions
+        owenrObj
       )
       .pipe(catchError(this.handleError));
   }

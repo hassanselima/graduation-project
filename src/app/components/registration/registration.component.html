@@ -1,12 +1,16 @@
 <div class="text-danger">
   For Test <br />To be Removed:
   <br />
-  {{ regForm | json }}
+  <!-- {{ registerForm | json }} -->
 </div>
 <div
   class="container d-flex align-items-center justify-content-center log-container"
 >
-  <form class="form-box">
+  <form
+    class="form-box"
+    [formGroup]="registerForm"
+    (ngSubmit)="registerOwner()"
+  >
     <div
       class="py-5 bg-white d-flex flex-column align-items-stretch text-center gap-4"
     >
@@ -30,8 +34,33 @@
             name="firstName"
             id="fName"
             class="form-control"
-            [(ngModel)]="regForm.firstName"
+            formControlName="firstName"
           />
+        </div>
+        <div
+          *ngIf="
+            registerForm.get('firstName')?.touched &&
+            registerForm.get('firstName')?.errors
+          "
+        >
+          <p
+            class="alert alert-danger"
+            *ngIf="registerForm.get('firstName')?.getError('required')"
+          >
+            First Name is Required
+          </p>
+          <p
+            class="alert alert-danger"
+            *ngIf="registerForm.get('firstName')?.getError('minlength')"
+          >
+            First Name minlength is 3
+          </p>
+          <p
+            class="alert alert-danger"
+            *ngIf="registerForm.get('firstName')?.getError('maxlength')"
+          >
+            First Name Maxlength is 25
+          </p>
         </div>
         <div class="col d-flex flex-column align-items-end gap-2 p-0">
           <label for="lName" class="form-label">الاسم الاخير</label>
@@ -40,8 +69,33 @@
             name="lastName"
             id="lName"
             class="form-control"
-            [(ngModel)]="regForm.lastName"
+            formControlName="lastName"
           />
+        </div>
+        <div
+          *ngIf="
+            registerForm.get('lastName')?.touched &&
+            registerForm.get('lastName')?.errors
+          "
+        >
+          <p
+            class="alert alert-danger"
+            *ngIf="registerForm.get('lastName')?.getError('required')"
+          >
+            Last Name is Required
+          </p>
+          <p
+            class="alert alert-danger"
+            *ngIf="registerForm.get('lastName')?.getError('minlength')"
+          >
+            Last Name minlength is 3
+          </p>
+          <p
+            class="alert alert-danger"
+            *ngIf="registerForm.get('lastName')?.getError('maxlength')"
+          >
+            Last Name Maxlength is 25
+          </p>
         </div>
         <div class="col d-flex flex-column align-items-end gap-2 p-0">
           <label for="uPhone" class="form-label">رقم الهاتف</label>
@@ -57,8 +111,28 @@
               name="phoneNumber"
               id="uPhone"
               class="form-control border-0 phone-input"
-              [(ngModel)]="regForm.phoneNumber"
+              formControlName="phoneNumber"
             />
+          </div>
+          <div
+            class="w-100"
+            *ngIf="
+              registerForm.get('phoneNumber')?.touched &&
+              registerForm.get('phoneNumber')?.errors
+            "
+          >
+            <p
+              class="alert alert-danger"
+              *ngIf="registerForm.get('phoneNumber')?.getError('required')"
+            >
+              Phone is Required
+            </p>
+            <p
+              class="alert alert-danger w-100"
+              *ngIf="registerForm.get('phoneNumber')?.getError('minLength')"
+            >
+              minlength is 11
+            </p>
           </div>
         </div>
         <div class="col d-flex flex-column align-items-end gap-2 p-0">
@@ -68,8 +142,27 @@
             name="email"
             id="uEmail"
             class="form-control email-input"
-            [(ngModel)]="regForm.email"
+            formControlName="email"
           />
+        </div>
+        <div
+          *ngIf="
+            registerForm.get('email')?.touched &&
+            registerForm.get('email')?.errors
+          "
+        >
+          <p
+            class="alert alert-danger"
+            *ngIf="registerForm.get('email')?.getError('required')"
+          >
+            email is Required
+          </p>
+          <p
+            class="alert alert-danger"
+            *ngIf="registerForm.get('email')?.getError('email')"
+          >
+            Invalid format
+          </p>
         </div>
         <div class="col d-flex flex-column align-items-end gap-2 p-0">
           <label for="uPass" class="form-label">كلمة المرور</label>
@@ -82,9 +175,10 @@
               name="password"
               id="uPass"
               class="form-control border-0 pass-input py-2"
-              [(ngModel)]="regForm.password"
+              formControlName="password"
             />
           </div>
+
           <div class="progress gap-3 align-self-stretch" style="height: 2px">
             <div
               class="progress-bar bg-success"
@@ -98,6 +192,26 @@
           <p class="pass-text">
             استخدم 8 أحرف أو أكثر مع مزيج من الحروف والأرقام والرموز.
           </p>
+          <div
+            class="w-100"
+            *ngIf="
+              registerForm.get('password')?.touched &&
+              registerForm.get('password')?.errors
+            "
+          >
+            <p
+              class="alert alert-danger"
+              *ngIf="registerForm.get('password')?.getError('required')"
+            >
+              password is Required
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="registerForm.get('password')?.getError('minlength')"
+            >
+              minlength is 8
+            </p>
+          </div>
         </div>
         <div class="col d-flex flex-column align-items-end gap-2 p-0">
           <label for="uPass" class="form-label">اعد كلمة المرور</label>
@@ -109,10 +223,28 @@
               type="password"
               name="password"
               id="uPassC"
-              [(ngModel)]="cPassword"
               class="form-control border-0 pass-input py-2"
             />
           </div>
+          <!-- <div
+            *ngIf="
+              registerForm.get('password')?.touched &&
+              registerForm.get('password')?.errors
+            "
+          >
+            <p
+              class="alert alert-danger"
+              *ngIf="registerForm.get('password')?.getError('required')"
+            >
+              password is Required
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="registerForm.get('password')?.getError('minlength')"
+            >
+              minlength is 8
+            </p>
+          </div> -->
         </div>
       </div>
       <div
@@ -127,7 +259,6 @@
           type="checkbox"
           name="constraints"
           value="true"
-          [(ngModel)]="constaints"
           id="flexCheckDefault"
         />
       </div>
@@ -135,10 +266,14 @@
         <button
           class="btn w-100 text-white py-3"
           DarkGreen
-          (click)="registerOwner()"
+          [disabled]="registerForm.invalid"
         >
           انشاء حساب
+          <span *ngIf="isLoading"
+            ><i class="fa-solid fa-spinner fa-spin"></i
+          ></span>
         </button>
+        <p *ngIf="errMsg" class="alert alert-danger">{{ errMsg }}</p>
         <p class="d-flex align-items-center gap-1 have-account">
           <span class="login-acc" routerLink="/login">تسجيل الدخول </span>هل
           لديك حساب؟
