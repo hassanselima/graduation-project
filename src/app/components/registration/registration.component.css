@@ -78,6 +78,7 @@ input {
 .eye {
   left: 10px;
   cursor: pointer;
+  color: #9c9c9c;
 }
 hr {
   margin: 0px;
@@ -119,4 +120,12 @@ hr {
   font-weight: 400;
   line-height: 20px;
   cursor: pointer;
+}
+.alert {
+  padding-block: 2px;
+}
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  display: none;
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ReceivedDataService } from '../../services/received-data.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { ConfirmationService } from '../../services/confirmation.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-confirmation-code',
@@ -6,50 +11,75 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './confirmation-code.component.css',
 })
 export class ConfirmationCodeComponent implements OnInit {
-  otpDigits: string[] = ['', '', '', '', ''];
-  isButtonDisabled: boolean = true;
   hiddenEmail!: string;
-  constructor() {}
+  regResponse: any = {};
+  errMsg: any = '';
+  isLoading: boolean = false;
+  constructor(
+    private recData: ReceivedDataService,
+    private auth: AuthService,
+    private router: Router,
+    private confirmSer: ConfirmationService
+  ) {}
+
+  otpForm: FormGroup = new FormGroup({
+    code: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[0-9]{5}'),
+      Validators.minLength(5),
+    ]),
+  });
 
   ngOnInit(): void {
-    this.hiddenEmail = this.hideEmail('zeyad3892@gmail.com');
-  }
-  checkOtpFilled(): boolean {
-    return this.otpDigits.every((digit) => !!digit);
+    this.recData.currentConfirmationData.subscribe((data) => {
+      this.regResponse = data;
+    });
+    console.log('-------', this.regResponse);
+
+    // this.hiddenEmail = this.hideEmail(this.regResponse.email);
   }
 
-  onOtpInputChange(index: number, value: string): void {
-    this.otpDigits[index] = value;
-    const nextInputIndex = index + 1;
-    const prevInputIndex = index - 1;
+  onSubmit() {
+    this.isLoading = true;
+    const otp = this.otpForm.get('code');
+    console.log(otp?.value);
+    this.errMsg = '';
 
-    if (!value) {
-      if (prevInputIndex >= 0) {
-        const prevInput = document.getElementById(`otp${prevInputIndex}`);
-        if (prevInput) {
-          prevInput.setAttribute('value', '');
-          prevInput.focus();
-        }
-      }
-    } else {
-      const currentInput = document.getElementById(`otp${index}`);
-      if (nextInputIndex < this.otpDigits.length) {
-        const nextInput = document.getElementById(`otp${nextInputIndex}`);
-        if (nextInput) {
-          nextInput.setAttribute('value', '');
-          nextInput.focus();
-        }
-      }
-      if (currentInput) {
-        currentInput.blur();
-      }
+    if (otp?.value.length !== 5) {
+      this.errMsg = 'Invalid code. OTP must be 5 digits long.';
+      this.isLoading = false;
+      return;
     }
 
-    this.isButtonDisabled = !this.checkOtpFilled();
-  }
+    const observer = {
+      next: (response: any) => {
+        console.log('response from confirm.ts :', response);
+        // this.router.navigate(['/login']);
+        console.log('request : success ');
+        this.isLoading = false;
+      },
+      error: (err: any) => {
+        this.errMsg = err;
+        this.isLoading = false;
+      },
+    };
+    if (this.regResponse) {
+      console.log('inside first if : ', this.regResponse);
 
-  onSubmit(): void {
-    console.log(this.otpDigits.join(''));
+      if (`${this.regResponse.code}` == otp.value) {
+        this.confirmSer
+          .confirmEmail(this.regResponse.email, otp.value)
+          .subscribe(observer);
+      } else {
+        this.errMsg = 'Invalid code. Please try again.';
+        this.isLoading = false;
+      }
+    }
+  }
+  removeError() {
+    if (this.otpForm.valid) {
+      this.errMsg = '';
+    }
   }
   hideEmail(email: string): string {
     const [username, domain] = email.split('@');
@@ -59,5 +89,34 @@ export class ConfirmationCodeComponent implements OnInit {
         ? '*'.repeat(username.length - 2) + username.slice(-2)
         : username;
     return hiddenUsername + '@' + domain;
+  }
+  resend() {
+    this.errMsg = '';
+    this.otpForm.get('code')?.setValue('');
+    const observer = {
+      next: (response: any) => {
+        console.log('response from confirm.ts :', response);
+
+        if (response.code) {
+          this.recData.setConfirmationData(response);
+          this.regResponse = response;
+          // this.router.navigate(['/login']);
+          console.log('request : success ');
+          this.hiddenEmail = this.hideEmail(response.email);
+
+          this.isLoading = false;
+        }
+      },
+      error: (err: any) => {
+        this.errMsg = err;
+        this.isLoading = false;
+      },
+    };
+    if (this.regResponse.email) {
+      this.confirmSer
+        .confirmationCode(this.regResponse.email)
+        .subscribe(observer);
+    }
+    // this.confirmSer.confirmationCode('ali@gmail.com').subscribe(observer);
   }
 }

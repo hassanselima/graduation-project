@@ -14,73 +14,53 @@
     <p class="email-text py-3">{{ hiddenEmail }}</p>
     <div class="w-75 d-flex flex-column align-items-center gap-2">
       <p class="write-text">اكتب رمز الحماية الخاص بك والمكون من 5 أرقام</p>
-      <form id="otpForm">
-        <div
-          class="input-field d-flex align-items-center justify-content-center gap-2"
-        >
+      <form id="otpForm" [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+        <div class="input-field">
           <input
-            type="number"
-            class="input"
-            name="otp0"
+            type="text"
+            class="input form-control"
+            name="otp"
             value=""
-            [(ngModel)]="otpDigits[0]"
-            (ngModelChange)="onOtpInputChange(0, $event)"
+            formControlName="code"
             autofocus
-            id="otp0"
+            id="otp"
+            (ngModelChange)="removeError()"
           />
-          <input
-            type="number"
-            class="input"
-            name="otp1"
-            value=""
-            [(ngModel)]="otpDigits[1]"
-            (ngModelChange)="onOtpInputChange(1, $event)"
-            autofocus
-            id="otp1"
-          />
-          <input
-            type="number"
-            class="input"
-            name="otp2"
-            value=""
-            [(ngModel)]="otpDigits[2]"
-            (ngModelChange)="onOtpInputChange(2, $event)"
-            autofocus
-            id="otp2"
-          />
-          <input
-            type="number"
-            class="input"
-            name="otp3"
-            value=""
-            [(ngModel)]="otpDigits[3]"
-            (ngModelChange)="onOtpInputChange(3, $event)"
-            autofocus
-            id="otp3"
-          />
-          <input
-            type="number"
-            class="input"
-            name="otp4"
-            value=""
-            [(ngModel)]="otpDigits[4]"
-            (ngModelChange)="onOtpInputChange(4, $event)"
-            autofocus
-            id="otp4"
-          />
+          <div
+            class="w-100 mt-1"
+            *ngIf="otpForm.get('code')?.touched && otpForm.get('code')?.errors"
+          >
+            <p
+              class="alert alert-danger"
+              *ngIf="otpForm.get('code')?.getError('required')"
+            >
+              Code is Required
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="otpForm.get('code')?.getError('pattern')"
+            >
+              Invalid format
+            </p>
+          </div>
         </div>
+        <p *ngIf="errMsg" class="alert alert-danger mt-2">
+          {{ errMsg }}
+        </p>
         <div class="w-100 d-flex flex-column gap-2 py-3">
           <button
             class="btn btn-success w-100"
             DarkGreen
-            [disabled]="isButtonDisabled"
-            (click)="onSubmit()"
+            [disabled]="otpForm.invalid"
           >
             تحقق
+            <span *ngIf="isLoading"
+              ><i class="fa-solid fa-spinner fa-spin"></i
+            ></span>
           </button>
           <p class="code-text">
             لم تحصل على الرمز؟
-            <span class="green-text">أعد الإرسال</span>
+            <span class="green-text" (click)="resend()">أعد الإرسال</span>
             أو <span class="green-text">تواصل معنا</span>
           </p>
         </div>

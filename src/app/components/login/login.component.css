@@ -32,6 +32,10 @@ p {
   flex: 1;
   border: 1px solid #9c9c9c;
 }
+.email-input {
+  padding: 10px 13px 10px 0px;
+  color: #000;
+}
 .login-text {
   color: #9c9c9c;
   font-size: 14px;
@@ -42,18 +46,18 @@ input {
   text-align: right;
 }
 .pass-input {
-  color: #9c9c9c;
-  font-size: 12px;
+  color: #000;
   font-weight: 400;
   line-height: 18px;
   text-align: right;
   outline: none;
   flex: 1;
-  padding: 10px 13px 10px 0px;
+  padding: 12px 13px 12px 0px;
 }
 .eye {
   left: 10px;
   cursor: pointer;
+  color: #9c9c9c;
 }
 .forget-text {
   color: #39963d;
@@ -67,4 +71,7 @@ input {
   font-size: 14px;
   font-weight: 400;
   line-height: 21px;
+}
+.alert {
+  padding-block: 2px;
 }

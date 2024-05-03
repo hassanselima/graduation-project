@@ -1,7 +1,13 @@
+<div class="text-danger">
+  For Test <br />
+  To Be Removed <br />
+  <p>{{ loginForm.value | json }} <br /></p>
+</div>
+
 <div
   class="container d-flex align-items-center justify-content-center justify-content-lg-between log-container"
 >
-  <form class="form-box">
+  <form class="form-box" [formGroup]="loginForm" (ngSubmit)="login()">
     <div
       class="py-5 bg-white d-flex flex-column align-items-stretch text-center gap-4"
     >
@@ -24,32 +30,87 @@
             type="email"
             name="email"
             id="uEmail"
-            class="form-control"
+            class="form-control email-input"
             placeholder="zeyad@gmail.com"
+            formControlName="email"
           />
+          <div
+            class="w-100"
+            *ngIf="
+              loginForm.get('email')?.touched && loginForm.get('email')?.errors
+            "
+          >
+            <p
+              class="alert alert-danger"
+              *ngIf="loginForm.get('email')?.getError('required')"
+            >
+              email is Required
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="loginForm.get('email')?.getError('email')"
+            >
+              Invalid format
+            </p>
+          </div>
         </div>
         <div class="d-flex flex-column align-items-end gap-2">
           <label for="uPass" class="form-label">كلمة المرور</label>
           <div
             class="d-flex form-control position-relative p-0 align-items-center"
           >
-            <img src="assets/Eye.svg" class="position-absolute eye" alt="" />
+            <i
+              class="fa-regular {{
+                showPassword ? 'fa-eye' : 'fa-eye-slash'
+              }} fa-lg eye position-absolute"
+              (click)="toggleType()"
+            ></i>
             <input
-              type="password"
+              type="{{ showPassword ? 'text' : 'password' }}"
               name="password"
               id="uPass"
               class="form-control border-0 pass-input"
               placeholder="****"
+              formControlName="password"
             />
           </div>
-          <p class="forget-text align-self-start" routerLink="/verfication">
+          <p class="forget-text align-self-start" routerLink="/verification">
             نسيت كلمة المرور؟
           </p>
+          <div
+            class="w-100"
+            *ngIf="
+              loginForm.get('password')?.touched &&
+              loginForm.get('password')?.errors
+            "
+          >
+            <p
+              class="alert alert-danger"
+              *ngIf="loginForm.get('password')?.getError('required')"
+            >
+              password is Required
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="loginForm.get('password')?.getError('minlength')"
+            >
+              minlength is 8
+            </p>
+          </div>
         </div>
+        <p *ngIf="errMsg" class="alert alert-danger">{{ errMsg }}</p>
       </div>
       <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
-        <button class="btn w-100" DarkGreen (click)="login()">
+        <button
+          class="btn w-100"
+          type="submit"
+          [disabled]="loginForm.invalid"
+          DarkGreen
+        >
           تسجيل الدخول
+          <span *ngIf="isLoading"
+            ><i class="fa-solid fa-spinner fa-spin"></i
+          ></span>
         </button>
         <p class="d-flex align-items-center no-account">
           <span class="forget-text" routerLink="/registration">

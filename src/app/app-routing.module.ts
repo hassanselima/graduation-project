@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'confirmation', component: ConfirmationCodeComponent },
-  { path: 'verfication', component: VerficationComponent },
+  { path: 'verification', component: VerficationComponent },
   { path: 'passreset', component: PassResetComponent },
   {
     path: 'dashboard',

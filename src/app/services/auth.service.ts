@@ -5,8 +5,10 @@ import {
   HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, retry, throwError } from 'rxjs';
 import { IOwner } from '../Models/iowner';
+import { environment } from '../Environments/environmetn';
+import { ILoginObj } from '../Models/LoginObj';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +23,7 @@ export class AuthService {
       }),
     };
   }
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): any {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
@@ -34,28 +36,26 @@ export class AuthService {
       );
     }
     // Return an observable with a user-facing error message.
-    return throwError(
-      () => new Error('Something bad happened; please try again later.')
-    );
+    return throwError(() => new Error('please try again later.'));
   }
 
-  registerOwner(owenrObj: object): Observable<any> {
+  registerOwner(owenrObj: IOwner): Observable<any> {
+    const baseUrl = `${environment.APIURL}/Account/register/owner`;
     return this.httpClient
-      .post(
-        // `${environment.APIURL}/Account/register/owner`,
-        'https://localhost:5001/api/Account/register/owner',
-        owenrObj
-      )
-      .pipe(catchError(this.handleError));
+      .post(baseUrl, owenrObj)
+      .pipe(retry(2), catchError(this.handleError));
   }
 
-  login(email: string, password: string): Observable<any> {
-    const baseUrl = 'https://localhost:5001/api/Account/login';
-    const params = new HttpParams().set('email', email).set('passwd', password);
+  login(ownerObj: ILoginObj): Observable<any> {
+    const baseUrl = `${environment.APIURL}/Account/login`;
+    const params = new HttpParams()
+      .set('email', ownerObj.email)
+      .set('passwd', ownerObj.password);
+    console.log(ownerObj.email, ownerObj.password);
+    console.log(params);
 
-    // `${environment.APIURL}/Account/login`,
     return this.httpClient
       .post(baseUrl, {}, { params, headers: this.httpOtions.headers })
-      .pipe(catchError(this.handleError));
+      .pipe(retry(2), catchError(this.handleError));
   }
 }

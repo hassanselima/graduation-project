@@ -1,7 +1,13 @@
+<div class="text-danger">
+  For Test <br />
+  To Be Removed <br />
+  <p>{{ resetPassForm.value | json }}</p>
+</div>
+
 <div
   class="container d-flex align-items-center justify-content-center log-container"
 >
-  <form class="form-box">
+  <form class="form-box" [formGroup]="resetPassForm" (ngSubmit)="updatePass()">
     <div
       class="py-5 bg-white d-flex flex-column align-items-stretch text-center gap-4"
     >
@@ -19,17 +25,20 @@
           <div
             class="d-flex form-control position-relative p-0 align-items-center"
           >
-            <img src="assets/Eye.svg" class="position-absolute eye" alt="" />
+            <i
+              class="fa-regular {{
+                showPassword ? 'fa-eye' : 'fa-eye-slash'
+              }} fa-lg eye position-absolute"
+              (click)="toggleType(1)"
+            ></i>
             <input
-              type="password"
+              type="{{ showPassword ? 'text' : 'password' }}"
               name="password"
               id="uPass"
               class="form-control border-0 pass-input py-2"
+              formControlName="password"
             />
           </div>
-          <span>
-            استخدم 8 أحرف أو أكثر مع مزيج من الحروف والأرقام والرموز.
-          </span>
           <div class="progress gap-3 align-self-stretch" style="height: 2px">
             <div
               class="progress-bar bg-success"
@@ -40,6 +49,29 @@
               aria-valuemax="100"
             ></div>
           </div>
+          <span class="text-end">
+            استخدم 8 أحرف أو أكثر مع مزيج من الحروف والأرقام والرموز.
+          </span>
+          <div
+            class="w-100"
+            *ngIf="
+              resetPassForm.get('password')?.touched &&
+              resetPassForm.get('password')?.errors
+            "
+          >
+            <p
+              class="alert alert-danger"
+              *ngIf="resetPassForm.get('password')?.getError('required')"
+            >
+              Password is Required
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="resetPassForm.get('password')?.getError('minlength')"
+            >
+              minlength is 8
+            </p>
+          </div>
         </div>
         <div class="col d-flex flex-column align-items-end gap-2 p-0">
           <p class="fw-bold">
@@ -48,17 +80,47 @@
           <div
             class="d-flex form-control position-relative p-0 align-items-center"
           >
-            <img src="assets/Eye.svg" class="position-absolute eye" alt="" />
+            <i
+              class="fa-regular {{
+                showRePassword ? 'fa-eye' : 'fa-eye-slash'
+              }} fa-lg eye position-absolute"
+              (click)="toggleType(2)"
+            ></i>
             <input
-              type="password"
+              type="{{ showRePassword ? 'text' : 'password' }}"
               name="password"
-              id="uPass"
+              id="uRePass"
               class="form-control border-0 pass-input py-2"
+              formControlName="confirmPassword"
             />
+          </div>
+          <div
+            class="w-100"
+            *ngIf="
+              resetPassForm.get('confirmPassword')?.touched &&
+              resetPassForm.get('confirmPassword')?.errors
+            "
+          >
+            <p
+              class="alert alert-danger"
+              *ngIf="resetPassForm.get('confirmPassword')?.getError('required')"
+            >
+              Password is Required
+            </p>
+            <p
+              class="alert alert-danger"
+              *ngIf="
+                resetPassForm
+                  .get('confirmPassword')
+                  ?.getError('passwordMismatch')
+              "
+            >
+              Passwords Don't Match
+            </p>
           </div>
         </div>
         <div
-          class="w-75 mx-auto form-check d-flex align-items-center justify-content-end gap-4 p-0"
+          class="w-100 mx-auto form-check d-flex align-items-center justify-content-end gap-4 p-0"
         >
           <label class="form-check-label agree-txt me-2" for="flexCheckDefault">
             اوافق على
@@ -69,11 +131,17 @@
             type="checkbox"
             value=""
             id="flexCheckDefault"
+            formControlName="constraints"
           />
         </div>
       </div>
       <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
-        <button class="btn w-100" routerLink="/home" DarkGreen>
+        <button
+          class="btn w-100"
+          routerLink="/home"
+          DarkGreen
+          [disabled]="resetPassForm.invalid"
+        >
           تعيين كلمة المرور
         </button>
       </div>

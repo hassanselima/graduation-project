@@ -1,7 +1,11 @@
 <div
   class="container d-flex align-items-center justify-content-center log-container"
 >
-  <form class="form-box">
+  <form
+    class="form-box"
+    [formGroup]="verificationForm"
+    (ngSubmit)="resetPass()"
+  >
     <div
       class="py-5 bg-white d-flex flex-column align-items-stretch text-center gap-4"
     >
@@ -25,15 +29,40 @@
             id="uEmail"
             class="form-control"
             placeholder="zeyad@gmail.com"
+            formControlName="email"
           />
+        </div>
+        <div
+          *ngIf="
+            verificationForm.get('email')?.touched &&
+            verificationForm.get('email')?.errors
+          "
+        >
+          <p
+            class="alert alert-danger"
+            *ngIf="verificationForm.get('email')?.getError('required')"
+          >
+            email is Required
+          </p>
+          <p
+            class="alert alert-danger"
+            *ngIf="verificationForm.get('email')?.getError('email')"
+          >
+            Invalid format
+          </p>
         </div>
       </div>
       <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
-        <button routerLink="/passreset" class="btn w-100" DarkGreen>
+        <button
+          routerLink="/passreset"
+          class="btn w-100"
+          DarkGreen
+          [disabled]="verificationForm.invalid"
+        >
           تعيين كلمة المرور
         </button>
         <p class="d-flex align-items-center no-account">
-          <span class="forget-text" routerLink="/registration"> تراجع</span>
+          <span class="forget-text" routerLink="/login"> تراجع</span>
         </p>
       </div>
     </div>
