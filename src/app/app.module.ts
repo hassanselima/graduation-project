@@ -31,6 +31,8 @@ import { DashOverviewComponent } from './components/dash-overview/dash-overview.
 import { NgxApexchartsModule } from 'ngx-apexcharts';
 import { AreaChartComponent } from './components/area-chart/area-chart.component';
 import { DonutChartComponent } from './components/donut-chart/donut-chart.component';
+import { DashPlaygroundsComponent } from './components/dash-playgrounds/dash-playgrounds.component';
+import { PlaygroundDetailsComponent } from './components/playground-details/playground-details.component';
 registerLocaleData(localeAr);
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ registerLocaleData(localeAr);
     DashOverviewComponent,
     AreaChartComponent,
     DonutChartComponent,
+    DashPlaygroundsComponent,
+    PlaygroundDetailsComponent,
   ],
   imports: [
     BrowserModule,

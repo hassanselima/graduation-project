@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { ReceivedDataService } from '../../services/received-data.service';
+import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
   selector: 'app-registration',
@@ -24,7 +24,7 @@ export class RegistrationComponent {
     private auth: AuthService,
     private fb: FormBuilder,
     private router: Router,
-    private recData: ReceivedDataService
+    private recData: SharedDataService
   ) {
     this.registerForm = fb.group(
       {

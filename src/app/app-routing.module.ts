@@ -9,6 +9,8 @@ import { PassResetComponent } from './components/pass-reset/pass-reset.component
 import { ConfirmationCodeComponent } from './components/confirmation-code/confirmation-code.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashOverviewComponent } from './components/dash-overview/dash-overview.component';
+import { authGaurdGuard } from './gaurds/auth-gaurd.guard';
+import { DashPlaygroundsComponent } from './components/dash-playgrounds/dash-playgrounds.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,7 +23,18 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    children: [{ path: 'overview', component: DashOverviewComponent }],
+    children: [
+      {
+        path: 'overview',
+        component: DashOverviewComponent,
+        canActivate: [authGaurdGuard],
+      },
+      {
+        path: 'playgrounds',
+        component: DashPlaygroundsComponent,
+        canActivate: [authGaurdGuard],
+      },
+    ],
   },
   { path: '**', component: NotFoundComponent },
 ];

@@ -10,6 +10,22 @@ p {
   flex-basis: 45%;
   border-radius: 20px;
 }
+@media (max-width: 968px) {
+  .form-box {
+    flex-basis: 65%;
+  }
+}
+@media (max-width: 668px) {
+  .form-box {
+    flex-basis: 75%;
+  }
+}
+@media (max-width: 450px) {
+  .form-box {
+    flex-basis: 90%;
+  }
+}
+
 .login-head {
   color: #242424;
   font-size: 24px;

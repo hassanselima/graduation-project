@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ReceivedDataService } from '../../services/received-data.service';
+
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ConfirmationService } from '../../services/confirmation.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
   selector: 'app-confirmation-code',
@@ -16,7 +17,7 @@ export class ConfirmationCodeComponent implements OnInit {
   errMsg: any = '';
   isLoading: boolean = false;
   constructor(
-    private recData: ReceivedDataService,
+    private recData: SharedDataService,
     private auth: AuthService,
     private router: Router,
     private confirmSer: ConfirmationService
@@ -54,7 +55,7 @@ export class ConfirmationCodeComponent implements OnInit {
     const observer = {
       next: (response: any) => {
         console.log('response from confirm.ts :', response);
-        // this.router.navigate(['/login']);
+        this.router.navigate(['/login']);
         console.log('request : success ');
         this.isLoading = false;
       },

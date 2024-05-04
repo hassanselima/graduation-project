@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ReceivedDataService {
+export class SharedDataService {
   private confirmationData = new BehaviorSubject<any>({});
   currentConfirmationData = this.confirmationData.asObservable();
 

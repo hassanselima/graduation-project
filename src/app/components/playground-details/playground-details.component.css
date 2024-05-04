@@ -1,0 +1,37 @@
+p {
+  margin: 0px;
+  text-align: end;
+  font-family: Cairo;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+.property-text {
+  color: #242424;
+  margin-bottom: 5px;
+}
+.property-text-value {
+  color: #5e5d5d;
+}
+.custumBG {
+  background-color: #00b562;
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 16px;
+  width: fit-content;
+}
+.booking-num {
+  background-color: #d0f3dd;
+}
+.done-no,
+.new-no {
+  color: #41be88;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+}
+.done,
+.new {
+  color: #242424;
+  line-height: 24px;
+}
