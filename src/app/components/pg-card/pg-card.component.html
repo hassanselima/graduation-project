@@ -1,36 +1,58 @@
 <div
   class="container-fluid p-0 m-0 bg-white rounded-2 shadow-sm border border-1"
+  *ngFor="let pg of bookablePlaygrounds; let i = index"
 >
   <div class="row p-1 m-0">
     <div class="col-auto p-0 rounded-2">
-      <img class="w-100" src="assets/pg.svg" alt="playground image" />
+      <div class="position-relative">
+        <!-- assets/pg.svg pg.playgroundInfo.picture -->
+        <img class="w-100" [src]="['assets/pg.svg']" alt="playground image" />
+        <p class="status-text rounded-end-2">
+          {{
+            pg.playgroundInfo.playground?.isBookable
+              ? "قابل للحجز"
+              : "غير قابل للحجز"
+          }}
+        </p>
+      </div>
     </div>
     <div class="col d-flex flex-column justify-content-between rounded-end-2">
       <div class="d-flex flex-column align-items-end gap-1">
-        <p class="pg-name">ملعب الشهداء</p>
-        <p class="location text-end">
-          شارع النيل، حي الزمالك، القاهرة
+        <p class="pg-name">{{ pg.playgroundInfo.playground.name }}</p>
+        <p class="location text-end d-flex gap-1">
+          <!-- شارع النيل، حي الزمالك، القاهرة -->
+          <span class="d-flex flex-row gap-1"
+            ><span>{{ pg.playgroundInfo.playground.country }}</span
+            >،<span>{{ pg.playgroundInfo.playground.city }}</span> ،<span>{{
+              pg.playgroundInfo.playground.address
+            }}</span>
+          </span>
           <img src="assets/MapPin.svg" alt="" />
         </p>
-        <p class="price text-end">
-          50 جنيه / ساعة
+        <p class="price text-end d-flex gap-1">
+          <span class="d-flex flex-row-reverse gap-1"
+            ><span> {{ pg.playgroundInfo.playground.feesForHour }} </span> جنيه
+            / ساعة</span
+          >
           <img src="assets/CurrencyCircleDollar.svg" alt="" />
         </p>
       </div>
       <div class="d-flex justify-content-around py-3 booking-num rounded-2">
         <div class="d-flex flex-column align-items-center">
-          <p class="done-no">42</p>
+          <p class="done-no">{{ pg.finishedBookings }}</p>
           <p class="done">حجز تم</p>
         </div>
         <div class="d-flex flex-column align-items-center">
-          <p class="new-no">12</p>
+          <p class="new-no">{{ pg.newBookings }}</p>
           <p class="new">حجز جديد</p>
         </div>
       </div>
       <button
         class="btn btn-outline-success w-100 d-flex align-items-center justify-content-center gap-2"
       >
-        <p>الغاء التفعيل</p>
+        <p (click)="changeState(pg.playgroundInfo.playground.id)">
+          الغاء التفعيل
+        </p>
         <img src="assets/Power.svg" alt="" />
       </button>
     </div>

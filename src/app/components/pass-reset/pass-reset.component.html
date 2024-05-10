@@ -135,10 +135,11 @@
           />
         </div>
       </div>
+      <p *ngIf="errMsg" class="alert alert-danger">{{ errMsg }}</p>
       <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
         <button
           class="btn w-100"
-          routerLink="/home"
+          type="submit"
           DarkGreen
           [disabled]="resetPassForm.invalid"
         >

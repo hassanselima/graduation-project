@@ -6,6 +6,24 @@ p {
   font-weight: 400;
   line-height: 24px;
 }
+.editPG {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+}
+.status-text {
+  background-color: #fff;
+  color: #242424;
+  position: absolute;
+  top: 30px;
+  padding: 5px 7px;
+}
+.card-title {
+  color: #242424;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 27px;
+}
 .property-text {
   color: #242424;
   margin-bottom: 5px;
@@ -34,4 +52,11 @@ p {
 .new {
   color: #242424;
   line-height: 24px;
+}
+.checkbox:checked {
+  background-color: #00b562;
+  border: 1px solid #00b562;
+}
+.checkbox:focus {
+  border: 1px solid #00b562;
 }

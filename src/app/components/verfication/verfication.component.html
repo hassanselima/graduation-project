@@ -4,7 +4,7 @@
   <form
     class="form-box"
     [formGroup]="verificationForm"
-    (ngSubmit)="resetPass()"
+    (ngSubmit)="getConfimation()"
   >
     <div
       class="py-5 bg-white d-flex flex-column align-items-stretch text-center gap-4"
@@ -52,9 +52,11 @@
           </p>
         </div>
       </div>
+      <p *ngIf="errMsg" class="alert alert-danger mt-2">
+        {{ errMsg }}
+      </p>
       <div class="w-75 mx-auto d-flex flex-column align-items-center gap-3">
         <button
-          routerLink="/passreset"
           class="btn w-100"
           DarkGreen
           [disabled]="verificationForm.invalid"

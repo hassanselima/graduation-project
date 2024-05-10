@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from '../../services/confirmation.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedDataService } from '../../services/shared-data.service';
@@ -20,7 +20,8 @@ export class ConfirmationCodeComponent implements OnInit {
     private recData: SharedDataService,
     private auth: AuthService,
     private router: Router,
-    private confirmSer: ConfirmationService
+    private confirmSer: ConfirmationService,
+    private route: ActivatedRoute
   ) {}
 
   otpForm: FormGroup = new FormGroup({
@@ -34,16 +35,15 @@ export class ConfirmationCodeComponent implements OnInit {
   ngOnInit(): void {
     this.recData.currentConfirmationData.subscribe((data) => {
       this.regResponse = data;
+      this.hiddenEmail = this.hideEmail(this.regResponse.email);
     });
     console.log('-------', this.regResponse);
-
-    // this.hiddenEmail = this.hideEmail(this.regResponse.email);
   }
 
   onSubmit() {
     this.isLoading = true;
     const otp = this.otpForm.get('code');
-    console.log(otp?.value);
+    console.log('written code: ', otp?.value);
     this.errMsg = '';
 
     if (otp?.value.length !== 5) {
@@ -51,31 +51,52 @@ export class ConfirmationCodeComponent implements OnInit {
       this.isLoading = false;
       return;
     }
+    this.route.queryParams.subscribe((params) => {
+      const action = params['action'];
+      if (action === 'registration') {
+        const observer = {
+          next: (response: any) => {
+            console.log('response from confirm.ts :', response);
+            this.router.navigate(['/login']);
+            console.log('request : success ');
+            this.isLoading = false;
+          },
+          error: (err: any) => {
+            this.errMsg = err;
+            this.isLoading = false;
+          },
+        };
+        if (this.regResponse) {
+          console.log('inside first if : ', this.regResponse);
 
-    const observer = {
-      next: (response: any) => {
-        console.log('response from confirm.ts :', response);
-        this.router.navigate(['/login']);
-        console.log('request : success ');
-        this.isLoading = false;
-      },
-      error: (err: any) => {
-        this.errMsg = err;
-        this.isLoading = false;
-      },
-    };
-    if (this.regResponse) {
-      console.log('inside first if : ', this.regResponse);
+          if (`${this.regResponse.code}` == otp.value) {
+            this.confirmSer
+              .confirmEmail(this.regResponse.email, otp.value)
+              .subscribe(observer);
+          } else {
+            this.errMsg = 'Invalid code. Please try again.';
+            this.isLoading = false;
+          }
+        }
+      } else if (action === 'verification') {
+        let recCode = this.recData.getUserData().code;
+        console.log('rec Code : ', recCode);
+        console.log('otp code : ', otp.value);
+        if (this.regResponse) {
+          console.log('inside first if : ', this.regResponse);
+          if (recCode == otp.value) {
+            console.log('rec Code : inside comparison', recCode);
+            console.log('otp code : inside comparison', otp.value);
+            this.router.navigate(['/passreset']);
 
-      if (`${this.regResponse.code}` == otp.value) {
-        this.confirmSer
-          .confirmEmail(this.regResponse.email, otp.value)
-          .subscribe(observer);
-      } else {
-        this.errMsg = 'Invalid code. Please try again.';
-        this.isLoading = false;
+            this.isLoading = false;
+          } else {
+            this.errMsg = 'Invalid code. Please try again.';
+            this.isLoading = false;
+          }
+        }
       }
-    }
+    });
   }
   removeError() {
     if (this.otpForm.valid) {

@@ -6,29 +6,44 @@
       /></a>
       <p class="position-absolute logo-text">خماسي</p>
     </div>
-    <div class="nav-list">
-      <ul class="d-flex flex-column align-items-start gap-2 p-0">
-        <li [routerLink]="['overview']" routerLinkActive="active-route">
-          <p>نظرة عامه</p>
-          <img src="assets/icon-dashboard.svg" alt="" />
-        </li>
-        <li [routerLink]="['playgrounds']" routerLinkActive="active-route">
-          <p>ملاعبي</p>
-          <img src="assets/Football2.svg" alt="" />
-        </li>
-        <li routerLinkActive="active-route">
-          <p>الحجوزات</p>
-          <img src="assets/Calendar2.svg" alt="" />
-        </li>
-        <li routerLinkActive="active-route">
-          <p>المحفظة</p>
-          <img src="assets/Wallet Money.svg" alt="" />
-        </li>
-        <li routerLinkActive="active-route">
-          <p>الاعدادات</p>
-          <img src="assets/Settings.svg" alt="" />
-        </li>
-      </ul>
+    <div class="icon">
+      <button class="nav-toggle btn" type="button">
+        <span class="navbar-icon"
+          ><i class="fa-solid fa-bars fa-lg" style="color: #4d8c57"></i
+        ></span>
+      </button>
+      <div class="nav-list" id="nav-lists">
+        <ul class="d-flex flex-column align-items-start gap-2 p-0">
+          <li
+            [routerLink]="['overview']"
+            routerLinkActive="active-route"
+            class=""
+          >
+            <p>نظرة عامه</p>
+            <img src="assets/icon-dashboard.svg" alt="" />
+          </li>
+          <li
+            [routerLink]="['playgrounds']"
+            routerLinkActive="active-route"
+            class=""
+          >
+            <p>ملاعبي</p>
+            <img src="assets/Football2.svg" alt="" />
+          </li>
+          <li routerLinkActive="active-route" class="">
+            <p>الحجوزات</p>
+            <img src="assets/Calendar2.svg" alt="" />
+          </li>
+          <li routerLinkActive="active-route" class="">
+            <p>المحفظة</p>
+            <img src="assets/Wallet Money.svg" alt="" />
+          </li>
+          <li routerLinkActive="active-route" class="">
+            <p>الاعدادات</p>
+            <img src="assets/Settings.svg" alt="" />
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

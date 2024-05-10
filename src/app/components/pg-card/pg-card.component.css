@@ -4,6 +4,13 @@ p {
   font-size: 16px;
   font-weight: 400;
 }
+.status-text {
+  background-color: #fff;
+  color: #242424;
+  position: absolute;
+  top: 30px;
+  padding: 5px 7px;
+}
 .pg-name {
   color: #242424;
   font-size: 18px;

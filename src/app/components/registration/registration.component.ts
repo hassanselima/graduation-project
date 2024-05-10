@@ -87,7 +87,9 @@ export class RegistrationComponent {
         if (response.code) {
           console.log(data);
           this.recData.setConfirmationData(data);
-          this.router.navigate(['/confirmation']);
+          this.router.navigate(['/confirmation'], {
+            queryParams: { action: 'registration' },
+          });
           console.log('request : success ');
 
           this.isLoading = false;

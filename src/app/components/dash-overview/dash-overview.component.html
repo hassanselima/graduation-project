@@ -1,25 +1,61 @@
-<div class="row gap-3 mx-3 dash-content">
+<div class="row gap-3 mx-3 pt-3">
   <div class="col-12 col-md-5 col-lg-3 p-0 rounded-2 bg-white shadow-sm">
     <div class="text-end d-flex flex-column align-items-end gap-2 px-3">
       <p class="py-4 booked-head border-bottom w-100">اكثر الايام حجزا</p>
-      <app-booked-pday></app-booked-pday>
+      <ng-container *ngIf="isLoading">
+        <app-loader class="mx-auto"></app-loader>
+      </ng-container>
+      <ng-container *ngIf="!isLoading && bookingsByDay && bookingsByDay.length">
+        <app-booked-pday [bookingsPDay]="bookingsByDay"></app-booked-pday>
+      </ng-container>
+      <ng-container
+        *ngIf="!isLoading && (!bookingsByDay || bookingsByDay.length === 0)"
+      >
+        <p class="m-auto text-center display-text">No data available</p>
+      </ng-container>
     </div>
   </div>
   <!--area charts here -->
   <div class="col-12 col-md-6 col-lg bg-white rounded-2 shadow-sm">
     <p class="text-end py-2 revenue-head">حصة الايرادات</p>
-    <app-area-chart></app-area-chart>
+    <ng-container *ngIf="isLoading">
+      <app-loader class="mx-auto"></app-loader>
+    </ng-container>
+    <ng-container *ngIf="!isLoading && bookingsByDay && bookingsByDay.length">
+      <app-area-chart [monthlySum]="monthlySum"></app-area-chart>
+    </ng-container>
   </div>
   <div class="col-12 bg-dark-subtle"></div>
   <div class="col-12 col-md-6 col-lg-8 p-3 bg-white rounded-2">
     <div class="d-flex justify-content-between align-items-center pb-3">
-      <button class="btn btn-outline-success">عرض الكل</button>
-      <p class="avail-pg">ملاعبي القابلة للحجز</p>
+      <button
+        class="btn btn-outline-success"
+        [routerLink]="['/dashboard/playgrounds']"
+      >
+        عرض الكل
+      </button>
+      <p class="avail-pg text-end">ملاعبي القابلة للحجز</p>
     </div>
     <div class="d-flex flex-column gap-3 box">
+      <ng-container *ngIf="isLoadingPG">
+        <app-loader class="mx-auto"></app-loader>
+      </ng-container>
+      <ng-container
+        *ngIf="!isLoadingPG && bookingsByDay && bookingsByDay.length"
+      >
+        <app-pg-card
+          [bookablePlaygrounds]="bookablePlaygrounds"
+          (updateComponent)="updatePGs($event)"
+        ></app-pg-card>
+      </ng-container>
+      <ng-container
+        *ngIf="!isLoadingPG && (!bookingsByDay || bookingsByDay.length === 0)"
+      >
+        <p class="m-auto text-center display-text">No data available</p>
+      </ng-container>
+      <!-- <app-pg-card></app-pg-card>
       <app-pg-card></app-pg-card>
-      <app-pg-card></app-pg-card>
-      <app-pg-card></app-pg-card>
+      <app-pg-card></app-pg-card> -->
     </div>
   </div>
   <!--pie charts here -->
@@ -27,6 +63,24 @@
     class="col-12 col-md-5 col-lg rounded-2 bg-white shadow-sm d-flex flex-column gap-5"
   >
     <p class="text-end py-4 booking-head border-bottom">الحجوزات</p>
-    <app-donut-chart></app-donut-chart>
+
+    <ng-container *ngIf="isLoadingPG">
+      <app-loader class="mx-auto"></app-loader>
+    </ng-container>
+    <ng-container *ngIf="!isLoadingPG && bookingsByDay && bookingsByDay.length">
+      <app-donut-chart
+        [finishedBooings]="finshedBookings"
+        [newBooings]="newBookings"
+      ></app-donut-chart>
+    </ng-container>
+    <ng-container
+      *ngIf="!isLoadingPG && (!bookingsByDay || bookingsByDay.length === 0)"
+    >
+      <p class="m-auto text-center display-text">No data available</p>
+    </ng-container>
+    <!-- <app-donut-chart
+      [finishedBooings]="finshedBookings"
+      [newBooings]="newBookings"
+    ></app-donut-chart> -->
   </div>
 </div>

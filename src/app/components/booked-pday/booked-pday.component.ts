@@ -1,18 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-booked-pday',
   templateUrl: './booked-pday.component.html',
   styleUrl: './booked-pday.component.css',
 })
-export class BookedPdayComponent {
-  progressWidth: string[] = [
-    '100px',
-    '85px',
-    '40px',
-    '60px',
-    '50px',
-    '60px',
-    '40px',
-  ];
+export class BookedPdayComponent implements OnInit {
+  daysOfWeek: { [key: string]: string } = {
+    Sunday: 'الأحد',
+    Monday: 'الاثنين',
+    Tuesday: 'الثلاثاء',
+    Wednesday: 'الأربعاء',
+    Thursday: 'الخميس',
+    Friday: 'الجمعة',
+    Saturday: 'السبت',
+  };
+  @Input() bookingsPDay!: { dayOfWeek: string; numberOfBookings: number }[];
+
+  ngOnInit(): void {
+    // console.log('form child : ', this.bookingsPDay);
+  }
 }

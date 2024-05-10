@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -8,7 +8,6 @@ import {
   ApexTooltip,
   ApexStroke,
   ApexYAxis,
-  ApexFill,
 } from 'ngx-apexcharts';
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -24,16 +23,45 @@ export type ChartOptions = {
   templateUrl: './area-chart.component.html',
   styleUrl: './area-chart.component.css',
 })
-export class AreaChartComponent {
+export class AreaChartComponent implements OnInit {
   @ViewChild('chart') chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
-  constructor() {
+
+  @Input() monthlySum: { year: number; month: number; total: number }[] = [];
+  months: number[] = [];
+  totals: number[] = [];
+  categories: string[] = [];
+  monthNames: string[] = [
+    'يناير',
+    'فبراير',
+    'مارس',
+    'أبريل',
+    'مايو',
+    'يونيو',
+    'يوليو',
+    'أغسطس',
+    'سبتمبر',
+    'أكتوبر',
+    'نوفمبر',
+    'ديسمبر',
+  ];
+  constructor() {}
+  ngOnInit(): void {
+    console.log('form area chart : ', this.monthlySum);
+
+    this.months = this.monthlySum.map((item) => item.month);
+    this.totals = this.monthlySum.map((item) => item.total);
+    this.categories = this.months.map((month) => this.monthNames[month - 1]);
+    console.log('months: ', this.months);
+    console.log('totals: ', this.totals.reverse());
+    console.log('categories: ', this.categories.reverse());
+
     this.chartOptions = {
       series: [
         {
-          name: 'series1',
+          name: 'Monthly Total',
           color: '#7BD5AB',
-          data: [80, 50, 30, 28, 101, 62, 70, 40, 80, 20, 0, 0],
+          data: this.totals,
         },
       ],
       chart: {
@@ -51,20 +79,7 @@ export class AreaChartComponent {
       },
       xaxis: {
         type: 'category',
-        categories: [
-          'ديسمبر',
-          'نوفمبر',
-          'اكتوبر',
-          'سبتمبر',
-          'اغسطس',
-          'يوليو',
-          'يونيو',
-          'مايو',
-          'ابريل',
-          'مارس',
-          'فبراير',
-          'يناير',
-        ],
+        categories: this.categories,
       },
       Yaxis: {
         opposite: true,

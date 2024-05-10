@@ -5,6 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { ConfirmationService } from '../../services/confirmation.service';
+import { SharedDataService } from '../../services/shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pass-reset',
@@ -14,8 +17,14 @@ import {
 export class PassResetComponent {
   showPassword: boolean = false;
   showRePassword: boolean = false;
+  errMsg: string = '';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private confirmServ: ConfirmationService,
+    private sharedData: SharedDataService,
+    private router: Router
+  ) {}
   toggleType(i: number) {
     i === 1
       ? (this.showPassword = !this.showPassword)
@@ -46,5 +55,29 @@ export class PassResetComponent {
     }
   }
 
-  updatePass() {}
+  updatePass() {
+    const { email, code } = this.sharedData.getUserData();
+    const newPassword: string = this.resetPassForm.get('password')?.value;
+    console.log(email);
+    console.log(typeof code, code);
+    console.log(newPassword);
+    const observer = {
+      next: (res: any) => {
+        console.log('Password updated successfully');
+        console.log(res);
+
+        this.router.navigate(['/login']);
+      },
+      error: (err: any) => {
+        this.errMsg = err.message;
+      },
+    };
+
+    this.confirmServ
+      .resetPassword(`${email}`, code, newPassword)
+      .subscribe((res: any) => {
+        console.log('password Updated successfully');
+        this.router.navigate(['/login']);
+      });
+  }
 }

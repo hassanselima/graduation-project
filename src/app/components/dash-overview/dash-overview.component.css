@@ -9,11 +9,7 @@ p {
   color: #5e5d5d;
   line-height: 27px;
 }
-.dash-content {
-  scroll-behavior: smooth;
-  height: calc(100vh - 125px);
-  overflow-y: scroll;
-}
+
 .revenue-head {
   color: #5e5d5d;
   font-size: 24.624px;
@@ -42,4 +38,9 @@ p {
 ::-webkit-scrollbar-thumb {
   background-color: #a3a3a3;
   border-radius: 15px;
+}
+.display-text {
+  font-size: calc(0.5rem + 2vw);
+  font-weight: 300;
+  line-height: 1.2;
 }

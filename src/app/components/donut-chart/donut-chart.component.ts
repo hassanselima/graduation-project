@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 import {
   ApexAnnotations,
@@ -27,13 +27,16 @@ export type ChartOptions = {
   templateUrl: './donut-chart.component.html',
   styleUrl: './donut-chart.component.css',
 })
-export class DonutChartComponent {
+export class DonutChartComponent implements OnInit {
+  @Input() finishedBooings: number = 0;
+  @Input() newBooings: number = 0;
   @ViewChild('chart') chart!: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
+  public chartOptions!: Partial<ChartOptions>;
 
-  constructor() {
+  constructor() {}
+  ngOnInit(): void {
     this.chartOptions = {
-      series: [63, 37],
+      series: [this.newBooings, this.finishedBooings],
       chart: {
         type: 'donut',
       },

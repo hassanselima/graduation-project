@@ -7,7 +7,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, catchError, retry, throwError } from 'rxjs';
 import { IOwner } from '../Models/iowner';
-import { environment } from '../Environments/environmetn';
+import { environment } from '../Environments/environment';
 import { ILoginObj } from '../Models/LoginObj';
 
 @Injectable({

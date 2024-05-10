@@ -12,8 +12,9 @@ p {
   gap: 10px;
 }
 .progress {
-  height: 5px;
+  height: 15px;
   flex-grow: 1;
+  border-radius: 0px;
 }
 .day-name {
   width: 55px;

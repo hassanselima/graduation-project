@@ -1,5 +1,5 @@
 <div class="container-fluid p-0">
-  <div class="">
+  <div class="m-0">
     <div class="d-flex align-items-center justify-content-between p-3">
       <div class="d-flex align-items-center gap-2">
         <button
@@ -15,13 +15,26 @@
         </button>
       </div>
       <div class="d-flex align-items-center gap-3">
-        <p>الغير قابلة للحجز</p>
-        <p>القابلة للحجز</p>
-        <p>النافذة</p>
+        <p class="PG-staus" routerLinkActive="PG-statusActive">
+          الغير قابلة للحجز
+        </p>
+        <p class="PG-staus" routerLinkActive="PG-statusActive">القابلة للحجز</p>
+        <p class="PG-staus" routerLinkActive="PG-statusActive">النافذة</p>
       </div>
     </div>
-    <div class="p-3">
-      <app-playground-details></app-playground-details>
+    <div class="m-0 bg-box">
+      <ng-container *ngIf="isLoading">
+        <app-loader class="mx-auto"></app-loader>
+      </ng-container>
+      <ng-container *ngIf="!isLoading && allPGs && allPGs.length">
+        <app-playground-details
+          [allPGs]="allPGs"
+          (reloaddata)="updateData($event)"
+        ></app-playground-details>
+      </ng-container>
+      <ng-container *ngIf="!isLoading && (!allPGs || allPGs.length === 0)">
+        <p class="m-auto text-center display-text">No data available</p>
+      </ng-container>
     </div>
   </div>
 </div>

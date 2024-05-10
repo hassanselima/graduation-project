@@ -63,11 +63,11 @@ input::-webkit-outer-spin-button {
   text-decoration-line: underline;
 }
 @media (max-width: 720px) {
-  .input {
+  /* .input {
     width: 30px;
     height: 30px;
     font-size: 0.8rem;
-  }
+  } */
   .confirm-box {
     max-width: 75%;
     width: 70%;

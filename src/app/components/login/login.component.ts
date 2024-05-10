@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent {
   isLoading: boolean = false;
   showPassword: boolean = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   toggleType() {
     this.showPassword = !this.showPassword;
@@ -37,7 +38,7 @@ export class LoginComponent {
 
           localStorage.setItem('ownerToken', response.token);
           localStorage.setItem('currentUser', JSON.stringify(response.user));
-          // this._Router.navigate(['/home']);
+          this.router.navigate(['/dashboard/overview']);
           this.isLoading = false;
         } else {
           console.error('Invalid response format');
