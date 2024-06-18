@@ -33,7 +33,7 @@ export class LoginComponent {
     console.log('sended data : ', userDate);
     const observer = {
       next: (response: any) => {
-        if (response.user && response.token) {
+        if (response.user && response.token && response.role === 'Owner') {
           console.log('login response : ', response);
 
           localStorage.setItem('ownerToken', response.token);
@@ -48,6 +48,8 @@ export class LoginComponent {
       },
       error: (err: any) => {
         this.errMsg = 'An error occurred while logging in';
+        console.log('error case within login : ', err);
+
         this.isLoading = false;
       },
     };

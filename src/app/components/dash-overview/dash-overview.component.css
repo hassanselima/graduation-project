@@ -5,6 +5,11 @@ p {
   font-style: normal;
   font-weight: 600;
 }
+.cont-box {
+  scroll-behavior: smooth;
+  height: 100vh;
+  overflow-y: scroll;
+}
 .booked-head {
   color: #5e5d5d;
   line-height: 27px;

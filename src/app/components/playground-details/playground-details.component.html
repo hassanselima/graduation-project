@@ -4,12 +4,11 @@
   <div class="container-fluid p-4 col" *ngFor="let pg of allPGs; let i = index">
     <div class="card shadow border-0 rounded-4">
       <div class="p-3 position-relative">
-        <!-- <img class="card-img-top" src="assets/pg.svg" alt="Card image cap" /> -->
-        <!-- [src]="" -->
         <img
           class="card-img"
-          src="assets/4628fd142082333ed400b2907d918bea.jpeg"
-          alt="Card image cap"
+          [src]="getImage(pg.playgroundInfo.picture)"
+          alt="Card
+        image cap"
         />
         <p class="status-text rounded-end-2">
           {{
@@ -145,6 +144,13 @@
             pg.playgroundInfo.playground?.isBookable ? "الغاء التفعيل" : "تفعيل"
           }}
           <span><img src="assets/Power2.svg" alt="" /></span>
+        </button>
+        <button
+          class="btn btn-outline-success d-flex align-items-center justify-content-center w-75 d-block mx-auto"
+          (click)="deletePG(pg.playgroundInfo.playground.id)"
+        >
+          حذف ملعب
+          <span><img src="assets/Trash Bin Minimalistic.svg" alt="" /></span>
         </button>
       </div>
     </div>

@@ -9,20 +9,20 @@
           اضافة ملعب
           <span><img src="assets/Add Circle.svg" alt="" /></span>
         </button>
-        <button class="btn btn-outline-success d-flex align-items-center gap-1">
+        <!-- <button class="btn btn-outline-success d-flex align-items-center gap-1">
           حذف ملعب
           <span><img src="assets/Trash Bin Minimalistic.svg" alt="" /></span>
-        </button>
+        </button> -->
       </div>
       <div class="d-flex align-items-center gap-3">
         <p class="PG-staus" routerLinkActive="PG-statusActive">
           الغير قابلة للحجز
         </p>
         <p class="PG-staus" routerLinkActive="PG-statusActive">القابلة للحجز</p>
-        <p class="PG-staus" routerLinkActive="PG-statusActive">النافذة</p>
       </div>
     </div>
-    <div class="m-0 bg-box">
+    <!--  bg-box class removed from the below line -->
+    <div class="m-0">
       <ng-container *ngIf="isLoading">
         <app-loader class="mx-auto"></app-loader>
       </ng-container>

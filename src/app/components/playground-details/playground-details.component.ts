@@ -30,6 +30,7 @@ export class PlaygroundDetailsComponent implements OnInit {
   holidays: string = '';
   ownerId: string | null = '';
   ownToken: string | null = '';
+  imageSrc: string | undefined = '';
   @Input() allPGs: any[] = [];
   @Output() reloaddata: EventEmitter<any> = new EventEmitter<any>();
   constructor(private dashSer: DashServicesService) {
@@ -50,6 +51,12 @@ export class PlaygroundDetailsComponent implements OnInit {
       console.log('not bookable from my playgrounds');
       this.reloaddata.emit();
     });
+    console.log(id);
+  }
+  getImage(base64Image: string): string {
+    return `data:image/jpeg;base64,${base64Image}`;
+  }
+  deletePG(id: number) {
     console.log(id);
   }
 }
