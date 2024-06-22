@@ -39,6 +39,10 @@
   margin-bottom: 20px;
   width: 100%;
 }
+.upload-container input {
+  background-color: #f8f9fa;
+  border-color: #dddddd;
+}
 p {
   text-align: center;
   font-family: Cairo;
