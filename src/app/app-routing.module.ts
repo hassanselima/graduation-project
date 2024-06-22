@@ -11,6 +11,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashOverviewComponent } from './components/dash-overview/dash-overview.component';
 import { authGaurdGuard } from './gaurds/auth-gaurd.guard';
 import { DashPlaygroundsComponent } from './components/dash-playgrounds/dash-playgrounds.component';
+import { AddPG1Component } from './components/add-playground/add-pg1/add-pg1.component';
+import { AddPG2Component } from './components/add-playground/add-pg2/add-pg2.component';
+import { AddPG3Component } from './components/add-playground/add-pg3/add-pg3.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -32,6 +35,21 @@ const routes: Routes = [
       {
         path: 'playgrounds',
         component: DashPlaygroundsComponent,
+        canActivate: [authGaurdGuard],
+      },
+      {
+        path: 'playgrounds/add1',
+        component: AddPG1Component,
+        canActivate: [authGaurdGuard],
+      },
+      {
+        path: 'playgrounds/add2',
+        component: AddPG2Component,
+        canActivate: [authGaurdGuard],
+      },
+      {
+        path: 'playgrounds/add3',
+        component: AddPG3Component,
         canActivate: [authGaurdGuard],
       },
     ],

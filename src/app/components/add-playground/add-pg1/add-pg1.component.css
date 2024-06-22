@@ -1,0 +1,43 @@
+h2 {
+  color: #242424;
+  text-align: center;
+  font-family: Cairo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px;
+}
+input {
+  background-color: #f8f9fa;
+  border-color: #9c9c9c;
+  text-align: right;
+}
+textarea {
+  background-color: #f8f9fa;
+  border-color: #9c9c9c;
+  text-align: right;
+  height: 100px;
+  overflow-y: visible;
+  resize: none;
+}
+
+textarea::placeholder {
+  color: #9c9c9c;
+}
+.pg-size {
+  color: #242424;
+  border-color: #9c9c9c;
+}
+.selected {
+  background-color: #00b562;
+  color: #fff;
+}
+.add-size {
+  color: #242424;
+  border-color: #00b562;
+}
+.next-btn {
+  color: #fff;
+  background-color: #00b562;
+  width: 300px;
+}

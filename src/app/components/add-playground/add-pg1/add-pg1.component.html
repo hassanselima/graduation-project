@@ -1,0 +1,61 @@
+<div class="text-danger">
+  <p>{{ addPGForm.value | json }}</p>
+</div>
+
+<div class="container-fluid">
+  <div class="w-50 mx-auto mt-5">
+    <h2 class="">اضافة ملعب جديد</h2>
+    <form [formGroup]="addPGForm">
+      <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3">
+        <label for="PgName" class="form-label">اسم الملعب</label>
+        <input
+          type="text"
+          name="name"
+          id="PgName"
+          class="form-control"
+          formControlName="name"
+        />
+      </div>
+      <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3">
+        <label for="PgDecription" class="form-label">وصف الملعب</label>
+        <textarea
+          name="description"
+          id="PgDecription"
+          class="form-control"
+          placeholder="اكتب وصف الملعب هنا"
+          formControlName="description"
+        ></textarea>
+      </div>
+      <div class="col d-flex flex-column align-items-end gap-2 p-0 mb-5">
+        <label class="form-label">مقاس الملعب</label>
+        <div class="d-flex flex-row-reverse gap-2 flex-wrap mb-1">
+          <button
+            *ngFor="let size of fieldSizes"
+            [ngClass]="{
+              selected: selectedFieldSize === size
+            }"
+            class="btn border-1 pg-size"
+            (click)="selectFieldSize(size)"
+          >
+            {{ size }}
+          </button>
+        </div>
+        <button class="btn border-1 add-size" (click)="addFieldSize()">
+          اضافة مقاس <img src="assets/Add Circle black.svg" alt="add symbol" />
+        </button>
+      </div>
+
+      <div class="text-center">
+        <button
+          class="btn next-btn"
+          DarkGreen
+          (click)="next()"
+          [disabled]="!addPGForm.valid"
+        >
+          <img src="assets/Arrow Left.svg" alt="next arrow" />
+          التالي
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+.pg-adv {
+  color: #242424;
+  border-color: #9c9c9c;
+}
+.selected {
+  background-color: #00b562;
+  color: #fff;
+}
+.add-adv {
+  color: #242424;
+  border-color: #00b562;
+}
+.price-input {
+  background-color: #f8f9fa;
+  border-color: #9c9c9c;
+  text-align: right;
+}
+.price-input::-webkit-inner-spin-button {
+  display: none;
+}
+.hour {
+  color: #000;
+  font-family: Cairo;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 27px;
+}
+.next-btn {
+  color: #fff;
+  background-color: #00b562;
+  width: 300px;
+}
+
+.upload-container {
+  border: 2px dashed #ddd;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+p {
+  text-align: center;
+  font-family: Cairo;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.drop-text {
+  color: #000;
+  font-size: 13px;
+}
+.file-size-text {
+  color: #0006;
+}
+
+.add-file {
+  border-color: #00b562;
+  color: #00b562;
+}
+.add-file:hover {
+  color: #fff;
+  background-color: #00b562;
+}
+
+.upload-container p {
+  margin: 10px 0;
+}
+li {
+  text-align: left;
+}
+i {
+  cursor: pointer;
+}
