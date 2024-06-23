@@ -1,12 +1,16 @@
 <div
   class="container-fluid p-0 m-0 bg-white rounded-2 shadow-sm border border-1"
-  *ngFor="let pg of bookablePlaygrounds; let i = index"
+  *ngFor="let pg of bookablePlaygrounds.slice(0, 3); let i = index"
 >
   <div class="row p-1 m-0">
     <div class="col-auto p-0 rounded-2">
       <div class="position-relative">
         <!-- assets/pg.svg pg.playgroundInfo.picture -->
-        <img class="w-100" [src]="['assets/pg.svg']" alt="playground image" />
+        <img
+          class="w-100"
+          [src]="getImage(pg.playgroundInfo.picture)"
+          alt="playground image"
+        />
         <p class="status-text rounded-end-2">
           {{
             pg.playgroundInfo.playground?.isBookable

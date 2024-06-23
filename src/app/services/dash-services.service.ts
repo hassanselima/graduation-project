@@ -30,4 +30,10 @@ export class DashServicesService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.put(baseUrl, {}, { params, headers });
   }
+  deletePlayground(pgId: number, token: string | null) {
+    const baseUrl = `${environment.APIURL}/Playground/playground`;
+    const params = new HttpParams().set('id', pgId);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.delete(baseUrl, { params, headers });
+  }
 }

@@ -22,9 +22,10 @@
             <p>نظرة عامه</p>
             <img src="assets/icon-dashboard.svg" alt="" />
           </li>
+          <!-- routerLinkActive="active-route" -->
           <li
-            [routerLink]="['playgrounds']"
-            routerLinkActive="active-route"
+            [routerLink]="['playgrounds/bookable']"
+            [ngClass]="{ 'active-route': isPlaygroundsActive() }"
             class=""
           >
             <p>ملاعبي</p>

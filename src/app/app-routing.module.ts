@@ -14,6 +14,7 @@ import { DashPlaygroundsComponent } from './components/dash-playgrounds/dash-pla
 import { AddPG1Component } from './components/add-playground/add-pg1/add-pg1.component';
 import { AddPG2Component } from './components/add-playground/add-pg2/add-pg2.component';
 import { AddPG3Component } from './components/add-playground/add-pg3/add-pg3.component';
+import path from 'path';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -36,6 +37,18 @@ const routes: Routes = [
         path: 'playgrounds',
         component: DashPlaygroundsComponent,
         canActivate: [authGaurdGuard],
+        children: [
+          {
+            path: 'bookable',
+            component: DashPlaygroundsComponent,
+            canActivate: [authGaurdGuard],
+          },
+          {
+            path: 'unbookable',
+            component: DashPlaygroundsComponent,
+            canActivate: [authGaurdGuard],
+          },
+        ],
       },
       {
         path: 'playgrounds/add1',

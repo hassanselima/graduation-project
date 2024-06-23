@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { DashServicesService } from '../../services/dash-services.service';
 import { EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-playground-details',
@@ -33,7 +34,7 @@ export class PlaygroundDetailsComponent implements OnInit {
   imageSrc: string | undefined = '';
   @Input() allPGs: any[] = [];
   @Output() reloaddata: EventEmitter<any> = new EventEmitter<any>();
-  constructor(private dashSer: DashServicesService) {
+  constructor(private dashSer: DashServicesService, private router: Router) {
     this.ownerId = JSON.parse(
       localStorage.getItem('currentUser') || ''
     ).ownerID;
@@ -50,13 +51,35 @@ export class PlaygroundDetailsComponent implements OnInit {
     this.dashSer.changeState(id, !currState, this.ownToken).subscribe(() => {
       console.log('not bookable from my playgrounds');
       this.reloaddata.emit();
+      if (currState) {
+        this.router.navigate(['/dashboard/playgrounds/bookable']);
+      } else {
+        this.router.navigate(['/dashboard/playgrounds/unbookable']);
+      }
     });
     console.log(id);
   }
   getImage(base64Image: string): string {
     return `data:image/jpeg;base64,${base64Image}`;
   }
+  formatOpeningHours(openingHours: string | undefined, index: number) {
+    if (!openingHours) return '';
+    const hours = parseInt(openingHours.split(':')[index], 10);
+    // const suffix = hours < 12 ? 'AM' : 'PM';
+    // const formattedHours = hours % 12 || 12;
+    return `${hours == 24 ? '00' : hours}:00`;
+  }
   deletePG(id: number) {
     console.log(id);
+    const observer = {
+      next: (response: any) => {
+        console.log('Playground deleted successfully', response);
+        this.reloaddata.emit();
+      },
+      error: (err: any) => {
+        console.error('Error deleting playground', err);
+      },
+    };
+    this.dashSer.deletePlayground(id, this.ownToken).subscribe(observer);
   }
 }

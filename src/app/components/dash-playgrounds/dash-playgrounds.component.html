@@ -16,10 +16,24 @@
         </button> -->
       </div>
       <div class="d-flex align-items-center gap-3">
-        <p class="PG-staus" routerLinkActive="PG-statusActive">
+        <p
+          class="PG-staus"
+          routerLinkActive="PG-statusActive"
+          routerLink="/dashboard/playgrounds/unbookable"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="filterPgs(false)"
+        >
           الغير قابلة للحجز
         </p>
-        <p class="PG-staus" routerLinkActive="PG-statusActive">القابلة للحجز</p>
+        <p
+          class="PG-staus"
+          routerLinkActive="PG-statusActive"
+          routerLink="/dashboard/playgrounds/bookable"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="filterPgs(true)"
+        >
+          القابلة للحجز
+        </p>
       </div>
     </div>
     <!--  bg-box class removed from the below line -->
@@ -29,7 +43,7 @@
       </ng-container>
       <ng-container *ngIf="!isLoading && allPGs && allPGs.length">
         <app-playground-details
-          [allPGs]="allPGs"
+          [allPGs]="filterdPGs"
           (reloaddata)="updateData($event)"
         ></app-playground-details>
       </ng-container>

@@ -12,7 +12,7 @@
 }
 .price-input {
   background-color: #f8f9fa;
-  border-color: #9c9c9c;
+  border: 1px solid #9c9c9c;
   text-align: right;
 }
 .price-input::-webkit-inner-spin-button {
@@ -33,10 +33,9 @@
 }
 
 .upload-container {
-  border: 2px dashed #ddd;
+  border: 2px dashed #9c9c9c88;
   padding: 20px;
   text-align: center;
-  margin-bottom: 20px;
   width: 100%;
 }
 .upload-container input {
@@ -50,6 +49,7 @@ p {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-block: 0px;
 }
 .drop-text {
   color: #000;

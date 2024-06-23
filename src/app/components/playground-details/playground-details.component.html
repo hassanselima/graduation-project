@@ -81,8 +81,28 @@
           <div
             class="d-flex flex-column flex-lg-row-reverse align-items-center gap-3"
           >
-            <input type="time" class="form-control" value="" />إلى
-            <input type="time" class="form-control" value="" />
+            <input
+              type="text"
+              class="form-control bg-white text-end"
+              [value]="
+                formatOpeningHours(
+                  pg.playgroundInfo.playground?.openingHours,
+                  0
+                )
+              "
+              disabled
+            />إلى
+            <input
+              type="text"
+              class="form-control bg-white text-end"
+              [value]="
+                formatOpeningHours(
+                  pg.playgroundInfo.playground?.openingHours,
+                  1
+                )
+              "
+              disabled
+            />
           </div>
         </div>
         <div>

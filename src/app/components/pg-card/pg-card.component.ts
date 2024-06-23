@@ -26,4 +26,7 @@ export class PgCardComponent implements OnInit {
       this.updateComponent.emit();
     });
   }
+  getImage(base64Image: string): string {
+    return `data:image/jpeg;base64,${base64Image}`;
+  }
 }
