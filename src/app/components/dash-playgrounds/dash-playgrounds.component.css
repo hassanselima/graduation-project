@@ -12,6 +12,7 @@ p {
 }
 .PG-statusActive {
   color: #1c1c1c;
+  transform: scale(1.2);
 }
 .bg-box {
   scroll-behavior: smooth;

@@ -20,7 +20,6 @@
           class="PG-staus"
           routerLinkActive="PG-statusActive"
           routerLink="/dashboard/playgrounds/unbookable"
-          [routerLinkActiveOptions]="{ exact: true }"
           (click)="filterPgs(false)"
         >
           الغير قابلة للحجز
@@ -29,7 +28,6 @@
           class="PG-staus"
           routerLinkActive="PG-statusActive"
           routerLink="/dashboard/playgrounds/bookable"
-          [routerLinkActiveOptions]="{ exact: true }"
           (click)="filterPgs(true)"
         >
           القابلة للحجز
