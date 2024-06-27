@@ -1,13 +1,15 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { join } from 'node:path';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedDataService } from '../../../services/shared-data.service';
 
 @Component({
   selector: 'app-add-pg3',
   templateUrl: './add-pg3.component.html',
   styleUrl: './add-pg3.component.css',
 })
-export class AddPG3Component {
+export class AddPG3Component implements OnInit {
   // @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement> | undefined;
   advantages: string[] = [
     'مرافق صحية',
@@ -18,15 +20,54 @@ export class AddPG3Component {
     'إسعاف وطوارئ',
     'عشب',
   ];
+  hours: number[] = [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+    21, 22, 23,
+  ];
+  daysOfWeek: string[][] = [
+    ['الأحد', 'Sunday'],
+    ['الاثنين', 'Monday'],
+    ['الثلاثاء', 'Tuesday'],
+    ['الأربعاء', 'Wednesday'],
+    ['الخميس', 'Thursday'],
+    ['الجمعة', 'Friday'],
+    ['السبت', 'Saturday'],
+  ];
   selectedAdvs: string[] = [];
-  uploadedFiles: File[] = [];
+  workingDays: string[] = [];
+  holidays: string[] = [];
 
   addPG3Form: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private sharedData: SharedDataService
+  ) {
     this.addPG3Form = fb.group({
-      feesForHour: ['', [Validators.required]],
+      openingHour: ['', [Validators.required]],
+      closingHour: ['', [Validators.required]],
+      holidays: ['', [Validators.required]],
       advantages: ['', [Validators.required]],
+      feesForHour: ['', [Validators.required]],
     });
+  }
+  ngOnInit(): void {
+    this.holidays = this.daysOfWeek.map((day) => day[1]);
+  }
+  selectDay(day: string) {
+    console.log(day);
+
+    const indexInWorkingDays = this.workingDays.indexOf(day);
+    const indexInHolidays = this.holidays.indexOf(day);
+
+    if (indexInWorkingDays > -1) {
+      this.workingDays.splice(indexInWorkingDays, 1);
+      this.holidays.push(day);
+    } else {
+      this.workingDays.push(day);
+      this.holidays.splice(indexInHolidays, 1);
+    }
+    this.addPG3Form.get('holidays')?.setValue(this.holidays);
   }
   selectadv(adv: string) {
     const index = this.selectedAdvs.indexOf(adv);
@@ -44,30 +85,24 @@ export class AddPG3Component {
       this.advantages.push(newAdv);
     }
   }
-  onFileSelected(event: any): void {
-    // const file: File = event.target.files[0];
-    // if (file) {
-    //   this.selectedFile = file;
-    // }
-    const files: FileList = event.target.files;
-    if (files) {
-      for (let i = 0; i < files.length; i++) {
-        this.uploadedFiles.push(files[i]);
-      }
-    }
+
+  next() {
+    const { holidays, advantages, feesForHour } = this.addPG3Form.value;
+    const openingHours = `${this.addPG3Form.get('openingHour')?.value}:${
+      this.addPG3Form.get('closingHour')?.value
+    }`;
+    console.log('-------third page-------');
+    console.log(this.addPG3Form.value);
+    this.sharedData.setPgData({
+      holidays: holidays.join(','),
+      advantages: advantages.join(','),
+      feesForHour,
+      openingHours,
+    });
+    console.log('from shared service');
+    console.log(this.sharedData.getPgData());
+    this.router.navigate(['/dashboard/playgrounds/add4']);
+    // console.log(this.workingDays);
+    // console.log(this.holidays);
   }
-  delFile(fileName: File) {
-    const idx = this.uploadedFiles.indexOf(fileName);
-    this.uploadedFiles.splice(idx, 1);
-    console.log('-----after');
-    console.log(this.uploadedFiles);
-  }
-  // triggerFileInput(): void {
-  //   if (this.fileInput) {
-  //     this.fileInput.nativeElement.click();
-  //   } else {
-  //     console.error('File input element is not available');
-  //   }
-  // }
-  next() {}
 }

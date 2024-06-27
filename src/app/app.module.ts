@@ -37,6 +37,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { AddPG1Component } from './components/add-playground/add-pg1/add-pg1.component';
 import { AddPG2Component } from './components/add-playground/add-pg2/add-pg2.component';
 import { AddPG3Component } from './components/add-playground/add-pg3/add-pg3.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { AddPG4Component } from './components/add-playground/add-pg4/add-pg4.component';
 registerLocaleData(localeAr);
 @NgModule({
   declarations: [
@@ -68,6 +71,8 @@ registerLocaleData(localeAr);
     AddPG1Component,
     AddPG2Component,
     AddPG3Component,
+    GoogleMapsComponent,
+    AddPG4Component,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +81,7 @@ registerLocaleData(localeAr);
     HttpClientModule,
     ReactiveFormsModule,
     NgxApexchartsModule,
+    GoogleMapsModule,
   ],
   providers: [provideClientHydration(), { provide: LOCALE_ID, useValue: 'ar' }],
   bootstrap: [AppComponent],

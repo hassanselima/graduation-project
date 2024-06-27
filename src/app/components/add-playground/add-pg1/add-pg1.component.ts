@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedDataService } from '../../../services/shared-data.service';
 
 @Component({
   selector: 'app-add-pg1',
@@ -11,7 +12,11 @@ export class AddPG1Component {
   addPGForm: FormGroup;
   selectedFieldSize: string = '';
   fieldSizes: string[] = ['5X5', '6X6', '7X7', '8X8', '9X9', '11X11'];
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private sharedData: SharedDataService
+  ) {
     this.addPGForm = fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -21,7 +26,7 @@ export class AddPG1Component {
 
   selectFieldSize(size: string) {
     this.selectedFieldSize = size;
-    this.addPGForm.get('type')?.setValue(size);
+    this.addPGForm.get('type')?.setValue(size[0]);
   }
   addFieldSize() {
     const newSize = prompt('Enter new field size (e.g., 4X4): ');
@@ -32,6 +37,7 @@ export class AddPG1Component {
   next() {
     console.log('-------first page-------');
     console.log(this.addPGForm.value);
+    this.sharedData.setPgData({ ...this.addPGForm.value });
     this.router.navigate(['/dashboard/playgrounds/add2']);
   }
 }
