@@ -6,7 +6,11 @@
       <div class="p-3 position-relative">
         <img
           class="card-img"
-          [src]="getImage(pg.playgroundInfo.picture)"
+          [src]="
+            pg.playgroundInfo.picture
+              ? getImage(pg.playgroundInfo.picture)
+              : 'assets/4628fd142082333ed400b2907d918bea.jpeg'
+          "
           alt="Card
         image cap"
         />
@@ -17,7 +21,11 @@
               : "غير قابل للحجز"
           }}
         </p>
-        <button class="btn editPG" DarkGreen>
+        <button
+          class="btn editPG"
+          DarkGreen
+          (click)="edit(pg.playgroundInfo.playground?.id)"
+        >
           تعديل <span><img src="assets/Pen 2.svg" alt="" /></span>
         </button>
       </div>

@@ -82,4 +82,7 @@ export class PlaygroundDetailsComponent implements OnInit {
     };
     this.dashSer.deletePlayground(id, this.ownToken).subscribe(observer);
   }
+  edit(id: number) {
+    console.log(id);
+  }
 }
