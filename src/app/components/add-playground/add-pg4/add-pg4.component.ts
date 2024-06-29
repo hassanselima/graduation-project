@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DashServicesService } from '../../../services/dash-services.service';
 import { SharedDataService } from '../../../services/shared-data.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-add-pg4',
@@ -14,6 +15,7 @@ export class AddPG4Component implements OnInit {
   selectedRule: string[] = [];
   ownerId: string | null = null;
   ownToken: string | null = null;
+  errMsg: string = '';
   guards: any = [
     {
       firstName: 'بدون',
@@ -21,6 +23,7 @@ export class AddPG4Component implements OnInit {
       lastName: 'موظف',
     },
   ];
+  pgData: any;
   addPG4Form: FormGroup;
   constructor(
     private fb: FormBuilder,
@@ -83,6 +86,22 @@ export class AddPG4Component implements OnInit {
     this.sharedData.setPgData({ ownerId: this.ownerId, id: 0 });
     console.log('from shared service');
     console.log(this.sharedData.getPgData());
-    this.router.navigate(['/dashboard/playgrounds/add5']);
+    this.pgData = this.sharedData.getPgData();
+    const observer = {
+      next: (res: any) => {
+        this.sharedData.resetPgData();
+        this.sharedData.setPgData(res.playground);
+        console.log(this.sharedData.getPgData());
+
+        console.log('playground added successfully');
+
+        this.router.navigate(['/dashboard/playgrounds/add5']);
+      },
+      error: (err: any) => {
+        this.errMsg = 'حدث خطأ';
+        console.log('something happened within adding playground');
+      },
+    };
+    this.dashSer.addPlayground(this.pgData, this.ownToken).subscribe(observer);
   }
 }

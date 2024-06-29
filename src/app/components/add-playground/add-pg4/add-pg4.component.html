@@ -47,14 +47,20 @@
         </div>
       </div>
       <div class="text-center">
+        <div
+          class="text-center alert alert-danger h-50 w-50 mx-auto mb-3"
+          *ngIf="errMsg"
+        >
+          {{ errMsg }}
+        </div>
         <button
           class="btn next-btn"
           DarkGreen
           (click)="next()"
           [disabled]="!addPG4Form.valid"
         >
-          اضافة الملعب
-          <img src="assets/Add Circle.svg" alt="next arrow" />
+          <img src="assets/Arrow Left.svg" alt="next arrow" />
+          التالي
         </button>
       </div>
     </form>

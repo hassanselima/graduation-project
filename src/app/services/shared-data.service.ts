@@ -29,4 +29,7 @@ export class SharedDataService {
   getPgData() {
     return this.pgData.getValue();
   }
+  resetPgData() {
+    this.pgData.next(0);
+  }
 }

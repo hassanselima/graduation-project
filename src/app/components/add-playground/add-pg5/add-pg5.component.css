@@ -3,6 +3,10 @@
   background-color: #00b562;
   width: 300px;
 }
+.alert {
+  height: 30px;
+  padding: 2px 10px;
+}
 
 .upload-container {
   border: 2px dashed #9c9c9c88;
