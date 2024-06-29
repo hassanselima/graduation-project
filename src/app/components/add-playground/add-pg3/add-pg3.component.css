@@ -29,6 +29,7 @@
   background-color: #f8f9fa;
   border: 1px solid #9c9c9c;
   text-align: right;
+  flex: 1;
 }
 .price-input::-webkit-inner-spin-button {
   display: none;

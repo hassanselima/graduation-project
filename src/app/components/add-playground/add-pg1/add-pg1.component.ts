@@ -26,7 +26,7 @@ export class AddPG1Component {
 
   selectFieldSize(size: string) {
     this.selectedFieldSize = size;
-    this.addPGForm.get('type')?.setValue(size[0]);
+    this.addPGForm.get('type')?.setValue(Number(size[0]));
   }
   addFieldSize() {
     const newSize = prompt('Enter new field size (e.g., 4X4): ');

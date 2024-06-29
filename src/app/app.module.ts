@@ -40,6 +40,7 @@ import { AddPG3Component } from './components/add-playground/add-pg3/add-pg3.com
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { AddPG4Component } from './components/add-playground/add-pg4/add-pg4.component';
+import { AddPG5Component } from './components/add-playground/add-pg5/add-pg5.component';
 registerLocaleData(localeAr);
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ registerLocaleData(localeAr);
     AddPG3Component,
     GoogleMapsComponent,
     AddPG4Component,
+    AddPG5Component,
   ],
   imports: [
     BrowserModule,

@@ -1,39 +1,88 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DashServicesService } from '../../../services/dash-services.service';
+import { SharedDataService } from '../../../services/shared-data.service';
 
 @Component({
   selector: 'app-add-pg4',
   templateUrl: './add-pg4.component.html',
   styleUrl: './add-pg4.component.css',
 })
-export class AddPG4Component {
-  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement> | undefined;
-
-  uploadedFile: File | null = null;
-
-  constructor(private fb: FormBuilder, private router: Router) {}
-
-  onFileSelected(event: any): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
-      this.uploadedFile = file;
-    }
+export class AddPG4Component implements OnInit {
+  rules: string[] = ['ممنوع التدخين'];
+  selectedRule: string[] = [];
+  ownerId: string | null = null;
+  ownToken: string | null = null;
+  guards: any = [
+    {
+      firstName: 'بدون',
+      guardId: null,
+      lastName: 'موظف',
+    },
+  ];
+  addPG4Form: FormGroup;
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private dashSer: DashServicesService,
+    private sharedData: SharedDataService
+  ) {
+    this.addPG4Form = fb.group({
+      rules: ['', [Validators.required]],
+      guardId: ['', [Validators.required]],
+    });
+    const currentUser = localStorage.getItem('currentUser');
+    this.ownerId = currentUser ? JSON.parse(currentUser).ownerID : null;
+    this.ownToken = localStorage.getItem('ownerToken');
   }
-  delFile() {
-    this.uploadedFile = null;
-    console.log('-----after');
-    console.log(this.uploadedFile);
+  ngOnInit(): void {
+    this.fetchGuard();
   }
-  triggerFileInput(): void {
-    if (this.fileInput) {
-      this.fileInput.nativeElement.click();
+  fetchGuard() {
+    const observer = {
+      next: (res: any) => {
+        if (res) {
+          this.guards.unshift(...res.guards);
+        }
+        console.log('from add-pg4 guards : ', this.guards);
+      },
+    };
+    this.dashSer.getGuards(this.ownerId, this.ownToken).subscribe(observer);
+  }
+
+  selectRule(adv: string) {
+    const index = this.selectedRule.indexOf(adv);
+    if (index > -1) {
+      this.selectedRule.splice(index, 1);
     } else {
-      console.error('File input element is not available');
+      this.selectedRule.push(adv);
+    }
+    this.addPG4Form.get('rules')?.setValue(this.selectedRule.join(','));
+    console.log(this.selectedRule);
+  }
+  addRule() {
+    const newAdv = prompt('Enter new advantage: ');
+    if (newAdv) {
+      this.rules.push(newAdv);
     }
   }
+  selectGuard(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    let guardId = selectElement.value;
+    this.addPG4Form
+      .get('guardId')
+      ?.setValue(guardId === 'null' ? null : guardId);
+    console.log(guardId);
+  }
+
   next() {
-    console.log(this.uploadedFile);
+    console.log('-------fourth page-------');
+    console.log(this.addPG4Form.value);
+    this.sharedData.setPgData({ ...this.addPG4Form.value });
+    this.sharedData.setPgData({ ownerId: this.ownerId, id: 0 });
+    console.log('from shared service');
+    console.log(this.sharedData.getPgData());
+    this.router.navigate(['/dashboard/playgrounds/add5']);
   }
 }

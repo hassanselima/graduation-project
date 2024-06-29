@@ -49,6 +49,7 @@ export class AddPG3Component implements OnInit {
       holidays: ['', [Validators.required]],
       advantages: ['', [Validators.required]],
       feesForHour: ['', [Validators.required]],
+      cancellationFees: ['', [Validators.required]],
     });
   }
   ngOnInit(): void {
@@ -99,8 +100,7 @@ export class AddPG3Component implements OnInit {
       feesForHour,
       openingHours,
     });
-    console.log('from shared service');
-    console.log(this.sharedData.getPgData());
+
     this.router.navigate(['/dashboard/playgrounds/add4']);
     // console.log(this.workingDays);
     // console.log(this.holidays);

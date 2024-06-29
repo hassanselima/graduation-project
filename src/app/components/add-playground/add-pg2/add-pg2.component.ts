@@ -30,8 +30,6 @@ export class AddPG2Component implements OnInit {
     console.log(this.addPG2Form.value);
     this.sharedData.setPgData({ ...this.addPG2Form.value });
     this.router.navigate(['/dashboard/playgrounds/add3']);
-    // console.log(this.workingDays);
-    // console.log(this.holidays);
   }
   onChangeLocation(location: google.maps.LatLngLiteral) {
     console.log('on change location');
