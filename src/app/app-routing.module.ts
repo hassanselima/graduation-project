@@ -17,6 +17,7 @@ import { AddPG3Component } from './components/add-playground/add-pg3/add-pg3.com
 import path from 'path';
 import { AddPG4Component } from './components/add-playground/add-pg4/add-pg4.component';
 import { AddPG5Component } from './components/add-playground/add-pg5/add-pg5.component';
+import { AddPG6Component } from './components/add-playground/add-pg6/add-pg6.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -75,6 +76,11 @@ const routes: Routes = [
       {
         path: 'playgrounds/add5',
         component: AddPG5Component,
+        canActivate: [authGaurdGuard],
+      },
+      {
+        path: 'playgrounds/add6',
+        component: AddPG6Component,
         canActivate: [authGaurdGuard],
       },
     ],

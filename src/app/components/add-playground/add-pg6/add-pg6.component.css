@@ -1,0 +1,17 @@
+.box {
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.next-btn {
+  background-color: #00b562;
+  color: #ffffff;
+  padding: 10.5px 16px;
+  width: 50%;
+  margin-inline: auto;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

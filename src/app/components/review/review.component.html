@@ -1,0 +1,16 @@
+<div class="progress-container text-center">
+  <div class="progress-icons">
+    <img src="assets/Mail.svg" alt="Mail" />
+    <img src="assets/Clock.svg" alt="Clock" />
+    <img src="assets/Document.svg" alt="Document" />
+  </div>
+  <div class="main mx-5 shadow-sm">
+    <div class="shape"></div>
+    <div class="bar" [style.width.%]="progress">
+      <img src="assets/Group2.svg" *ngFor="let i of [1, 1, 1, 1, 1, 1]" />
+    </div>
+    <p class="text m-0 pe-2 fs-4">{{ progress }}%</p>
+  </div>
+
+  <p class="review-text">جاري مراجعة البيانات</p>
+</div>

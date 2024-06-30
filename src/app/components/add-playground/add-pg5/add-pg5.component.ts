@@ -132,5 +132,7 @@ export class AddPG5Component implements OnInit {
   }
   next() {
     console.log(this.uploadedImageFile);
+    console.log(this.uploadedPaperFile);
+    this.router.navigate(['/dashboard/playgrounds/add6']);
   }
 }
