@@ -12,6 +12,7 @@ p {
 }
 .PG-statusActive {
   color: #1c1c1c;
+  transform: scale(1.2);
 }
 .bg-box {
   scroll-behavior: smooth;
@@ -37,4 +38,10 @@ p {
   .bg-box {
     height: calc(100vh - 235px);
   }
+}
+.interNav {
+  position: sticky;
+  top: 0px;
+  background-color: #f8f9fa;
+  z-index: 10;
 }

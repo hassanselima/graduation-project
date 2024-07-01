@@ -1,0 +1,64 @@
+.review-text {
+  color: #242424;
+  font-family: Cairo;
+  font-size: 38px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 72px;
+}
+.progress-container {
+  margin: auto;
+  text-align: center;
+  width: 80%;
+}
+
+.progress-icons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 50px;
+}
+
+.main {
+  position: relative;
+  height: 50px;
+  width: 60%;
+  left: 85px;
+  background-color: #fff;
+  border: 1px solid #000;
+  margin-bottom: 30px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.shape {
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  position: absolute;
+  bottom: -16px;
+  left: 65%;
+  transform: rotate(45deg);
+  border: 1px solid #000;
+  border-left: none;
+  border-top: none;
+  z-index: 0;
+}
+
+.bar {
+  height: 65%;
+  margin-left: 8px;
+  background-color: #4caf50;
+  text-align: center;
+  color: white;
+  border-radius: 50px;
+  z-index: 1;
+}
+.text {
+  text-align: end;
+  position: absolute;
+  right: 0;
+}
+.clock {
+  color: #263238;
+}

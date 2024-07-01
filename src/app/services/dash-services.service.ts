@@ -36,4 +36,20 @@ export class DashServicesService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete(baseUrl, { params, headers });
   }
+  getGuards(ownerId: any | null, token: string | null) {
+    const baseUrl = `${environment.APIURL}/Owner/guards`;
+    const params = new HttpParams().set('ownerId', ownerId);
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get(baseUrl, { params, headers });
+  }
+  addPlayground(pgData: any, token: string | null) {
+    const baseUrl = `${environment.APIURL}/Playground/playground`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(baseUrl, pgData, { headers });
+  }
+  editPlayground(pgData: any, token: string | null) {
+    const baseUrl = `${environment.APIURL}/Playground/playground`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(baseUrl, pgData, { headers });
+  }
 }

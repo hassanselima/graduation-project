@@ -1,0 +1,24 @@
+.pg-rule {
+  color: #242424;
+  border-color: #9c9c9c;
+}
+.selected {
+  background-color: #00b562;
+  color: #fff;
+}
+.add-rule {
+  color: #242424;
+  border-color: #00b562;
+}
+
+.form {
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.next-btn {
+  color: #fff;
+  background-color: #00b562;
+  width: 300px;
+}

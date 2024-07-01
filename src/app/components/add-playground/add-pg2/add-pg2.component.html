@@ -3,63 +3,52 @@
 </div>
 
 <div class="container-fluid">
-  <div class="w-50 mx-auto mt-5">
+  <div class="w-50 mx-auto mt-4">
     <form [formGroup]="addPG2Form">
       <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3">
         <label for="Pglocation" class="form-label">موقع الملعب</label>
-      </div>
-      <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3">
-        <label for="PgDecription" class="form-label">اوقات العمل</label>
-        <div
-          class="d-flex flex-row-reverse justify-content-between align-items-center gap-2 w-100"
-        >
-          <select
-            name="openingHours"
-            id="openingHours"
-            class="form-select"
-            formControlName="openingHours"
-          >
-            <option value="{{ hour }}" *ngFor="let hour of hours">
-              {{ hour }}
-            </option></select
-          >:
-          <select
-            name="closingHours"
-            id="closingHours"
-            class="form-select"
-            formControlName="closingHours"
-          >
-            <option value="{{ hour }}" *ngFor="let hour of hours">
-              {{ hour }}
-            </option>
-          </select>
+        <div>
+          <app-google-maps
+            (locationChanged)="onChangeLocation($event)"
+          ></app-google-maps>
         </div>
       </div>
-      <div class="col d-flex flex-column align-items-end gap-2 p-0 mb-5">
-        <label class="form-label">ايام العمل</label>
-        <div
-          class="d-flex flex-row-reverse align-items-center flex-wrap row-gap-1 w-100"
-        >
-          <div
-            class="d-flex flex-column align-items-center gap-2 rounded-2 day-box"
-            *ngFor="let day of daysOfWeek; let i = index"
-          >
-            <input
-              type="checkbox"
-              [name]="day[1]"
-              [id]="day[1]"
-              [value]="day[1]"
-              (change)="selectDay(day[1])"
-              class="form-check-input checkbox shadow-sm d-block mx-auto"
-            />
-            <p>{{ day[0] }}</p>
-          </div>
+      <div class="d-flex flex-row-reverse justify-content-between gap-3">
+        <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3 col">
+          <label for="PgCountry" class="form-label">اسم البلد</label>
+          <input
+            type="text"
+            name="country"
+            id="PgCountry"
+            class="form-control"
+            formControlName="country"
+          />
         </div>
+        <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3 col">
+          <label for="PgCity" class="form-label">اسم المدينة</label>
+          <input
+            type="text"
+            name="city"
+            id="PgCity"
+            class="form-control"
+            formControlName="city"
+          />
+        </div>
+      </div>
+      <div class="d-flex flex-column align-items-end gap-2 p-0 mb-5 col">
+        <label for="PgAdress" class="form-label">العنوان</label>
+        <input
+          type="text"
+          name="address"
+          id="PgAdress"
+          class="form-control"
+          formControlName="address"
+        />
       </div>
 
       <div class="text-center">
         <button
-          class="btn next-btn"
+          class="btn next-btn shadow"
           DarkGreen
           (click)="next()"
           [disabled]="!addPG2Form.valid"

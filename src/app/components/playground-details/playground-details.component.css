@@ -6,6 +6,10 @@ p {
   font-weight: 400;
   line-height: 24px;
 }
+.card-img {
+  /* height: 214px; */
+  max-height: 214px;
+}
 .editPG {
   position: absolute;
   top: 30px;

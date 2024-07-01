@@ -1,0 +1,69 @@
+<div class="text-danger">
+  <p class="text-start"></p>
+</div>
+
+<div class="container-fluid">
+  <div class="w-50 mx-auto mt-4">
+    <form class="form" [formGroup]="addPG4Form">
+      <div class="">
+        <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3">
+          <label class="form-label">التعليمات</label>
+          <div class="d-flex flex-row-reverse gap-2 flex-wrap mb-1">
+            <button
+              *ngFor="let rule of rules"
+              [ngClass]="{ selected: selectedRule.includes(rule) }"
+              class="btn border-1 pg-rule"
+              (click)="selectRule(rule)"
+            >
+              {{ rule }}
+            </button>
+            <button class="btn border-1 add-rule" (click)="addRule()">
+              اضافة
+              <img src="assets/Add Circle black.svg" alt="add symbol" />
+            </button>
+          </div>
+        </div>
+        <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3">
+          <label for="PgGuard" class="form-label">اختيار موظف</label>
+          <div class="w-100">
+            <select
+              name="guard"
+              id="PgGuard"
+              class="form-select"
+              (change)="selectGuard($event)"
+              formControlName="guardId"
+            >
+              <option
+                [value]="guard.guardId"
+                *ngFor="let guard of guards"
+                class="d-flex flex-row align-items-center text-end"
+              >
+                <span>{{ guard.firstName }}</span
+                >{{ " " }}
+                <span>{{ guard.lastName }}</span>
+              </option>
+              <option value="without guard" class="d-none">بدون موظف</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <div
+          class="text-center alert alert-danger h-50 w-50 mx-auto mb-3"
+          *ngIf="errMsg"
+        >
+          {{ errMsg }}
+        </div>
+        <button
+          class="btn next-btn shadow"
+          DarkGreen
+          (click)="next()"
+          [disabled]="!addPG4Form.valid"
+        >
+          <img src="assets/Arrow Left.svg" alt="next arrow" />
+          التالي
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

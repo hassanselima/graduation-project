@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { DashServicesService } from '../../services/dash-services.service';
 import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { SharedDataService } from '../../services/shared-data.service';
 
 @Component({
   selector: 'app-playground-details',
@@ -34,7 +35,11 @@ export class PlaygroundDetailsComponent implements OnInit {
   imageSrc: string | undefined = '';
   @Input() allPGs: any[] = [];
   @Output() reloaddata: EventEmitter<any> = new EventEmitter<any>();
-  constructor(private dashSer: DashServicesService, private router: Router) {
+  constructor(
+    private dashSer: DashServicesService,
+    private router: Router,
+    private sharedData: SharedDataService
+  ) {
     this.ownerId = JSON.parse(
       localStorage.getItem('currentUser') || ''
     ).ownerID;
@@ -45,7 +50,7 @@ export class PlaygroundDetailsComponent implements OnInit {
   }
   isDayInHolidays(day: string, holidays: string) {
     this.holidays = holidays;
-    return this.holidays?.includes(day);
+    return !this.holidays?.includes(day);
   }
   changeState(id: number, currState: Boolean) {
     this.dashSer.changeState(id, !currState, this.ownToken).subscribe(() => {
@@ -81,5 +86,13 @@ export class PlaygroundDetailsComponent implements OnInit {
       },
     };
     this.dashSer.deletePlayground(id, this.ownToken).subscribe(observer);
+  }
+  edit(id: number, data: any) {
+    console.log(id);
+    console.log(data);
+    this.sharedData.setPgDataEdit(data);
+    this.router.navigate(['/dashboard/playgrounds/add1'], {
+      queryParams: { action: 'edit' },
+    });
   }
 }

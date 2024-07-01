@@ -1,11 +1,11 @@
 <div class="container-fluid p-0">
   <div class="m-0">
-    <div class="d-flex align-items-center justify-content-between p-3">
+    <div class="d-flex align-items-center justify-content-between p-3 interNav">
       <div class="d-flex align-items-center gap-2">
         <button
-          class="btn btn-success d-flex align-items-center gap-1"
+          class="btn btn-success d-flex align-items-center gap-1 shadow"
           DarkGreen
-          routerLink="/dashboard/playgrounds/add1"
+          (click)="addPg()"
         >
           اضافة ملعب
           <span><img src="assets/Add Circle.svg" alt="" /></span>
@@ -20,7 +20,6 @@
           class="PG-staus"
           routerLinkActive="PG-statusActive"
           routerLink="/dashboard/playgrounds/unbookable"
-          [routerLinkActiveOptions]="{ exact: true }"
           (click)="filterPgs(false)"
         >
           الغير قابلة للحجز
@@ -29,7 +28,6 @@
           class="PG-staus"
           routerLinkActive="PG-statusActive"
           routerLink="/dashboard/playgrounds/bookable"
-          [routerLinkActiveOptions]="{ exact: true }"
           (click)="filterPgs(true)"
         >
           القابلة للحجز
