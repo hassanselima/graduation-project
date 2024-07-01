@@ -1,0 +1,56 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+<section>
+    <div class="employees">
+        <div class="newEmployee">
+            <p>اضافة موظف جديد</p>
+        </div>
+        <div class="form d-flex flex-column gap-2">
+            <label class="m-2" for="employeeName">اسم الموظف</label>
+            <div class="d-flex form-control position-relative p-0 align-items-center justify-content-start">
+                <div class="position-absolute d-flex align-items-center gap-2 code"></div>
+                <input type="text" name="employeeName" id="employeeName" class="form-control border-0 phone-input align-items-center justify-content-start text-align-center" />
+            </div>
+        </div>
+        <div class="col d-flex flex-column align-items-end gap-2">
+            <label for="employeeNum" class="form-label">رقم الاتصال</label>
+            <div class="d-flex form-control position-relative p-0 align-items-center justify-content-start">
+                <div class="position-absolute d-flex align-items-center gap-2 code">
+                    <img src="assets/egypt-flag.svg" alt="country flag" />
+                    <span class="pre-num">+20 |</span>
+                </div>
+                <input type="text" name="phoneNumber" id="employeeNum" class="form-control border-0 phone-input align-items-center justify-content-start text-align-center" />
+            </div>
+        </div>
+        <div class="form d-flex flex-column align-items-end gap-2">
+            <label class="m-2" for="employeeEmail"> البريد الالكتروني</label>
+            <div class="d-flex form-control position-relative p-0 align-items-center justify-content-start">
+                <div class="position-absolute d-flex align-items-center gap-2 code"></div>
+                <input type="email" name="employeeEmail" id="employeeEmail" class="form-control border-0 phone-input align-items-center justify-content-center text-align-center" />
+            </div>
+        </div>
+        <div class="employeePic d-flex flex-column align-items-end gap-2">
+            <label class="m-2" for="employeePic"> صورة الموظف</label>
+            <div class="upload-container">
+                <div class="upload-box">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M32 32L24 24L16 32" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M24 24V42" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M40.7799 36.78C42.7306 35.7165 44.2716 34.0337 45.1597 31.9972C46.0477 29.9607 46.2323 27.6864 45.6843 25.5334C45.1363 23.3803 43.8869 21.471 42.1333 20.1069C40.3796 18.7427 38.2216 18.0014 35.9999 18H33.4799C32.8745 15.6585 31.7462 13.4846 30.1798 11.642C28.6134 9.79927 26.6496 8.33567 24.4361 7.36118C22.2226 6.3867 19.817 5.92669 17.4002 6.01573C14.9833 6.10478 12.6181 6.74057 10.4823 7.8753C8.34649 9.01003 6.49574 10.6142 5.06916 12.5671C3.64259 14.5201 2.6773 16.771 2.24588 19.1508C1.81446 21.5305 1.92813 23.977 2.57835 26.3065C3.22856 28.636 4.3984 30.7877 5.99992 32.6" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M32 32L24 24L16 32" stroke="black" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <p class="upload-text">حدد ملفًا أو قم بالسحب والإسقاط هنا</p>
+                    <p class="upload-subtext">لا يزيد حجم الملف عن 10 ميغابايت<br>JPG أو PNG</p>
+                    <button class="upload-button">اختيار ملف</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="addButton  d-flex">
+        <button  class="btn align-items-center justify-content-center" style="background-color: rgb(0, 181, 98); border: none;"> اضافة  <span ><img _ngcontent-ng-c1283677433="" src="../../../assets/Add Circle.svg" alt="add"></span></button>
+    </div>
+</section>
+

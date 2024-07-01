@@ -37,6 +37,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { AddPG1Component } from './components/add-playground/add-pg1/add-pg1.component';
 import { AddPG2Component } from './components/add-playground/add-pg2/add-pg2.component';
 import { AddPG3Component } from './components/add-playground/add-pg3/add-pg3.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { AllemployeesComponent } from './components/allemployees/allemployees.component';
 registerLocaleData(localeAr);
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ registerLocaleData(localeAr);
     AddPG1Component,
     AddPG2Component,
     AddPG3Component,
+    EmployeesComponent,
+    AllemployeesComponent,
   ],
   imports: [
     BrowserModule,

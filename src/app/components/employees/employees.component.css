@@ -1,0 +1,142 @@
+.employees{
+    width: 696px;
+    height: 988px;
+    margin-top: 75px;
+    margin-left: 277px;
+    gap: 48px;
+    background-color:#F8F9FA;
+}
+.newEmployee{
+    margin-left: 260px;
+    width: 193px;
+    height: 36px;
+    color:#242424;
+    font-family: "Cairo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 0;
+}
+.form input{
+    width: 696px;
+    height: 56px;
+    border-radius: 10px;
+
+
+}
+.pre-num {
+    color: #9c9c9c;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+  }
+.code {
+    position: absolute;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.form, .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+.form label, .col label {
+    font-weight: 600;
+    font-size: 16px;
+    color: #242424;
+    border-color: black;
+    
+    border-width: 10px;
+}
+.form input, .col .phone-input {
+    width: 100%;
+    height: 56px;
+    padding: 8px 16px;
+    border:  solid #F8F9FA;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #242424;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 80px;
+}
+
+.employeePic{
+    width: 696px;
+    height: 376px;
+    
+
+}
+
+.upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 696px;
+    height: 376px;
+    align-items: flex-end;
+}
+
+.upload-box {
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    width: 696px;
+    height: 376px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.upload-icon img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.upload-text {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.upload-subtext {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #777;
+}
+
+.upload-button {
+    padding: 10px 20px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+    background-color: #218838;
+}
+.addButton{
+    display: flex;
+    width: 388px;
+    height: 48px;
+    border-radius: 8px;
+    margin-left: 450px;
+    padding: 10.5px, 16px, 10.5px, 16px;
+}
+.btn {
+    width: 700px;
+    height: 48px;
+    border-radius: 8px;
+    color: white;
+}
