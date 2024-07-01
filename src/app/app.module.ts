@@ -23,7 +23,7 @@ import { PassResetComponent } from './components/pass-reset/pass-reset.component
 import { HttpClientModule } from '@angular/common/http';
 import { ConfirmationCodeComponent } from './components/confirmation-code/confirmation-code.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PgCardComponent } from './components/pg-card/pg-card.component';
 import { BookedPdayComponent } from './components/booked-pday/booked-pday.component';
@@ -37,6 +37,13 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { AddPG1Component } from './components/add-playground/add-pg1/add-pg1.component';
 import { AddPG2Component } from './components/add-playground/add-pg2/add-pg2.component';
 import { AddPG3Component } from './components/add-playground/add-pg3/add-pg3.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { AddPG4Component } from './components/add-playground/add-pg4/add-pg4.component';
+import { AddPG5Component } from './components/add-playground/add-pg5/add-pg5.component';
+import { AddPG6Component } from './components/add-playground/add-pg6/add-pg6.component';
+import { ReviewComponent } from './components/review/review.component';
+import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
+import { AllemployeesComponent } from './components/allemployees/allemployees.component';
 registerLocaleData(localeAr);
 @NgModule({
   declarations: [
@@ -65,9 +72,15 @@ registerLocaleData(localeAr);
     DashPlaygroundsComponent,
     PlaygroundDetailsComponent,
     LoaderComponent,
+    GoogleMapsComponent,
     AddPG1Component,
     AddPG2Component,
     AddPG3Component,
+    AddPG4Component,
+    AddPG5Component,
+    AddPG6Component,
+    ReviewComponent,
+    AllemployeesComponent,
   ],
   imports: [
     BrowserModule,

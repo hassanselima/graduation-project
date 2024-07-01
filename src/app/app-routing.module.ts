@@ -15,6 +15,11 @@ import { AddPG1Component } from './components/add-playground/add-pg1/add-pg1.com
 import { AddPG2Component } from './components/add-playground/add-pg2/add-pg2.component';
 import { AddPG3Component } from './components/add-playground/add-pg3/add-pg3.component';
 import path from 'path';
+import { AddPG5Component } from './components/add-playground/add-pg5/add-pg5.component';
+import { AddPG4Component } from './components/add-playground/add-pg4/add-pg4.component';
+import { AddPG6Component } from './components/add-playground/add-pg6/add-pg6.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { AllemployeesComponent } from './components/allemployees/allemployees.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
