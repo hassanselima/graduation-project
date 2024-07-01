@@ -27,10 +27,11 @@
           <label for="PgGuard" class="form-label">اختيار موظف</label>
           <div class="w-100">
             <select
-              name="openingHours"
+              name="guard"
               id="PgGuard"
               class="form-select"
               (change)="selectGuard($event)"
+              formControlName="guardId"
             >
               <option
                 [value]="guard.guardId"

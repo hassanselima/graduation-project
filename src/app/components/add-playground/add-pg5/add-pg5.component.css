@@ -1,3 +1,12 @@
+h2 {
+  color: #000;
+  text-align: center;
+  font-family: Cairo;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px;
+}
 .next-btn {
   color: #fff;
   background-color: #00b562;

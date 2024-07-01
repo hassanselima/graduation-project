@@ -24,7 +24,7 @@
         <button
           class="btn editPG"
           DarkGreen
-          (click)="edit(pg.playgroundInfo.playground?.id)"
+          (click)="edit(pg.playgroundInfo.playground?.id, pg.playgroundInfo)"
         >
           تعديل <span><img src="assets/Pen 2.svg" alt="" /></span>
         </button>
@@ -40,7 +40,8 @@
           <p
             class="card-text property-text-value d-flex flex-row-reverse text-end"
           >
-            <span class="d-flex flex-row gap-1 align-items-end"
+            <span
+              class="d-flex flex-row gap-1 align-items-end flex-wrap-reverse justify-content-end"
               ><span>{{ pg.playgroundInfo.playground?.country }}</span
               >،<span>{{ pg.playgroundInfo.playground?.city }}</span> ،<span>{{
                 pg.playgroundInfo.playground?.address

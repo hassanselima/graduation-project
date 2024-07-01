@@ -4,7 +4,16 @@
 
 <div class="container-fluid">
   <div class="w-50 mx-auto mt-5">
-    <h2 class="">اضافة ملعب جديد</h2>
+    <h2
+      class="d-flex justify-content-center align-items-center flex-row-reverse gap-1"
+    >
+      <span>
+        {{ action === "add" ? " اضافة " : " تعديل " }}
+      </span>
+      <span>
+        {{ action === "add" ? "ملعب جديد" : pgName }}
+      </span>
+    </h2>
     <form [formGroup]="addPGForm">
       <div class="d-flex flex-column align-items-end gap-2 p-0 mb-3">
         <label for="PgName" class="form-label">اسم الملعب</label>
@@ -32,10 +41,10 @@
           <button
             *ngFor="let size of fieldSizes"
             [ngClass]="{
-              selected: selectedFieldSize === size
+              selected: selectedFieldSize === size[0]
             }"
             class="btn border-1 pg-size"
-            (click)="selectFieldSize(size)"
+            (click)="selectFieldSize(size[0])"
           >
             {{ size }}
           </button>

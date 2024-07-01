@@ -49,6 +49,7 @@
               [value]="day[1]"
               (change)="selectDay(day[1])"
               class="form-check-input checkbox shadow-sm d-block mx-auto"
+              [checked]="isDayInHolidays(day[1])"
             />
             <p>{{ day[0] }}</p>
           </div>

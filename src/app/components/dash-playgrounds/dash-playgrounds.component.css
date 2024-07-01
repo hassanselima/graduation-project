@@ -39,3 +39,9 @@ p {
     height: calc(100vh - 235px);
   }
 }
+.interNav {
+  position: sticky;
+  top: 0px;
+  background-color: #f8f9fa;
+  z-index: 10;
+}

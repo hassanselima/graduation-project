@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FileUploadService } from '../../../services/file-upload.service';
 import { SharedDataService } from '../../../services/shared-data.service';
 import { error } from 'console';
@@ -25,20 +25,43 @@ export class AddPG5Component implements OnInit {
   msg2: string = '';
   msgError: string = '';
   msg2Error: string = '';
+  action: string = '';
+  pgData: any;
+  uploadedImage: any;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private fileSer: FileUploadService,
-    private sharedSer: SharedDataService
+    private sharedSer: SharedDataService,
+    private route: ActivatedRoute
   ) {
     const currentUser = localStorage.getItem('currentUser');
     this.ownToken = localStorage.getItem('ownerToken');
   }
   ngOnInit(): void {
-    const pgData: any = this.sharedSer.getPgData();
-    this.pgId = pgData.id;
-    console.log('added pg Id : ', this.pgId);
+    this.getRouteAction();
+  }
+
+  getRouteAction() {
+    this.route.queryParams.subscribe((params) => {
+      this.action = params['action'];
+      console.log(this.action);
+      if (this.action === 'edit') {
+        console.log('edit playground page 5');
+        this.pgData = this.sharedSer.getPgData();
+        console.log(this.pgData);
+        if (this.pgData) {
+          this.pgId = this.pgData?.id;
+          console.log('added pg Id : ', this.pgId);
+          this.uploadedImage = this.getImage(this.pgData?.picture);
+          console.log(this.uploadedImage);
+        }
+      }
+    });
+  }
+  getImage(base64Image: string): string {
+    return `data:image/jpeg;base64,${base64Image}`;
   }
 
   onFileSelected(event: any, isDocs: boolean): void {
@@ -133,6 +156,8 @@ export class AddPG5Component implements OnInit {
   next() {
     console.log(this.uploadedImageFile);
     console.log(this.uploadedPaperFile);
-    this.router.navigate(['/dashboard/playgrounds/add6']);
+    this.router.navigate(['/dashboard/playgrounds/add6'], {
+      queryParams: { action: this.action },
+    });
   }
 }

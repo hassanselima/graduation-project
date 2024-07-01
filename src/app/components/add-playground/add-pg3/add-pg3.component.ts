@@ -1,7 +1,7 @@
 import { join } from 'node:path';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedDataService } from '../../../services/shared-data.service';
 
 @Component({
@@ -36,11 +36,14 @@ export class AddPG3Component implements OnInit {
   selectedAdvs: string[] = [];
   workingDays: string[] = [];
   holidays: string[] = [];
+  action: string = '';
+  pgData: any;
 
   addPG3Form: FormGroup;
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private sharedData: SharedDataService
   ) {
     this.addPG3Form = fb.group({
@@ -53,7 +56,50 @@ export class AddPG3Component implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.holidays = this.daysOfWeek.map((day) => day[1]);
+    this.getRouteAction();
+  }
+  getRouteAction() {
+    this.route.queryParams.subscribe((params) => {
+      this.action = params['action'];
+      console.log(this.action);
+      if (this.action === 'edit') {
+        console.log('edit playground page 3');
+        this.pgData = this.sharedData.getPgDataEdit()?.playground;
+        console.log(this.pgData);
+        if (this.pgData) {
+          this.addPG3Form.patchValue({
+            openingHour: this.pgData.openingHours.split(':')[0],
+            closingHour: this.setClosingHour(
+              this.pgData.openingHours.split(':')[1]
+            ),
+            holidays: this.setWorkingDays(this.pgData.holidays.split(',')),
+            advantages: this.pgData.advantages.split(','),
+            feesForHour: this.pgData.feesForHour,
+            cancellationFees: this.pgData.cancellationFees,
+          });
+          this.selectedAdvs.push(...this.addPG3Form.value.advantages);
+          this.advantages.push(...this.addPG3Form.value.advantages);
+        }
+        console.log(this.addPG3Form.value);
+      } else {
+        this.holidays = this.daysOfWeek.map((day) => day[1]);
+      }
+    });
+  }
+  setClosingHour(hour: string) {
+    if (hour === '24') {
+      return '0';
+    } else {
+      return hour;
+    }
+  }
+  setWorkingDays(holidays: string[]) {
+    this.holidays = holidays;
+    const working = this.daysOfWeek.map((day) => day[1]);
+    this.workingDays = working.filter((day) => !holidays.includes(day));
+    console.log(this.holidays);
+    console.log(this.workingDays);
+    return this.holidays;
   }
   selectDay(day: string) {
     console.log(day);
@@ -86,9 +132,12 @@ export class AddPG3Component implements OnInit {
       this.advantages.push(newAdv);
     }
   }
-
+  isDayInHolidays(day: string) {
+    return this.workingDays?.includes(day);
+  }
   next() {
-    const { holidays, advantages, feesForHour } = this.addPG3Form.value;
+    const { holidays, advantages, feesForHour, cancellationFees } =
+      this.addPG3Form.value;
     const openingHours = `${this.addPG3Form.get('openingHour')?.value}:${
       this.addPG3Form.get('closingHour')?.value
     }`;
@@ -99,9 +148,13 @@ export class AddPG3Component implements OnInit {
       advantages: advantages.join(','),
       feesForHour,
       openingHours,
+      cancellationFees,
     });
+    console.log(this.sharedData.getPgData());
 
-    this.router.navigate(['/dashboard/playgrounds/add4']);
+    this.router.navigate(['/dashboard/playgrounds/add4'], {
+      queryParams: { action: this.action },
+    });
     // console.log(this.workingDays);
     // console.log(this.holidays);
   }

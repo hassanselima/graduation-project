@@ -9,6 +9,7 @@ export class SharedDataService {
   currentConfirmationData = this.confirmationData.asObservable();
   private userData: any = {};
   private pgData = new BehaviorSubject<any>({});
+  private pgDataEdit = new BehaviorSubject<any>({});
   constructor() {}
 
   setConfirmationData(data: any) {
@@ -31,5 +32,14 @@ export class SharedDataService {
   }
   resetPgData() {
     this.pgData.next(0);
+  }
+  setPgDataEdit(data: any) {
+    this.pgDataEdit.next(data);
+  }
+  getPgDataEdit() {
+    return this.pgDataEdit.getValue();
+  }
+  resetPgDataEdit() {
+    this.pgDataEdit.next(0);
   }
 }

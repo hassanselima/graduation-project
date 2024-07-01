@@ -51,6 +51,11 @@ export class DashPlaygroundsComponent implements OnInit {
       );
     }
   }
+  addPg() {
+    this.router.navigate(['/dashboard/playgrounds/add1'], {
+      queryParams: { action: 'add' },
+    });
+  }
   updateData(e: any) {
     this.ngOnInit();
   }

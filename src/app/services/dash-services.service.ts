@@ -47,4 +47,9 @@ export class DashServicesService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(baseUrl, pgData, { headers });
   }
+  editPlayground(pgData: any, token: string | null) {
+    const baseUrl = `${environment.APIURL}/Playground/playground`;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.put(baseUrl, pgData, { headers });
+  }
 }
