@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../Environments/environment';
 
@@ -19,8 +19,11 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  saveProfile(profile: Profile): Observable<any> {
-    return this.http.put(this.apiUrl, profile); // Changed to PUT
+  saveProfile(profile: Profile , token:string | null): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`) 
+    console.log(profile);
+       return this.http.put(this.apiUrl, profile , {headers});
+       
   }
 
   getProfile(ownerId: string): Observable<Profile> {

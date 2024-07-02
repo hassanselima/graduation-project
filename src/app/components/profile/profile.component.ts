@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProfileService , Profile} from '../../services/profile.service';
+import { Token } from '@angular/compiler';
 
 
 @Component({
@@ -12,8 +13,12 @@ export class ProfileComponent {
   lastName: string = '';
   phone: string = '';
   email: string = 'someone@gmail.com';
+  ownToken:string|null='';
 
-  constructor(private profileService: ProfileService) {}
+  constructor(private profileService: ProfileService) {
+  
+    this.ownToken = localStorage.getItem('ownerToken');
+  }
 
   ngOnInit() {
     this.loadCurrentUser();
@@ -44,7 +49,7 @@ export class ProfileComponent {
         phoneNumber: this.phone
       };
 
-      this.profileService.saveProfile(profile).subscribe(
+      this.profileService.saveProfile(profile,this.ownToken ).subscribe(
         response => {
           console.log('Profile saved successfully', response);
           // Handle successful response
