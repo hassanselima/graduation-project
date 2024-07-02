@@ -85,6 +85,10 @@ registerLocaleData(localeAr);
     AddPG6Component,
     ReviewComponent,
     AllemployeesComponent,
+    ProfileComponent,
+    GuardDetailsComponent,
+    EmployeesComponent,
+    EmployeesP2Component,
   ],
   imports: [
     BrowserModule,
