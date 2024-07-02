@@ -44,6 +44,7 @@ import { AddPG6Component } from './components/add-playground/add-pg6/add-pg6.com
 import { ReviewComponent } from './components/review/review.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { AllemployeesComponent } from './components/allemployees/allemployees.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { GuardDetailsComponent } from './components/guard-details/guard-details.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { EmployeesP2Component } from './components/employees-p2/employees-p2.component';
@@ -85,8 +86,9 @@ registerLocaleData(localeAr);
     AddPG6Component,
     ReviewComponent,
     AllemployeesComponent,
-    EmployeesComponent,
+    ProfileComponent,
     GuardDetailsComponent,
+    EmployeesComponent,
     EmployeesP2Component,
   ],
   imports: [

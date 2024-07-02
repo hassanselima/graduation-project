@@ -20,8 +20,8 @@ import { AddPG4Component } from './components/add-playground/add-pg4/add-pg4.com
 import { AddPG6Component } from './components/add-playground/add-pg6/add-pg6.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { AllemployeesComponent } from './components/allemployees/allemployees.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { EmployeesP2Component } from './components/employees-p2/employees-p2.component';
-
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -37,6 +37,11 @@ const routes: Routes = [
       {
         path: 'overview',
         component: DashOverviewComponent,
+        canActivate: [authGaurdGuard],
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
         canActivate: [authGaurdGuard],
       },
       {
