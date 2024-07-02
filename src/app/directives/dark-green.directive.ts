@@ -1,14 +1,21 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+} from '@angular/core';
 
 @Directive({
   selector: '[DarkGreen]',
 })
-export class DarkGreenDirective {
+export class DarkGreenDirective implements OnInit {
   @Input() highlightedColor: string = '#5b9349';
   @Input() defaultColor: string = '#00b562';
 
-  constructor(private elemRef: ElementRef) {
-    this.elemRef.nativeElement.style.backgroundColor = `${this.defaultColor}`;
+  constructor(private elemRef: ElementRef) {}
+  ngOnInit(): void {
+    this.elemRef.nativeElement.style.backgroundColor = this.defaultColor;
     this.elemRef.nativeElement.style.border = `none`;
   }
   @HostListener('mouseover') onMouseover() {

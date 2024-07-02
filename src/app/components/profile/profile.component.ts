@@ -1,22 +1,21 @@
 import { Component } from '@angular/core';
-import { ProfileService , Profile} from '../../services/profile.service';
+import { ProfileService, Profile } from '../../services/profile.service';
 import { Token } from '@angular/compiler';
-
+import { error } from 'console';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.css',
 })
 export class ProfileComponent {
   firstName: string = '';
   lastName: string = '';
   phone: string = '';
   email: string = 'someone@gmail.com';
-  ownToken:string|null='';
+  ownToken: string | null = '';
 
   constructor(private profileService: ProfileService) {
-  
     this.ownToken = localStorage.getItem('ownerToken');
   }
 
@@ -31,10 +30,9 @@ export class ProfileComponent {
       this.firstName = user.firstName;
       this.lastName = user.lastName;
       this.phone = user.phoneNumber;
-      this.email = user.email; // If you need to use email for display or other purposes
+      this.email = user.email;
     } else {
       console.error('No currentUser found in localStorage');
-      // Handle the case where currentUser is not found in localStorage
     }
   }
 
@@ -46,26 +44,25 @@ export class ProfileComponent {
         ownerId: user.ownerID,
         firstName: this.firstName,
         lastName: this.lastName,
-        phoneNumber: this.phone
+        phoneNumber: this.phone,
       };
-
-      this.profileService.saveProfile(profile,this.ownToken ).subscribe(
-        response => {
+      const observer = {
+        next: (response: any) => {
           console.log('Profile saved successfully', response);
-          // Handle successful response
         },
-        error => {
+        error: (error: any) => {
           console.error('Error saving profile', error);
-          // Handle error response
-        }
-      );
+        },
+      };
+      this.profileService
+        .saveProfile(profile, this.ownToken)
+        .subscribe(observer);
     } else {
       console.error('No currentUser found in localStorage');
-      // Handle the case where currentUser is not found in localStorage
     }
   }
 
   discardChanges() {
-    // Implement discard changes logic if needed
+    this.loadCurrentUser();
   }
 }

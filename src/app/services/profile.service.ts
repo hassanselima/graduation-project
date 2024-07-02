@@ -11,22 +11,20 @@ export interface Profile {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProfileService {
-
   private apiUrl = `${environment.APIURL}/Owner/owner`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  saveProfile(profile: Profile , token:string | null): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`) 
+  saveProfile(profile: Profile, token: string | null): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     console.log(profile);
-       return this.http.put(this.apiUrl, profile , {headers});
-       
+    return this.http.put(this.apiUrl, profile, { headers });
   }
 
   getProfile(ownerId: string): Observable<Profile> {
     return this.http.get<Profile>(`${this.apiUrl}/${ownerId}`);
   }
-} 
+}

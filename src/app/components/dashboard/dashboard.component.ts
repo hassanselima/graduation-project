@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
   currentDate = new Date();
+  constructor(private router: Router) {}
   get formattedDate(): string {
     const daysOfWeek = [
       'الأحد',
@@ -26,5 +28,8 @@ export class DashboardComponent {
       year: 'numeric',
     });
     return `${dayOfWeek}، ${formattedDate}`;
+  }
+  goToProfile() {
+    this.router.navigate(['/dashboard/profile']);
   }
 }
