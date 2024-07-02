@@ -44,6 +44,7 @@ import { AddPG6Component } from './components/add-playground/add-pg6/add-pg6.com
 import { ReviewComponent } from './components/review/review.component';
 import { GoogleMapsComponent } from './components/google-maps/google-maps.component';
 import { AllemployeesComponent } from './components/allemployees/allemployees.component';
+import { ProfileComponent } from './components/profile/profile.component';
 registerLocaleData(localeAr);
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ registerLocaleData(localeAr);
     AddPG6Component,
     ReviewComponent,
     AllemployeesComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
