@@ -47,6 +47,7 @@ import { AllemployeesComponent } from './components/allemployees/allemployees.co
 import { GuardDetailsComponent } from './components/guard-details/guard-details.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { EmployeesP2Component } from './components/employees-p2/employees-p2.component';
+
 registerLocaleData(localeAr);
 @NgModule({
   declarations: [
