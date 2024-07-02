@@ -1,0 +1,63 @@
+<div class="text-danger">
+  <p class="text-start"></p>
+</div>
+
+<div class="container-fluid">
+  <div class="w-50 mx-auto mt-4">
+    <form class="form">
+      <h2>قم برفع صورة الموظف</h2>
+      <div class="d-flex flex-column align-items-end gap-2 p-0 mb-2">
+        <label class="form-label">صور الموظف</label>
+        <div *ngIf="msg" class="alert alert-success w-100 text-center">
+          {{ msg }}
+        </div>
+        <div *ngIf="msgError" class="alert alert-danger w-100 text-center">
+          {{ msgError }}
+        </div>
+        <div class="upload-container">
+          <div class="" *ngIf="!uploadedImageFile">
+            <img src="assets/feather_upload-cloud.svg" alt="" />
+            <p class="drop-text">حدد ملفًا أو قم بالسحب والإسقاط هنا</p>
+            <p class="file-size-text">
+              لا يزيد حجم الملف عن 10 ميغابايت JPG أو PNG
+            </p>
+          </div>
+          <div *ngIf="uploadedImageFile" class="uploaded-files">
+            <p class="text-end">: الملفات المرفوعة</p>
+            <ul>
+              <div class="d-flex justify-content-between align-items-center">
+                <li>{{ uploadedImageFile.name }}</li>
+                <i
+                  class="fa-solid fa-xmark fa-xl"
+                  style="color: #00e63e"
+                  (click)="delFile()"
+                ></i>
+              </div>
+            </ul>
+          </div>
+          <input
+            type="file"
+            #fileInput
+            (change)="onFileSelected($event)"
+            class="form-control"
+          />
+          <button class="btn add-file" (click)="triggerFileInput($event)">
+            {{ uploadedImageFile ? "تحميل" : "اختيار ملف" }}
+          </button>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button
+          class="btn next-btn shadow"
+          DarkGreen
+          (click)="next()"
+          [disabled]="!uploadedImageFile"
+        >
+          اضافة
+          <img src="assets/Add Circle.svg" alt="next arrow" />
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

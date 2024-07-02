@@ -144,10 +144,16 @@ export class AddPG4Component implements OnInit {
       next: (res: any) => {
         this.sharedData.resetPgData();
         this.sharedData.setPgData(res.playground);
+        console.log('pgData : ', this.pgData);
+
         console.log(this.sharedData.getPgData());
 
         console.log('playground added successfully');
-
+        if (this.pgData?.picture && this.action === 'edit') {
+          this.router.navigate(['/dashboard/playgrounds/add6'], {
+            queryParams: { action: this.action },
+          });
+        }
         this.router.navigate(['/dashboard/playgrounds/add5'], {
           queryParams: { action: this.action },
         });

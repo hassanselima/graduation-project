@@ -12,5 +12,7 @@
     <p class="text m-0 pe-2 fs-4">{{ progress }}%</p>
   </div>
 
-  <p class="review-text">جاري مراجعة البيانات</p>
+  <p class="review-text">
+    {{ action === "edit" ? "تم تعديل البيانات بنجاح" : "جاري مراجعة البيانات" }}
+  </p>
 </div>

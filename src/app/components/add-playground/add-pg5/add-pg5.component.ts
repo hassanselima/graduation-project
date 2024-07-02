@@ -57,6 +57,10 @@ export class AddPG5Component implements OnInit {
           this.uploadedImage = this.getImage(this.pgData?.picture);
           console.log(this.uploadedImage);
         }
+      } else {
+        const pgData: any = this.sharedSer.getPgData();
+        this.pgId = pgData.id;
+        console.log('added pg Id : ', this.pgId);
       }
     });
   }
