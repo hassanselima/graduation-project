@@ -75,5 +75,11 @@
         تجاهل
       </button>
     </div>
+    <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+      Profile saved successfully!
+    </div>
+    <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
   </div>
 </div>

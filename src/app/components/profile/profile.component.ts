@@ -14,6 +14,9 @@ export class ProfileComponent {
   phone: string = '';
   email: string = 'someone@gmail.com';
   ownToken: string | null = '';
+  showSuccessMessage: boolean = false;
+  showErrorMessage: boolean = false;
+  errorMessage: string = '';
 
   constructor(private profileService: ProfileService) {
     this.ownToken = localStorage.getItem('ownerToken');
@@ -46,17 +49,19 @@ export class ProfileComponent {
         lastName: this.lastName,
         phoneNumber: this.phone,
       };
-      const observer = {
-        next: (response: any) => {
+      this.profileService.saveProfile(profile, this.ownToken).subscribe(
+        (response) => {
+          this.showSuccessMessage = true;
+          this.showErrorMessage = false;
           console.log('Profile saved successfully', response);
         },
-        error: (error: any) => {
+        (error) => {
+          this.showSuccessMessage = false;
+          this.showErrorMessage = true;
+          this.errorMessage = 'Error saving profile: ' + error.message;
           console.error('Error saving profile', error);
-        },
-      };
-      this.profileService
-        .saveProfile(profile, this.ownToken)
-        .subscribe(observer);
+        }
+      );
     } else {
       console.error('No currentUser found in localStorage');
     }
