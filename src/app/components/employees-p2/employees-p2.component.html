@@ -8,12 +8,12 @@
       <h2>قم برفع صورة الموظف</h2>
       <div class="d-flex flex-column align-items-end gap-2 p-0 mb-2">
         <label class="form-label">صور الموظف</label>
-        <div *ngIf="msg" class="alert alert-success w-100 text-center">
+        <!-- <div *ngIf="msg" class="alert alert-success w-100 text-center">
           {{ msg }}
         </div>
         <div *ngIf="msgError" class="alert alert-danger w-100 text-center">
           {{ msgError }}
-        </div>
+        </div> -->
         <div class="upload-container">
           <div class="" *ngIf="!uploadedImageFile">
             <img src="assets/feather_upload-cloud.svg" alt="" />
@@ -48,16 +48,19 @@
       </div>
 
       <div class="text-center">
-        <button
-          class="btn next-btn shadow"
-          DarkGreen
-          (click)="next()"
-          [disabled]="!uploadedImageFile"
-        >
+        <button class="btn next-btn shadow" DarkGreen (click)="next()">
           اضافة
           <img src="assets/Add Circle.svg" alt="next arrow" />
         </button>
       </div>
     </form>
+  </div>
+</div>
+<div class="msg">
+  <div *ngIf="msg" class="alert alert-success" role="alert">
+    Gurad image added successfully!
+  </div>
+  <div *ngIf="msgError" class="alert alert-danger" role="alert">
+    Something happened, Try again later.
   </div>
 </div>

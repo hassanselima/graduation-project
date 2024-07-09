@@ -1,4 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { GuardServicesService } from '../../services/guard-services.service';
+import { SharedDataService } from '../../services/shared-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employees-p2',
@@ -10,9 +13,17 @@ export class EmployeesP2Component implements OnInit {
   msg: string = '';
   msgError: string = '';
   uploadedImageFile: File | null = null;
-
-  constructor() {}
-  ngOnInit(): void {}
+  guardId: string | null = '';
+  ownerToken: string | null = '';
+  constructor(
+    private guardSer: GuardServicesService,
+    private sharSer: SharedDataService,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.guardId = this.sharSer.getguardData().guardId;
+    this.ownerToken = localStorage.getItem('ownerToken');
+  }
   onFileSelected(event: any): void {
     const input = event.target as HTMLInputElement;
 
@@ -58,14 +69,25 @@ export class EmployeesP2Component implements OnInit {
           if (res.message === 'Image Uploaded To Database') {
             this.msg = 'تم تحميل الصورة بنجاح';
             this.msgError = '';
+            setTimeout(() => {
+              this.msg = '';
+            }, 3000);
           }
         },
         error: (err: any) => {
           this.msgError = 'حدث خطأ';
           this.msg = '';
+          setTimeout(() => {
+            this.msgError = '';
+          }, 3000);
         },
       };
+      this.guardSer
+        .uploadImage(this.guardId, this.uploadedImageFile, this.ownerToken)
+        .subscribe(observer);
     }
   }
-  next() {}
+  next() {
+    this.router.navigate(['/dashboard/allemployees']);
+  }
 }

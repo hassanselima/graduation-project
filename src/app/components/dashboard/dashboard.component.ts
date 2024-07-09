@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,9 +6,14 @@ import { Router } from '@angular/router';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   currentDate = new Date();
+  ownerFName: string | null = null;
   constructor(private router: Router) {}
+  ngOnInit(): void {
+    const currentUser = localStorage.getItem('currentUser');
+    this.ownerFName = currentUser ? JSON.parse(currentUser).firstName : null;
+  }
   get formattedDate(): string {
     const daysOfWeek = [
       'الأحد',

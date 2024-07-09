@@ -33,53 +33,73 @@
     </svg>
   </div>
   <div class="profile-details">
-    <div class="profile-field">
-      <label for="first-name">الاسم الاول</label>
-      <input
-        id="first-name"
-        class="form-control"
-        [(ngModel)]="firstName"
-        type="text"
-      />
-    </div>
-    <div class="profile-field">
-      <label for="last-name">الاسم الاخير</label>
-      <input
-        id="last-name"
-        class="form-control"
-        [(ngModel)]="lastName"
-        type="text"
-      />
-    </div>
-    <div class="profile-field">
-      <label for="phone">رقم الهاتف</label>
-      <input id="phone" class="form-control" [(ngModel)]="phone" type="text" />
-    </div>
-    <div class="profile-field">
-      <label for="email">البريد الإلكتروني</label>
-      <input id="email" class="form-control" [(ngModel)]="email" type="email" />
-    </div>
-    <div class="profile-actions">
-      <button class="btn text-white" DarkGreen (click)="saveChanges()">
-        <img src="assets/Check.svg" alt="check symbol" />
+    <form [formGroup]="profileForm">
+      <div class="profile-field">
+        <label for="first-name">الاسم الاول</label>
+        <input
+          id="first-name"
+          class="form-control"
+          type="text"
+          formControlName="firstName"
+        />
+      </div>
+      <div class="profile-field">
+        <label for="last-name">الاسم الاخير</label>
+        <input
+          id="last-name"
+          class="form-control"
+          type="text"
+          formControlName="lastName"
+        />
+      </div>
+      <div class="profile-field">
+        <label for="phone">رقم الهاتف</label>
+        <input
+          id="phone"
+          class="form-control"
+          type="text"
+          formControlName="phone"
+        />
+      </div>
+      <div class="profile-field">
+        <label for="email">البريد الإلكتروني</label>
+        <input
+          id="email"
+          type="email"
+          class="form-control"
+          [value]="this.profileForm.get('email')?.value"
+          disabled
+        />
+      </div>
+      <div class="profile-actions">
+        <button
+          class="btn text-white"
+          DarkGreen
+          (click)="saveChanges()"
+          [disabled]="!profileForm.valid"
+        >
+          <img src="assets/Check.svg" alt="check symbol" />
 
-        حفظ التغيرات
-      </button>
-      <button
-        class="btn"
-        DarkGreen
-        [defaultColor]="'#0000001A'"
-        [highlightedColor]="'#0000003F'"
-        (click)="discardChanges()"
-      >
-        تجاهل
-      </button>
-    </div>
-    <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
-      Profile saved successfully!
-    </div>
-    <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
-      {{ errorMessage }}
+          حفظ التغيرات
+        </button>
+        <button
+          class="btn"
+          DarkGreen
+          [defaultColor]="'#0000001A'"
+          [highlightedColor]="'#0000003F'"
+          (click)="discardChanges()"
+        >
+          تجاهل
+        </button>
+      </div>
+    </form>
+    <div class="msg">
+      <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
+        Profile saved successfully!
+      </div>
+      <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
     </div>
   </div>
 </div>

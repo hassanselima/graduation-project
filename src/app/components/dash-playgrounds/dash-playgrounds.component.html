@@ -10,10 +10,6 @@
           اضافة ملعب
           <span><img src="assets/Add Circle.svg" alt="" /></span>
         </button>
-        <!-- <button class="btn btn-outline-success d-flex align-items-center gap-1">
-          حذف ملعب
-          <span><img src="assets/Trash Bin Minimalistic.svg" alt="" /></span>
-        </button> -->
       </div>
       <div class="d-flex align-items-center gap-3">
         <p
@@ -46,7 +42,14 @@
         ></app-playground-details>
       </ng-container>
       <ng-container *ngIf="!isLoading && (!allPGs || allPGs.length === 0)">
-        <p class="m-auto text-center display-text">No data available</p>
+        <div class="d-flex flex-column gap-4 no-pg">
+          <div class="d-flex justify-content-center align-items-center">
+            <img src="assets/Calendar22.svg" alt="" />
+          </div>
+          <p class="m-auto text-center display-text display-6">
+            لا يوجد لديك اي ملاعب
+          </p>
+        </div>
       </ng-container>
     </div>
   </div>

@@ -10,6 +10,7 @@ export class SharedDataService {
   private userData: any = {};
   private pgData = new BehaviorSubject<any>({});
   private pgDataEdit = new BehaviorSubject<any>({});
+  private guardDataResponse = new BehaviorSubject<any>({});
   constructor() {}
 
   setConfirmationData(data: any) {
@@ -41,5 +42,11 @@ export class SharedDataService {
   }
   resetPgDataEdit() {
     this.pgDataEdit.next(0);
+  }
+  setguardData(data: any) {
+    this.guardDataResponse.next(data);
+  }
+  getguardData() {
+    return this.guardDataResponse.getValue();
   }
 }

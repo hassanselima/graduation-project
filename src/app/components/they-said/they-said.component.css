@@ -39,6 +39,9 @@ p {
   align-items: flex-start;
   gap: 5px;
 }
+.download-box {
+  padding-inline: 60px;
+}
 .text-head {
   color: #242424;
   font-size: 32px;
@@ -48,4 +51,12 @@ p {
   color: #5e5d5d;
   font-size: 18px;
   line-height: 27px;
+  width: 65%;
+}
+@media (max-width: 775px) {
+  .download-box {
+    flex-direction: column-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

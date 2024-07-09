@@ -1,12 +1,12 @@
 <div
-  class="row row-cols-1 row-cols-md-2 row-cols-lg-3 m-0 d-flex flex-row-reverse justify-content-around"
+  class="row row-cols-1 gap-5 row-cols-md-2 gap-lg-0 row-cols-lg-3 m-0 d-flex flex-row-reverse justify-content-around"
 >
   <div
     class="bg-white rounded-4 shadow gCard col-12 col-md-5 col-lg-4"
     *ngFor="let guard of guards; let i = index"
   >
     <div class="d-flex justify-content-between p-3 pb-5 guard-header">
-      <div class="delete">
+      <div class="delete" (click)="delGuard(guard.guardId)">
         <img src="assets/Trash Bin Minimalistic.svg" alt="" />
       </div>
       <img
@@ -49,5 +49,13 @@
         </span>
       </div>
     </div>
+  </div>
+</div>
+<div class="msg">
+  <div *ngIf="msg" class="alert alert-success" role="alert">
+    {{ msg }}
+  </div>
+  <div *ngIf="msgError" class="alert alert-danger" role="alert">
+    {{ msgError }}
   </div>
 </div>

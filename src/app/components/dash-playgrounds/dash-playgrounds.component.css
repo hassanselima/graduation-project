@@ -12,7 +12,10 @@ p {
 }
 .PG-statusActive {
   color: #1c1c1c;
-  transform: scale(1.2);
+  transform: scale(1.1);
+  border: 1px solid #00b562;
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 .bg-box {
   scroll-behavior: smooth;
@@ -44,4 +47,7 @@ p {
   top: 0px;
   background-color: #f8f9fa;
   z-index: 10;
+}
+.no-pg {
+  margin-top: 120px;
 }

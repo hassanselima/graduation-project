@@ -3,12 +3,17 @@
   border-radius: 50%;
   width: 400px;
   height: 400px;
+  margin-inline: auto;
 }
 .circle2 {
   border: 2px #dddded dotted;
   border-radius: 50%;
   width: 300px;
   height: 300px;
+}
+.img {
+  position: absolute;
+  left: -20px;
 }
 .blue {
   bottom: 40px;
@@ -25,4 +30,60 @@
 .orange2 {
   right: 150px;
   bottom: 80px;
+}
+
+@media (max-width: 480px) {
+  .circle1 {
+    width: 300px;
+    height: 300px;
+  }
+  .circle2 {
+    width: 200px;
+    height: 200px;
+  }
+  .img img {
+    width: 350px;
+  }
+  .img {
+    left: -35px;
+    top: -10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .circle1 {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 30px;
+  }
+  .circle2 {
+    width: 100px;
+    height: 100px;
+  }
+  .img img {
+    width: 300px;
+  }
+  .img {
+    left: -40px;
+    top: -10px;
+  }
+}
+
+@media (max-width: 370px) {
+  .circle1 {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+  }
+  .circle2 {
+    width: 80px;
+    height: 80px;
+  }
+  .img img {
+    width: 250px;
+  }
+  .img {
+    left: -50px;
+    top: -10px;
+  }
 }

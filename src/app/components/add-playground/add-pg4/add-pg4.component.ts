@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DashServicesService } from '../../../services/dash-services.service';
 import { SharedDataService } from '../../../services/shared-data.service';
 import { error } from 'console';
+import { GuardServicesService } from '../../../services/guard-services.service';
 
 @Component({
   selector: 'app-add-pg4',
@@ -33,6 +34,7 @@ export class AddPG4Component implements OnInit {
     private router: Router,
     private dashSer: DashServicesService,
     private sharedData: SharedDataService,
+    private guardSer: GuardServicesService,
     private route: ActivatedRoute
   ) {
     this.addPG4Form = fb.group({
@@ -85,7 +87,7 @@ export class AddPG4Component implements OnInit {
         console.log('from add-pg4 guards : ', this.guards);
       },
     };
-    this.dashSer.getGuards(this.ownerId, this.ownToken).subscribe(observer);
+    this.guardSer.getGuards(this.ownerId, this.ownToken).subscribe(observer);
   }
 
   selectRule(rule: string) {

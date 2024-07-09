@@ -72,3 +72,13 @@ i {
   flex-direction: column;
   justify-content: space-between;
 }
+.msg {
+  position: absolute;
+  top: 130px;
+  left: 30px;
+}
+@media (max-width: 767px) {
+  .msg {
+    top: 180px;
+  }
+}

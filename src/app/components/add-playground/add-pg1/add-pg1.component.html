@@ -41,10 +41,10 @@
           <button
             *ngFor="let size of fieldSizes"
             [ngClass]="{
-              selected: selectedFieldSize === size[0]
+              selected: selectedFieldSize === size.split('X')[0]
             }"
             class="btn border-1 pg-size"
-            (click)="selectFieldSize(size[0])"
+            (click)="selectFieldSize(size.split('X')[0])"
           >
             {{ size }}
           </button>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ProfileService, Profile } from '../../services/profile.service';
-import { Token } from '@angular/compiler';
-import { error } from 'console';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -9,17 +8,19 @@ import { error } from 'console';
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent {
-  firstName: string = '';
-  lastName: string = '';
-  phone: string = '';
-  email: string = 'someone@gmail.com';
   ownToken: string | null = '';
   showSuccessMessage: boolean = false;
   showErrorMessage: boolean = false;
   errorMessage: string = '';
-
-  constructor(private profileService: ProfileService) {
+  profileForm: FormGroup;
+  constructor(private profileService: ProfileService, private fb: FormBuilder) {
     this.ownToken = localStorage.getItem('ownerToken');
+    this.profileForm = fb.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      phone: ['', [Validators.required]],
+      email: [''],
+    });
   }
 
   ngOnInit() {
@@ -30,10 +31,12 @@ export class ProfileComponent {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
       const user = JSON.parse(currentUser);
-      this.firstName = user.firstName;
-      this.lastName = user.lastName;
-      this.phone = user.phoneNumber;
-      this.email = user.email;
+      this.profileForm.patchValue({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        phone: user.phoneNumber,
+        email: user.email,
+      });
     } else {
       console.error('No currentUser found in localStorage');
     }
@@ -45,23 +48,34 @@ export class ProfileComponent {
       const user = JSON.parse(currentUser);
       const profile: Profile = {
         ownerId: user.ownerID,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        phoneNumber: this.phone,
+        firstName: this.profileForm.get('firstName')?.value,
+        lastName: this.profileForm.get('lastName')?.value,
+        phoneNumber: this.profileForm.get('phone')?.value,
       };
-      this.profileService.saveProfile(profile, this.ownToken).subscribe(
-        (response) => {
+      const observer = {
+        next: (response: any) => {
           this.showSuccessMessage = true;
           this.showErrorMessage = false;
+          setTimeout(() => {
+            this.showSuccessMessage = false;
+          }, 3000);
           console.log('Profile saved successfully', response);
+          const updatedUser = { ...user, ...profile };
+          localStorage.setItem('currentUser', JSON.stringify(updatedUser));
         },
-        (error) => {
+        error: (error: any) => {
           this.showSuccessMessage = false;
           this.showErrorMessage = true;
-          this.errorMessage = 'Error saving profile: ' + error.message;
+          this.errorMessage = 'Error saving profile: Try again later';
+          setTimeout(() => {
+            this.showErrorMessage = false;
+          }, 3000);
           console.error('Error saving profile', error);
-        }
-      );
+        },
+      };
+      this.profileService
+        .saveProfile(profile, this.ownToken)
+        .subscribe(observer);
     } else {
       console.error('No currentUser found in localStorage');
     }

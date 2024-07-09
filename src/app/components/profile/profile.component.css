@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  padding-bottom: 0;
   background-color: #f8f9fa;
   border-radius: 10px;
   width: 70%;
@@ -60,4 +61,13 @@
   border-radius: 5px;
   cursor: pointer;
   padding: 10px 20px;
+}
+.msg {
+  position: absolute;
+  top: 130px;
+}
+@media (max-width: 767px) {
+  .msg {
+    top: 180px;
+  }
 }

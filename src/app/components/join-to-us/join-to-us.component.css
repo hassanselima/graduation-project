@@ -6,13 +6,17 @@ li {
   list-style: none;
 }
 
-.join-box {
+.join-container {
   background-color: #d6eeec;
+}
+.join-box {
+  gap: 48px;
 }
 .join-head {
   color: #242424;
   font-size: 32px;
   line-height: 36px;
+  text-align: right;
 }
 .elem {
   padding: 13px;
@@ -29,4 +33,33 @@ li {
 }
 .elem4 {
   background-color: #4a81ec;
+}
+
+@media (max-width: 992px) {
+  .join-box {
+    gap: 10px;
+  }
+}
+@media (max-width: 702px) {
+  .join-head {
+    margin-bottom: 40px;
+  }
+  .join-box {
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 30px;
+  }
+  .join-content {
+    align-self: self-end;
+  }
+}
+
+@media (max-width: 368px) {
+  .join-content {
+    padding-inline: 20px !important;
+  }
+  .join-head {
+    padding-inline: 20px !important;
+  }
 }

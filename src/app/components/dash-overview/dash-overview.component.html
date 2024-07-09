@@ -14,7 +14,7 @@
         <ng-container
           *ngIf="!isLoading && (!bookingsByDay || bookingsByDay.length === 0)"
         >
-          <p class="m-auto text-center display-text">No data available</p>
+          <!-- <p class="m-auto text-center display-text">No data available</p> -->
         </ng-container>
       </div>
     </div>
@@ -26,6 +26,11 @@
       </ng-container>
       <ng-container *ngIf="!isLoading && bookingsByDay && bookingsByDay.length">
         <app-area-chart [monthlySum]="monthlySum"></app-area-chart>
+      </ng-container>
+      <ng-container
+        *ngIf="!isLoading && (!monthlySum || monthlySum.length === 0)"
+      >
+        <p class="m-auto text-center display-text py-4">No data available</p>
       </ng-container>
     </div>
     <div class="col-12 bg-dark-subtle"></div>
@@ -54,7 +59,14 @@
         <ng-container
           *ngIf="!isLoadingPG && (!bookingsByDay || bookingsByDay.length === 0)"
         >
-          <p class="m-auto text-center display-text">No data available</p>
+          <div class="d-flex flex-column gap-4">
+            <div class="d-flex justify-content-center align-items-center">
+              <img src="assets/Calendar22.svg" alt="" />
+            </div>
+            <p class="m-auto text-center display-text display-6">
+              You don't have any playgrounds
+            </p>
+          </div>
         </ng-container>
         <!-- <app-pg-card></app-pg-card>
         <app-pg-card></app-pg-card>
@@ -81,7 +93,7 @@
       <ng-container
         *ngIf="!isLoadingPG && (!bookingsByDay || bookingsByDay.length === 0)"
       >
-        <p class="m-auto text-center display-text">No data available</p>
+        <p class="m-auto text-center display-text">You have no reservations</p>
       </ng-container>
       <!-- <app-donut-chart
       [finishedBooings]="finshedBookings"
