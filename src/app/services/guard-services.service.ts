@@ -21,14 +21,14 @@ export class GuardServicesService {
       console.log(error?.error.guardPlaygrounds[0]?.playgroundName);
       return throwError(
         () =>
-          new Error(
-            'لا يمكن حذف الموظف لانة مرتبط بملعب' +
-              ` ${error?.error.guardPlaygrounds[0]?.playgroundName}`
-          )
+          'The employee is attached to a playground' +
+          ` ${error?.error.guardPlaygrounds[0]?.playgroundName}`
       );
+      // 'الموظف مرتبط بملعب' +
+      // ` ${error?.error.guardPlaygrounds[0]?.playgroundName}`
     }
 
-    return throwError(() => new Error('برجاء المحاولة لاحقا'));
+    return throwError(() => 'Try again later');
   }
 
   getGuards(ownerId: any | null, token: string | null) {

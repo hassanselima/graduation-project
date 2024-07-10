@@ -62,12 +62,3 @@
   cursor: pointer;
   padding: 10px 20px;
 }
-.msg {
-  position: absolute;
-  top: 130px;
-}
-@media (max-width: 767px) {
-  .msg {
-    top: 180px;
-  }
-}

@@ -4,6 +4,7 @@ import { GuardServicesService } from '../../services/guard-services.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-guard-details',
@@ -14,12 +15,12 @@ export class GuardDetailsComponent implements OnInit {
   @Input() guards: any;
   @Output() reloadGuards: EventEmitter<any> = new EventEmitter<any>();
   token: string | null = '';
-  msg: string = '';
-  msgError: string = '';
+
   constructor(
     private router: Router,
     private guardSer: GuardServicesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastSer: ToastService
   ) {}
   ngOnInit(): void {
     this.token = localStorage.getItem('ownerToken');
@@ -38,21 +39,11 @@ export class GuardDetailsComponent implements OnInit {
     console.log(guardId);
     const observer = {
       next: (res: any) => {
-        this.msgError = '';
-        this.msg = 'تم حذف الموظف بنجاح';
-        console.log(this.msg);
         this.reloadGuards.emit();
-        setTimeout(() => {
-          this.msg = '';
-        }, 3000);
+        this.toastSer.success('the employee deleted successfully');
       },
       error: (err: any) => {
-        this.msg = '';
-        this.msgError = err;
-        console.log(this.msgError);
-        setTimeout(() => {
-          this.msgError = '';
-        }, 3000);
+        this.toastSer.error(err);
       },
     };
     this.guardSer.delGuard(guardId, this.token).subscribe(observer);

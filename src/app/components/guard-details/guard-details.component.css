@@ -36,15 +36,6 @@
   padding-right: 1rem;
   padding-bottom: 2rem;
 }
-.msg {
-  position: absolute;
-  top: 180px;
-}
-@media (max-width: 767px) {
-  .msg {
-    top: 180px;
-  }
-}
 @media (max-width: 575px), (max-width: 985px) {
   .info-value {
     padding-right: 50px;

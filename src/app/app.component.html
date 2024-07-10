@@ -1,3 +1,14 @@
 <div class="background">
   <router-outlet></router-outlet>
+  <lib-toastify-toast-container
+    [position]="'top-left'"
+    [transition]="'slide'"
+    [autoClose]="3000"
+    [autoCloseSuccess]="4000"
+    [autoCloseError]="3000"
+    [hideProgressBar]="false"
+    [closeOnClick]="true"
+    [pauseOnHover]="true"
+    [iconLibrary]="'none'"
+  ></lib-toastify-toast-container>
 </div>

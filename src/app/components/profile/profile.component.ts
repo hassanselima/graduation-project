@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ProfileService, Profile } from '../../services/profile.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-profile',
@@ -9,11 +10,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProfileComponent {
   ownToken: string | null = '';
-  showSuccessMessage: boolean = false;
-  showErrorMessage: boolean = false;
-  errorMessage: string = '';
   profileForm: FormGroup;
-  constructor(private profileService: ProfileService, private fb: FormBuilder) {
+  constructor(
+    private profileService: ProfileService,
+    private fb: FormBuilder,
+    public toastService: ToastService
+  ) {
     this.ownToken = localStorage.getItem('ownerToken');
     this.profileForm = fb.group({
       firstName: ['', [Validators.required]],
@@ -54,23 +56,14 @@ export class ProfileComponent {
       };
       const observer = {
         next: (response: any) => {
-          this.showSuccessMessage = true;
-          this.showErrorMessage = false;
-          setTimeout(() => {
-            this.showSuccessMessage = false;
-          }, 3000);
           console.log('Profile saved successfully', response);
           const updatedUser = { ...user, ...profile };
           localStorage.setItem('currentUser', JSON.stringify(updatedUser));
+          this.toastService.success('Profile saved successfully');
         },
         error: (error: any) => {
-          this.showSuccessMessage = false;
-          this.showErrorMessage = true;
-          this.errorMessage = 'Error saving profile: Try again later';
-          setTimeout(() => {
-            this.showErrorMessage = false;
-          }, 3000);
           console.error('Error saving profile', error);
+          this.toastService.error('An error occurred, try again later');
         },
       };
       this.profileService

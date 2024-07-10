@@ -14,16 +14,6 @@
     </div>
 
     <div mat-dialog-actions class="d-flex flex-column align-items-center gap-4">
-      <!-- <button
-        mat-button
-        (click)="onNoClick()"
-        DarkGreen
-        highlightedColor="#00b562"
-        defaultColor="#fff"
-        class="w-100 text-success btn-back"
-      >
-        تراجع
-      </button> -->
       <button mat-button (click)="onNoClick()" class="w-100 m-0 btn-back">
         تراجع
       </button>
@@ -36,7 +26,7 @@
         DarkGreen
         class="w-100 m-0 text-white"
       >
-        حذف الملعب
+        حذف {{ data.who === "guard" ? "الموظف" : "الملعب" }}
       </button>
     </div>
   </div>

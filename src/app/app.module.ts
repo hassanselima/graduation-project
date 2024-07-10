@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
 import {
   BrowserModule,
   provideClientHydration,
@@ -53,6 +53,7 @@ import { DeleteModalComponent } from './components/delete-modal/delete-modal.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { AngularToastifyModule, ToastService } from 'angular-toastify';
 
 registerLocaleData(localeAr);
 @NgModule({
@@ -108,11 +109,13 @@ registerLocaleData(localeAr);
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
+    AngularToastifyModule,
   ],
   providers: [
     provideClientHydration(),
     { provide: LOCALE_ID, useValue: 'ar' },
     provideAnimationsAsync(),
+    ToastService,
   ],
   bootstrap: [AppComponent],
 })
