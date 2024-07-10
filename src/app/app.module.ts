@@ -48,6 +48,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { GuardDetailsComponent } from './components/guard-details/guard-details.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { EmployeesP2Component } from './components/employees-p2/employees-p2.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 registerLocaleData(localeAr);
 @NgModule({
@@ -90,6 +95,7 @@ registerLocaleData(localeAr);
     GuardDetailsComponent,
     EmployeesComponent,
     EmployeesP2Component,
+    DeleteModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -99,8 +105,15 @@ registerLocaleData(localeAr);
     ReactiveFormsModule,
     NgxApexchartsModule,
     GoogleMapsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
-  providers: [provideClientHydration(), { provide: LOCALE_ID, useValue: 'ar' }],
+  providers: [
+    provideClientHydration(),
+    { provide: LOCALE_ID, useValue: 'ar' },
+    provideAnimationsAsync(),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

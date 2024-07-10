@@ -1,0 +1,47 @@
+<div class="container p-4">
+  <div class="w-75 mx-auto">
+    <div mat-dialog-content>
+      <div class="d-flex flex-column align-items-center gap-3">
+        <img
+          src="assets/Group 427318934.svg"
+          alt="Recycle Bin"
+          style="width: 80px; height: 80px"
+        />
+        <h2>
+          هل ترغب حقا في حذف {{ data.who === "guard" ? "الموظف" : "الملعب" }}
+        </h2>
+      </div>
+    </div>
+
+    <div mat-dialog-actions class="d-flex flex-column align-items-center gap-4">
+      <!-- <button
+        mat-button
+        (click)="onNoClick()"
+        DarkGreen
+        highlightedColor="#00b562"
+        defaultColor="#fff"
+        class="w-100 text-success btn-back"
+      >
+        تراجع
+      </button> -->
+      <button
+        mat-button
+        (click)="onNoClick()"
+        DarkGreen
+        defaultColor="#ffff"
+        highlightedColor="#e2f0ff"
+        class="w-100 m-0 text-success"
+      >
+        تراجع
+      </button>
+      <button
+        mat-button
+        (click)="confirmDelete()"
+        DarkGreen
+        class="w-100 m-0 text-white"
+      >
+        حذف الملعب
+      </button>
+    </div>
+  </div>
+</div>

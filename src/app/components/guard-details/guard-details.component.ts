@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { GuardServicesService } from '../../services/guard-services.service';
-import { error } from 'console';
+
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-guard-details',
@@ -14,7 +16,11 @@ export class GuardDetailsComponent implements OnInit {
   token: string | null = '';
   msg: string = '';
   msgError: string = '';
-  constructor(private router: Router, private guardSer: GuardServicesService) {}
+  constructor(
+    private router: Router,
+    private guardSer: GuardServicesService,
+    public dialog: MatDialog
+  ) {}
   ngOnInit(): void {
     this.token = localStorage.getItem('ownerToken');
     console.log('from guard details : ', this.guards);
@@ -50,5 +56,20 @@ export class GuardDetailsComponent implements OnInit {
       },
     };
     this.guardSer.delGuard(guardId, this.token).subscribe(observer);
+  }
+  openDeleteModal(guardId: string): void {
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: '40%',
+      data: { who: 'guard' },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.delGuard(guardId);
+        console.log('Confirmed deletion');
+      } else {
+        console.log('Cancelled deletion');
+      }
+    });
   }
 }

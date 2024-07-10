@@ -6,9 +6,12 @@
     *ngFor="let guard of guards; let i = index"
   >
     <div class="d-flex justify-content-between p-3 pb-5 guard-header">
-      <div class="delete" (click)="delGuard(guard.guardId)">
+      <div class="delete" (click)="openDeleteModal(guard.guardId)">
         <img src="assets/Trash Bin Minimalistic.svg" alt="" />
       </div>
+      <!-- <div class="delete" (click)="delGuard(guard.guardId)">
+        <img src="assets/Trash Bin Minimalistic.svg" alt="" />
+      </div> -->
       <img
         class="guard-img"
         [src]="

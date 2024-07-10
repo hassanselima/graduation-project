@@ -3,6 +3,8 @@ import { DashServicesService } from '../../services/dash-services.service';
 import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { SharedDataService } from '../../services/shared-data.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-playground-details',
@@ -38,7 +40,8 @@ export class PlaygroundDetailsComponent implements OnInit {
   constructor(
     private dashSer: DashServicesService,
     private router: Router,
-    private sharedData: SharedDataService
+    private sharedData: SharedDataService,
+    private dialog: MatDialog
   ) {
     this.ownerId = JSON.parse(
       localStorage.getItem('currentUser') || ''
@@ -93,6 +96,21 @@ export class PlaygroundDetailsComponent implements OnInit {
     this.sharedData.setPgDataEdit(data);
     this.router.navigate(['/dashboard/playgrounds/add1'], {
       queryParams: { action: 'edit' },
+    });
+  }
+  openModal(id: number) {
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: '40%',
+      data: { who: 'playground' },
+    });
+
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        this.deletePG(id);
+        console.log('Confirmed deletion');
+      } else {
+        console.log('Cancelled deletion');
+      }
     });
   }
 }
