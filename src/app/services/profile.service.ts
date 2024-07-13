@@ -20,7 +20,7 @@ export class ProfileService {
 
   saveProfile(profile: Profile, token: string | null): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    console.log(profile);
+
     return this.http.put(this.apiUrl, profile, { headers });
   }
 

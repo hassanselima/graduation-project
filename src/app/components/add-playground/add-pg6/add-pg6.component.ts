@@ -13,7 +13,6 @@ export class AddPG6Component implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.action = params['action'];
-      console.log(this.action);
     });
   }
   next() {

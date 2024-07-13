@@ -13,16 +13,10 @@ export class PgCardComponent implements OnInit {
   constructor(private dashSer: DashServicesService) {
     this.token = localStorage.getItem('ownerToken');
   }
-  ngOnInit(): void {
-    console.log('from pg-card child: ', this.bookablePlaygrounds);
-  }
+  ngOnInit(): void {}
 
   changeState(id: number) {
-    // console.log(id);
-    // console.log(false);
-    // console.log(this.token);
     this.dashSer.changeState(id, false, this.token).subscribe(() => {
-      console.log('not bookable');
       this.updateComponent.emit();
     });
   }

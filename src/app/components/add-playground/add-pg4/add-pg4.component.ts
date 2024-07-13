@@ -5,6 +5,7 @@ import { DashServicesService } from '../../../services/dash-services.service';
 import { SharedDataService } from '../../../services/shared-data.service';
 import { error } from 'console';
 import { GuardServicesService } from '../../../services/guard-services.service';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-add-pg4',
@@ -35,7 +36,8 @@ export class AddPG4Component implements OnInit {
     private dashSer: DashServicesService,
     private sharedData: SharedDataService,
     private guardSer: GuardServicesService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastSer: ToastService
   ) {
     this.addPG4Form = fb.group({
       rules: ['', [Validators.required]],
@@ -52,11 +54,10 @@ export class AddPG4Component implements OnInit {
   getRouteAction() {
     this.route.queryParams.subscribe((params) => {
       this.action = params['action'];
-      console.log(this.action);
+
       if (this.action === 'edit') {
-        console.log('edit playground page 4');
         this.pgData = this.sharedData.getPgDataEdit();
-        console.log(this.pgData);
+
         if (this.pgData) {
           this.addPG4Form.patchValue({
             rules: this.setRule(this.pgData?.playground?.rules?.split(',')),
@@ -64,13 +65,10 @@ export class AddPG4Component implements OnInit {
           });
           this.currPgId = this.pgData?.playground?.id;
         }
-        console.log(this.addPG4Form.value);
       }
     });
   }
   setRule(rules: string[]) {
-    console.log(rules);
-
     if (rules.includes('No Rules')) {
       this.selectedRule.push('لا يوجد');
     } else {
@@ -84,7 +82,6 @@ export class AddPG4Component implements OnInit {
         if (res) {
           this.guards.unshift(...res.guards);
         }
-        console.log('from add-pg4 guards : ', this.guards);
       },
     };
     this.guardSer.getGuards(this.ownerId, this.ownToken).subscribe(observer);
@@ -111,9 +108,6 @@ export class AddPG4Component implements OnInit {
       }
       this.addPG4Form.get('rules')?.setValue(this.selectedRule.join(','));
     }
-
-    console.log(this.selectedRule);
-    console.log(this.addPG4Form.value);
   }
   addRule() {
     const newAdv = prompt('Enter new advantage: ');
@@ -127,42 +121,36 @@ export class AddPG4Component implements OnInit {
     this.addPG4Form
       .get('guardId')
       ?.setValue(guardId === 'null' ? null : guardId);
-    console.log(guardId);
-    console.log(this.addPG4Form.value);
   }
 
   next() {
-    console.log('-------fourth page-------');
-    console.log(this.addPG4Form.value);
     this.sharedData.setPgData({ ...this.addPG4Form.value });
     this.sharedData.setPgData({
       ownerId: this.ownerId,
       id: this.action === 'add' ? 0 : this.currPgId,
     });
-    console.log('from shared service');
-    console.log(this.sharedData.getPgData());
     this.pgAddResponse = this.sharedData.getPgData();
     const observer = {
       next: (res: any) => {
         this.sharedData.resetPgData();
         this.sharedData.setPgData(res.playground);
-        console.log('pgData : ', this.pgData);
 
-        console.log(this.sharedData.getPgData());
-
-        console.log('playground added successfully');
         if (this.pgData?.picture && this.action === 'edit') {
           this.router.navigate(['/dashboard/playgrounds/add6'], {
             queryParams: { action: this.action },
           });
+        }
+        if (this.action === 'edit') {
+          this.toastSer.success('Playground edited successfully');
+        } else {
+          this.toastSer.success('Playground added successfully');
         }
         this.router.navigate(['/dashboard/playgrounds/add5'], {
           queryParams: { action: this.action },
         });
       },
       error: (err: any) => {
-        this.errMsg = 'حدث خطأ';
-        console.log('something happened within adding playground');
+        this.toastSer.error('something happened within adding playground');
       },
     };
     if (this.action === 'add') {

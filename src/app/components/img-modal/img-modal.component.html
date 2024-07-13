@@ -1,0 +1,9 @@
+<div class="modal" [class.show]="isVisible" (click)="close()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <span class="close" (click)="close()">&times;</span>
+    <img [src]="imageSrc" class="guard-img" alt="Guard Photo" />
+    <button class="btn editPG mt-3" DarkGreen (click)="edit()">
+      تعديل <span><img src="assets/Pen 2.svg" alt="" /></span>
+    </button>
+  </div>
+</div>

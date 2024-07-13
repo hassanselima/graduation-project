@@ -34,11 +34,10 @@ export class AddPG1Component implements OnInit {
   getRouteAction() {
     this.route.queryParams.subscribe((params) => {
       this.action = params['action'];
-      console.log(this.action);
+
       if (this.action === 'edit') {
-        console.log('edit playground page 1');
         this.pgData = this.sharedData.getPgDataEdit()?.playground;
-        console.log(this.pgData);
+
         if (this.pgData) {
           this.addPGForm.patchValue({
             name: this.pgData.name,
@@ -48,7 +47,6 @@ export class AddPG1Component implements OnInit {
           this.pgName = this.pgData.name;
           this.setFieldSize(this.pgData?.type.toString());
         }
-        console.log(this.addPGForm.value);
       }
     });
   }
@@ -58,7 +56,6 @@ export class AddPG1Component implements OnInit {
   selectFieldSize(size: string) {
     this.selectedFieldSize = size;
     this.addPGForm.get('type')?.setValue(Number(size));
-    console.log(this.addPGForm.value);
   }
   addFieldSize() {
     const newSize = prompt('Enter new field size (e.g., 4X4): ');
@@ -67,8 +64,6 @@ export class AddPG1Component implements OnInit {
     }
   }
   next() {
-    console.log('-------first page-------');
-    console.log(this.addPGForm.value);
     this.sharedData.setPgData({ ...this.addPGForm.value });
     this.router.navigate(['/dashboard/playgrounds/add2'], {
       queryParams: { action: this.action },

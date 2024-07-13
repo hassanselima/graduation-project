@@ -29,7 +29,6 @@ export class DashPlaygroundsComponent implements OnInit {
           this.allPGs = res.playgrounds;
           this.filterPlaygrounds();
         }
-        console.log('from dash-PGs details : ', this.allPGs);
         this.isLoading = false;
       },
       error: (err: any) => {
@@ -43,11 +42,15 @@ export class DashPlaygroundsComponent implements OnInit {
 
     if (currentUrl.endsWith('/playgrounds/unbookable')) {
       this.filterdPGs = this.allPGs.filter(
-        (item) => item.playgroundInfo.playground?.isBookable === false
+        (item) =>
+          item.playgroundInfo.playground?.isBookable === false &&
+          item.playgroundInfo.playground?.isAccepted === 1
       );
     } else {
       this.filterdPGs = this.allPGs.filter(
-        (item) => item.playgroundInfo.playground?.isBookable === true
+        (item) =>
+          item.playgroundInfo.playground?.isBookable === true &&
+          item.playgroundInfo.playground?.isAccepted === 1
       );
     }
   }
@@ -59,9 +62,16 @@ export class DashPlaygroundsComponent implements OnInit {
   updateData(e: any) {
     this.ngOnInit();
   }
-  filterPgs(isBookable: boolean) {
+  filterPgs(isBookable: boolean, isAcceptable: number) {
     this.filterdPGs = this.allPGs.filter(
-      (item) => item.playgroundInfo.playground?.isBookable === isBookable
+      (item) =>
+        item.playgroundInfo.playground?.isBookable === isBookable &&
+        item.playgroundInfo.playground?.isAccepted === isAcceptable
+    );
+  }
+  waitingPgs(isAcceptable: number) {
+    this.filterdPGs = this.allPGs.filter(
+      (item) => item.playgroundInfo.playground?.isAccepted === isAcceptable
     );
   }
 }

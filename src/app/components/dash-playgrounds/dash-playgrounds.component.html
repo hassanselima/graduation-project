@@ -7,7 +7,9 @@
           DarkGreen
           (click)="addPg()"
         >
-          اضافة ملعب
+          <span class="d-flex align-items-center gap-1">
+            اضافة <span class="d-none pg">ملعب</span>
+          </span>
           <span><img src="assets/Add Circle.svg" alt="" /></span>
         </button>
       </div>
@@ -15,8 +17,16 @@
         <p
           class="PG-staus"
           routerLinkActive="PG-statusActive"
+          routerLink="/dashboard/playgrounds/notAccepted"
+          (click)="waitingPgs(2)"
+        >
+          في الانتظار
+        </p>
+        <p
+          class="PG-staus"
+          routerLinkActive="PG-statusActive"
           routerLink="/dashboard/playgrounds/unbookable"
-          (click)="filterPgs(false)"
+          (click)="filterPgs(false, 1)"
         >
           الغير قابلة للحجز
         </p>
@@ -24,7 +34,7 @@
           class="PG-staus"
           routerLinkActive="PG-statusActive"
           routerLink="/dashboard/playgrounds/bookable"
-          (click)="filterPgs(true)"
+          (click)="filterPgs(true, 1)"
         >
           القابلة للحجز
         </p>

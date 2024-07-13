@@ -79,18 +79,15 @@ export class RegistrationComponent {
 
     const { confirmPassword, constaints, ...userDate } =
       this.registerForm.value;
-    console.log(userDate);
+
     const observer = {
       next: (response: any) => {
-        console.log('response from Reg.ts :', response);
         const { message, ...data } = response;
         if (response.code) {
-          console.log(data);
           this.recData.setConfirmationData(data);
           this.router.navigate(['/confirmation'], {
             queryParams: { action: 'registration' },
           });
-          console.log('request : success ');
 
           this.isLoading = false;
         }

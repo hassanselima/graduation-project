@@ -1,7 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GuardServicesService } from '../../services/guard-services.service';
 import { SharedDataService } from '../../services/shared-data.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-employees-p2',
@@ -15,14 +16,24 @@ export class EmployeesP2Component implements OnInit {
   uploadedImageFile: File | null = null;
   guardId: string | null = '';
   ownerToken: string | null = '';
+  action: string = '';
   constructor(
     private guardSer: GuardServicesService,
     private sharSer: SharedDataService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastSer: ToastService
   ) {}
   ngOnInit(): void {
-    this.guardId = this.sharSer.getguardData().guardId;
+    this.route.queryParams.subscribe((params) => {
+      this.action = params['action'];
+    });
     this.ownerToken = localStorage.getItem('ownerToken');
+    if (this.action === 'add') {
+      this.guardId = this.sharSer.getguardData().guardId;
+    } else if (this.action === 'edit') {
+      this.guardId = this.sharSer.getguardId();
+    }
   }
   onFileSelected(event: any): void {
     const input = event.target as HTMLInputElement;
@@ -50,16 +61,12 @@ export class EmployeesP2Component implements OnInit {
     this.uploadedImageFile = null;
     this.msg = '';
     this.msgError = '';
-
-    console.log('-----after');
-    console.log(this.uploadedImageFile);
   }
   triggerFileInput(event: any): void {
     if (event.target.innerText == 'اختيار ملف') {
       if (this.fileInput) {
         this.fileInput.nativeElement.click();
       } else {
-        console.error('File input element is not available');
       }
     } else if (event.target.innerText == 'تحميل') {
       this.uploadedImageFile;
@@ -67,19 +74,13 @@ export class EmployeesP2Component implements OnInit {
       const observer = {
         next: (res: any) => {
           if (res.message === 'Image Uploaded To Database') {
-            this.msg = 'تم تحميل الصورة بنجاح';
-            this.msgError = '';
-            setTimeout(() => {
-              this.msg = '';
-            }, 3000);
+            this.action === 'add'
+              ? this.toastSer.success('Gurad image added successfully!')
+              : this.toastSer.success('Gurad image changed successfully!');
           }
         },
         error: (err: any) => {
-          this.msgError = 'حدث خطأ';
-          this.msg = '';
-          setTimeout(() => {
-            this.msgError = '';
-          }, 3000);
+          this.toastSer.error('Something happened, Try again later.');
         },
       };
       this.guardSer

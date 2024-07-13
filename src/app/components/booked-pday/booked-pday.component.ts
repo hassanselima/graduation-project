@@ -17,7 +17,5 @@ export class BookedPdayComponent implements OnInit {
   };
   @Input() bookingsPDay!: { dayOfWeek: string; numberOfBookings: number }[];
 
-  ngOnInit(): void {
-    // console.log('form child : ', this.bookingsPDay);
-  }
+  ngOnInit(): void {}
 }

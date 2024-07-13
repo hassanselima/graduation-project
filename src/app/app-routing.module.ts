@@ -75,6 +75,11 @@ const routes: Routes = [
             component: DashPlaygroundsComponent,
             canActivate: [authGaurdGuard],
           },
+          {
+            path: 'notAccepted',
+            component: DashPlaygroundsComponent,
+            canActivate: [authGaurdGuard],
+          },
         ],
       },
       {

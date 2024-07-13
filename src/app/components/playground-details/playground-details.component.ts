@@ -48,9 +48,7 @@ export class PlaygroundDetailsComponent implements OnInit {
     ).ownerID;
     this.ownToken = localStorage.getItem('ownerToken');
   }
-  ngOnInit(): void {
-    console.log('from PG details component', this.allPGs);
-  }
+  ngOnInit(): void {}
   isDayInHolidays(day: string, holidays: string) {
     this.holidays = holidays;
     return !this.holidays?.includes(day);
@@ -107,9 +105,7 @@ export class PlaygroundDetailsComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
         this.deletePG(id);
-        console.log('Confirmed deletion');
       } else {
-        console.log('Cancelled deletion');
       }
     });
   }

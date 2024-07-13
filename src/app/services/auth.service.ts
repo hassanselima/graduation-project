@@ -51,8 +51,6 @@ export class AuthService {
     const params = new HttpParams()
       .set('email', ownerObj.email)
       .set('passwd', ownerObj.password);
-    console.log(ownerObj.email, ownerObj.password);
-    console.log(params);
 
     return this.httpClient
       .post(baseUrl, {}, { params, headers: this.httpOtions.headers })

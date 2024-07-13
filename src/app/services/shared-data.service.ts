@@ -11,6 +11,7 @@ export class SharedDataService {
   private pgData = new BehaviorSubject<any>({});
   private pgDataEdit = new BehaviorSubject<any>({});
   private guardDataResponse = new BehaviorSubject<any>({});
+  private guardId = new BehaviorSubject<any>('');
   constructor() {}
 
   setConfirmationData(data: any) {
@@ -48,5 +49,11 @@ export class SharedDataService {
   }
   getguardData() {
     return this.guardDataResponse.getValue();
+  }
+  setGuardId(id: string) {
+    this.guardId.next(id);
+  }
+  getguardId() {
+    return this.guardId.getValue();
   }
 }

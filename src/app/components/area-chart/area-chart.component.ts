@@ -47,14 +47,9 @@ export class AreaChartComponent implements OnInit {
   ];
   constructor() {}
   ngOnInit(): void {
-    console.log('form area chart : ', this.monthlySum);
-
     this.months = this.monthlySum.map((item) => item.month);
     this.totals = this.monthlySum.map((item) => item.total);
     this.categories = this.months.map((month) => this.monthNames[month - 1]);
-    console.log('months: ', this.months);
-    console.log('totals: ', this.totals.reverse());
-    console.log('categories: ', this.categories.reverse());
 
     this.chartOptions = {
       series: [

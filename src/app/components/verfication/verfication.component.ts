@@ -31,7 +31,6 @@ export class VerficationComponent {
     const ownerEmail: string = this.verificationForm.get('email')?.value;
     const observer = {
       next: (response: any) => {
-        console.log('response from verification.ts :', response);
         this.sharedData.setConfirmationData(response);
         this.sharedData.setDataParams({ email: ownerEmail });
         this.sharedData.setDataParams({ code: response.code });
@@ -40,11 +39,9 @@ export class VerficationComponent {
             action: 'verification',
           },
         });
-        console.log('request from verification : success ');
       },
       error: (err: any) => {
         this.errMsg = err;
-        // this.isLoading = false;
       },
     };
     this.confSer.confirmationCode(ownerEmail).subscribe(observer);

@@ -17,8 +17,7 @@ export class FileUploadService {
     const params = new HttpParams()
       .set('id', id)
       .set('isDocumentation', isDocumentation);
-    console.log('form file service: ', id, isDocumentation);
-    console.log(params);
+
     const formData: FormData = new FormData();
     if (file) {
       formData.append('playgroundPicture', file, file.name);

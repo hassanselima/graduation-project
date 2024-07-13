@@ -54,7 +54,7 @@ export class GuardServicesService {
     return this.http.post(baseUrl, guardData, { headers });
   }
   uploadImage(guardId: any, img: File | null, token: string | null) {
-    const baseUrl = `${environment.APIURL}/Guard/guard-picture`;
+    const baseUrl = `${environment.APIURL}/Owner/guard-picture`;
     const params = new HttpParams().set('guardId', guardId);
     const formData: FormData = new FormData();
     if (img) {

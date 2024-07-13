@@ -54,6 +54,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { AngularToastifyModule, ToastService } from 'angular-toastify';
+import { ImgModalComponent } from './components/img-modal/img-modal.component';
 
 registerLocaleData(localeAr);
 @NgModule({
@@ -97,6 +98,7 @@ registerLocaleData(localeAr);
     EmployeesComponent,
     EmployeesP2Component,
     DeleteModalComponent,
+    ImgModalComponent,
   ],
   imports: [
     BrowserModule,

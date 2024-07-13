@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,11 @@ export class LoginComponent {
   isLoading: boolean = false;
   showPassword: boolean = false;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private toastSer: ToastService
+  ) {}
 
   toggleType() {
     this.showPassword = !this.showPassword;
@@ -30,25 +35,21 @@ export class LoginComponent {
   login() {
     this.isLoading = true;
     const userDate = this.loginForm.value;
-    console.log('sended data : ', userDate);
     const observer = {
       next: (response: any) => {
         if (response.user && response.token && response.role === 'Owner') {
-          console.log('login response : ', response);
-
           localStorage.setItem('ownerToken', response.token);
           localStorage.setItem('currentUser', JSON.stringify(response.user));
+          this.toastSer.success('login successfully');
           this.router.navigate(['/dashboard/overview']);
           this.isLoading = false;
         } else {
-          console.error('Invalid response format');
-          this.errMsg = 'Invalid response format';
+          this.toastSer.error('Invalid response format');
           this.isLoading = false;
         }
       },
       error: (err: any) => {
-        this.errMsg = 'An error occurred while logging in';
-        console.log('error case within login : ', err);
+        this.toastSer.error('An error occurred while logging in');
 
         this.isLoading = false;
       },

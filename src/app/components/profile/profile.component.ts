@@ -56,7 +56,6 @@ export class ProfileComponent {
       };
       const observer = {
         next: (response: any) => {
-          console.log('Profile saved successfully', response);
           const updatedUser = { ...user, ...profile };
           localStorage.setItem('currentUser', JSON.stringify(updatedUser));
           this.toastService.success('Profile saved successfully');

@@ -1,3 +1,4 @@
+import { ToastService } from 'angular-toastify';
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from '../../services/auth.service';
@@ -21,7 +22,8 @@ export class ConfirmationCodeComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private confirmSer: ConfirmationService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private toastSer: ToastService
   ) {}
 
   otpForm: FormGroup = new FormGroup({
@@ -37,13 +39,11 @@ export class ConfirmationCodeComponent implements OnInit {
       this.regResponse = data;
       this.hiddenEmail = this.hideEmail(this.regResponse.email);
     });
-    console.log('-------', this.regResponse);
   }
 
   onSubmit() {
     this.isLoading = true;
     const otp = this.otpForm.get('code');
-    console.log('written code: ', otp?.value);
     this.errMsg = '';
 
     if (otp?.value.length !== 5) {
@@ -56,19 +56,16 @@ export class ConfirmationCodeComponent implements OnInit {
       if (action === 'registration') {
         const observer = {
           next: (response: any) => {
-            console.log('response from confirm.ts :', response);
+            this.toastSer.success('Email confirmed');
             this.router.navigate(['/login']);
-            console.log('request : success ');
             this.isLoading = false;
           },
           error: (err: any) => {
-            this.errMsg = err;
+            this.toastSer.error(err);
             this.isLoading = false;
           },
         };
         if (this.regResponse) {
-          console.log('inside first if : ', this.regResponse);
-
           if (`${this.regResponse.code}` == otp.value) {
             this.confirmSer
               .confirmEmail(this.regResponse.email, otp.value)
@@ -80,15 +77,9 @@ export class ConfirmationCodeComponent implements OnInit {
         }
       } else if (action === 'verification') {
         let recCode = this.recData.getUserData().code;
-        console.log('rec Code : ', recCode);
-        console.log('otp code : ', otp.value);
         if (this.regResponse) {
-          console.log('inside first if : ', this.regResponse);
           if (recCode == otp.value) {
-            console.log('rec Code : inside comparison', recCode);
-            console.log('otp code : inside comparison', otp.value);
             this.router.navigate(['/passreset']);
-
             this.isLoading = false;
           } else {
             this.errMsg = 'Invalid code. Please try again.';
@@ -117,20 +108,16 @@ export class ConfirmationCodeComponent implements OnInit {
     this.otpForm.get('code')?.setValue('');
     const observer = {
       next: (response: any) => {
-        console.log('response from confirm.ts :', response);
-
         if (response.code) {
           this.recData.setConfirmationData(response);
           this.regResponse = response;
-          // this.router.navigate(['/login']);
-          console.log('request : success ');
           this.hiddenEmail = this.hideEmail(response.email);
-
           this.isLoading = false;
+          this.toastSer.success('code sended to email');
         }
       },
       error: (err: any) => {
-        this.errMsg = err;
+        this.toastSer.error(err);
         this.isLoading = false;
       },
     };
@@ -139,6 +126,5 @@ export class ConfirmationCodeComponent implements OnInit {
         .confirmationCode(this.regResponse.email)
         .subscribe(observer);
     }
-    // this.confirmSer.confirmationCode('ali@gmail.com').subscribe(observer);
   }
 }

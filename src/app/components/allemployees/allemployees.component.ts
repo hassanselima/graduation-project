@@ -28,7 +28,6 @@ export class AllemployeesComponent implements OnInit {
           this.guards = res.guards;
         }
         this.isLoading = false;
-        console.log('from all employees component  : ', this.guards);
       },
     };
     this.guardhSer.getGuards(this.ownerId, this.ownToken).subscribe(observer);

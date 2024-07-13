@@ -41,26 +41,18 @@ export class EmployeesComponent implements OnInit {
   }
   next() {
     const data = { ownerId: this.ownerId, ...this.addGuardForm.value };
-    console.log(data);
     this.sharSer.setguardData(data);
     const observer = {
       next: (res: any) => {
         if (res) {
           this.sharSer.setguardData(res);
-          console.log(
-            'response form shared service : ',
-            this.sharSer.getguardData()
-          );
-          console.log('guard added successfully');
 
           this.router.navigate(['/dashboard/employeesP2'], {
             queryParams: { action: 'add' },
           });
         }
       },
-      error: (err: any) => {
-        console.log(err);
-      },
+      error: (err: any) => {},
     };
     this.guardSer.addGuard(data, this.ownToken).subscribe(observer);
   }

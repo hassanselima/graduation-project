@@ -1,15 +1,20 @@
 <div class="container-fluid">
-  <div class="d-flex align-items-center justify-content-between p-3 interNav">
-    <div class="d-flex align-items-center gap-2">
+  <div
+    class="d-flex align-items-center justify-content-between p-3 px-1 px-md-3 interNav"
+  >
+    <div class="d-flex align-items-center justify-content-center gap-0">
       <button
         class="btn btn-success d-flex align-items-center gap-1 shadow"
         DarkGreen
         (click)="addGuard()"
       >
-        اضافة موظف <span><img src="assets/Add Circle.svg" alt="" /></span>
+        <span class="d-flex align-items-center gap-1">
+          اضافة <span class="d-none employee">موظف</span>
+        </span>
+        <span><img src="assets/Add Circle.svg" alt="" /></span>
       </button>
     </div>
-    <div class="d-flex align-items-center gap-3">
+    <div class="px-1">
       <p
         class="Guard-staus"
         routerLinkActive="Guard-statusActive"
@@ -20,12 +25,6 @@
     </div>
   </div>
 
-  <!-- <div class="">
-    <app-guard-details
-      [guards]="guards"
-      (reloadGuards)="reloadGuards($event)"
-    ></app-guard-details>
-  </div> -->
   <div class="m-0">
     <ng-container *ngIf="isLoading">
       <app-loader class="mx-auto"></app-loader>

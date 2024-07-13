@@ -1,19 +1,10 @@
-<div class="text-danger">
-  <p class="text-start"></p>
-</div>
-
 <div class="container-fluid">
   <div class="w-50 mx-auto mt-4">
     <form class="form">
       <h2>قم برفع صور و اوراق ملكية الملعب</h2>
       <div class="d-flex flex-column align-items-end gap-2 p-0 mb-2">
         <label class="form-label">صور الملعب</label>
-        <div *ngIf="msg" class="alert alert-success w-100 text-center">
-          {{ msg }}
-        </div>
-        <div *ngIf="msgError" class="alert alert-danger w-100 text-center">
-          {{ msgError }}
-        </div>
+
         <div class="upload-container">
           <div class="" *ngIf="!uploadedImageFile">
             <img src="assets/feather_upload-cloud.svg" alt="" />
@@ -51,12 +42,7 @@
       </div>
       <div class="d-flex flex-column align-items-end gap-2 p-0 mb-2">
         <label class="form-label">اوراق الملعب</label>
-        <div *ngIf="msg2" class="alert alert-success w-100 text-center">
-          {{ msg2 }}
-        </div>
-        <div *ngIf="msg2Error" class="alert alert-danger w-100 text-center">
-          {{ msg2Error }}
-        </div>
+
         <div class="upload-container">
           <div class="" *ngIf="!uploadedPaperFile">
             <img src="assets/feather_upload-cloud.svg" alt="" />

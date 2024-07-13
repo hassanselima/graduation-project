@@ -16,7 +16,6 @@ export class GoogleMapsComponent {
   mapOptions: google.maps.MapOptions = {
     mapTypeId: 'hybrid',
   };
-  // markerOptions: google.maps.MarkerOptions = { draggable: false };
   markerPosition!: google.maps.LatLngLiteral;
 
   constructor() {
@@ -27,7 +26,6 @@ export class GoogleMapsComponent {
       this.center = event.latLng.toJSON();
       this.markerPosition = event.latLng.toJSON();
       this.locationChanged.emit(this.markerPosition);
-      console.log(this.markerPosition);
     }
   }
 

@@ -61,11 +61,9 @@ export class AddPG3Component implements OnInit {
   getRouteAction() {
     this.route.queryParams.subscribe((params) => {
       this.action = params['action'];
-      console.log(this.action);
       if (this.action === 'edit') {
-        console.log('edit playground page 3');
         this.pgData = this.sharedData.getPgDataEdit()?.playground;
-        console.log(this.pgData);
+
         if (this.pgData) {
           this.addPG3Form.patchValue({
             openingHour: this.pgData.openingHours.split(':')[0],
@@ -80,7 +78,6 @@ export class AddPG3Component implements OnInit {
           this.selectedAdvs.push(...this.addPG3Form.value.advantages);
           this.advantages.push(...this.addPG3Form.value.advantages);
         }
-        console.log(this.addPG3Form.value);
       } else {
         this.holidays = this.daysOfWeek.map((day) => day[1]);
       }
@@ -97,13 +94,10 @@ export class AddPG3Component implements OnInit {
     this.holidays = holidays;
     const working = this.daysOfWeek.map((day) => day[1]);
     this.workingDays = working.filter((day) => !holidays.includes(day));
-    console.log(this.holidays);
-    console.log(this.workingDays);
+
     return this.holidays;
   }
   selectDay(day: string) {
-    console.log(day);
-
     const indexInWorkingDays = this.workingDays.indexOf(day);
     const indexInHolidays = this.holidays.indexOf(day);
 
@@ -124,7 +118,6 @@ export class AddPG3Component implements OnInit {
       this.selectedAdvs.push(adv);
     }
     this.addPG3Form.get('advantages')?.setValue(this.selectedAdvs);
-    console.log(this.selectedAdvs);
   }
   addadv() {
     const newAdv = prompt('Enter new advantage: ');
@@ -141,8 +134,6 @@ export class AddPG3Component implements OnInit {
     const openingHours = `${this.addPG3Form.get('openingHour')?.value}:${
       this.addPG3Form.get('closingHour')?.value
     }`;
-    console.log('-------third page-------');
-    console.log(this.addPG3Form.value);
     this.sharedData.setPgData({
       holidays: holidays.join(','),
       advantages: advantages.join(','),
@@ -150,12 +141,9 @@ export class AddPG3Component implements OnInit {
       openingHours,
       cancellationFees,
     });
-    console.log(this.sharedData.getPgData());
 
     this.router.navigate(['/dashboard/playgrounds/add4'], {
       queryParams: { action: this.action },
     });
-    // console.log(this.workingDays);
-    // console.log(this.holidays);
   }
 }

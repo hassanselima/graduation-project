@@ -31,7 +31,6 @@ export class DashOverviewComponent implements OnInit {
   getStats() {
     this.isLoading = true;
     const observer = (res: any) => {
-      console.log('form dash overview for stats : ', res);
       if (res) {
         this.bookingsByDay = res['bookingsByDayOfWeek'];
         this.monthlySum = res['monthlySum'];
@@ -46,7 +45,6 @@ export class DashOverviewComponent implements OnInit {
   getPlaygrounds() {
     this.isLoadingPG = true;
     const observer = (res: any) => {
-      console.log('form dash overview for PGs : ', res);
       if (res) {
         this.finshedBookings = res.totalFinishedBookins;
         this.newBookings = res.totalNewBookings;
@@ -54,8 +52,6 @@ export class DashOverviewComponent implements OnInit {
           return item.playgroundInfo.playground?.isBookable == true;
         });
       }
-
-      console.log('all PGs: ', this.bookablePlaygrounds);
 
       this.isLoadingPG = false;
     };

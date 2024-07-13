@@ -44,10 +44,15 @@ p {
 }
 .interNav {
   position: sticky;
-  top: 0px;
+  top: 0;
   background-color: #f8f9fa;
   z-index: 10;
 }
 .no-pg {
   margin-top: 120px;
+}
+@media (min-width: 320px) {
+  .pg {
+    display: block !important;
+  }
 }

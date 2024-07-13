@@ -14,7 +14,7 @@ p {
   height: max-content;
   border-radius: 32px;
   margin-top: 40px;
-  margin-bottom: 100px;
+  margin-bottom: 150px;
   clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%);
 }
 .paragraph1 {
@@ -32,6 +32,7 @@ p {
 .feature-text {
   font-size: 24px;
   line-height: 36px;
+  text-align: center;
 }
 
 .img1 {
@@ -55,4 +56,31 @@ p {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+}
+
+.player-img {
+  position: relative;
+  left: 30px;
+  /* left: -240px; */
+  /* bottom: -100px; */
+}
+.player-img img {
+  display: block;
+  width: 450px;
+}
+
+@media (max-width: 512px) {
+  .player-img img {
+    width: 350px;
+  }
+}
+@media (max-width: 417px) {
+  .player-img img {
+    width: 300px;
+  }
+}
+@media (max-width: 367px) {
+  .player-img img {
+    width: 250px;
+  }
 }

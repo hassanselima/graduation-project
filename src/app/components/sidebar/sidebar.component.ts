@@ -12,7 +12,8 @@ export class SidebarComponent {
     const currentUrl = this.router.url;
     return (
       currentUrl.endsWith('/playgrounds/bookable') ||
-      currentUrl.endsWith('/playgrounds/unbookable')
+      currentUrl.endsWith('/playgrounds/unbookable') ||
+      currentUrl.endsWith('/playgrounds/notAccepted')
     );
   }
 }

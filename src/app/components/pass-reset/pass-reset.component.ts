@@ -8,6 +8,7 @@ import {
 import { ConfirmationService } from '../../services/confirmation.service';
 import { SharedDataService } from '../../services/shared-data.service';
 import { Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-pass-reset',
@@ -23,7 +24,8 @@ export class PassResetComponent {
     private fb: FormBuilder,
     private confirmServ: ConfirmationService,
     private sharedData: SharedDataService,
-    private router: Router
+    private router: Router,
+    private toastSer: ToastService
   ) {}
   toggleType(i: number) {
     i === 1
@@ -58,25 +60,20 @@ export class PassResetComponent {
   updatePass() {
     const { email, code } = this.sharedData.getUserData();
     const newPassword: string = this.resetPassForm.get('password')?.value;
-    console.log(email);
-    console.log(typeof code, code);
-    console.log(newPassword);
+
     const observer = {
       next: (res: any) => {
-        console.log('Password updated successfully');
-        console.log(res);
-
+        this.toastSer.success('Password updated successfully');
         this.router.navigate(['/login']);
       },
       error: (err: any) => {
-        this.errMsg = err.message;
+        this.toastSer.error(err.message);
       },
     };
 
     this.confirmServ
       .resetPassword(`${email}`, code, newPassword)
       .subscribe((res: any) => {
-        console.log('password Updated successfully');
         this.router.navigate(['/login']);
       });
   }
