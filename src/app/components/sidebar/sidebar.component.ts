@@ -16,4 +16,8 @@ export class SidebarComponent {
       currentUrl.endsWith('/playgrounds/notAccepted')
     );
   }
+  logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('ownerToken');
+  }
 }

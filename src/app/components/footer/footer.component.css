@@ -47,6 +47,16 @@ ul {
   padding-inline: 60px;
   background-color: #8eddc2;
 }
+.footer-text {
+  color: #242424;
+  text-align: right;
+  font-family: Cairo;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
 @media (max-width: 768px) {
   .elem {
     margin-left: auto;

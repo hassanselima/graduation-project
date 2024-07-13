@@ -9,8 +9,21 @@
     <div class="icon">
       <button class="nav-toggle btn" type="button">
         <span class="navbar-icon"
-          ><i class="fa-solid fa-bars fa-lg" style="color: #4d8c57"></i
-        ></span>
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            class="bi bi-list"
+            viewBox="0 0 16 16"
+            class="text-success"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+            />
+          </svg>
+        </span>
       </button>
       <div class="nav-list" id="nav-lists">
         <ul class="d-flex flex-column align-items-start gap-2 p-0">
@@ -39,7 +52,11 @@
             <p>الموظفين</p>
             <img src="assets/Calendar2.svg" alt="" />
           </li>
-          <li routerLinkActive="active-route" class="" [routerLink]="['/dashboard/profile']">
+          <li
+            routerLinkActive="active-route"
+            class=""
+            [routerLink]="['/dashboard/profile']"
+          >
             <p>البروفايل</p>
             <svg
               width="20"
@@ -61,6 +78,14 @@
                 fill="#5E5D5D"
               />
             </svg>
+          </li>
+          <li
+            routerLinkActive="active-route"
+            [routerLink]="['/home']"
+            class="logout"
+            (click)="logout()"
+          >
+            <p>تسجيل خروج</p>
           </li>
         </ul>
       </div>
