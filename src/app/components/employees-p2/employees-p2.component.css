@@ -70,7 +70,6 @@ i {
   height: 550px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 .msg {
   position: absolute;

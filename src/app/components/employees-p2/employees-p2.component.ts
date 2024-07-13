@@ -11,8 +11,7 @@ import { ToastService } from 'angular-toastify';
 })
 export class EmployeesP2Component implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement> | undefined;
-  msg: string = '';
-  msgError: string = '';
+
   uploadedImageFile: File | null = null;
   guardId: string | null = '';
   ownerToken: string | null = '';
@@ -37,30 +36,25 @@ export class EmployeesP2Component implements OnInit {
   }
   onFileSelected(event: any): void {
     const input = event.target as HTMLInputElement;
-
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
       const validFileTypes = ['image/png', 'image/jpeg', 'image/jpg'];
       const maxFileSize = 10 * 1024 * 1024;
       if (!validFileTypes.includes(file.type)) {
-        this.msgError = 'نوع الملف غير صالح';
-        this.msg = '';
+        this.toastSer.error('Invalid file type');
         return;
       }
       if (file.size > maxFileSize) {
-        this.msgError = 'حجم الملف يتجاوز 10 ميغابايت. يرجى تحميل ملف أصغر.';
-
-        this.msg = '';
+        this.toastSer.error(
+          'File size exceeds 10 MB. Please upload a smaller file'
+        );
         return;
       }
       this.uploadedImageFile = file;
-      this.msgError = '';
     }
   }
   delFile() {
     this.uploadedImageFile = null;
-    this.msg = '';
-    this.msgError = '';
   }
   triggerFileInput(event: any): void {
     if (event.target.innerText == 'اختيار ملف') {
@@ -77,18 +71,17 @@ export class EmployeesP2Component implements OnInit {
             this.action === 'add'
               ? this.toastSer.success('Gurad image added successfully!')
               : this.toastSer.success('Gurad image changed successfully!');
+            this.router.navigate(['/dashboard/allemployees']);
           }
         },
         error: (err: any) => {
-          this.toastSer.error('Something happened, Try again later.');
+          this.toastSer.error(err);
+          this.router.navigate(['/dashboard/allemployees']);
         },
       };
       this.guardSer
         .uploadImage(this.guardId, this.uploadedImageFile, this.ownerToken)
         .subscribe(observer);
     }
-  }
-  next() {
-    this.router.navigate(['/dashboard/allemployees']);
   }
 }

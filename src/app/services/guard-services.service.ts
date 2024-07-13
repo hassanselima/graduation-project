@@ -30,6 +30,12 @@ export class GuardServicesService {
 
     return throwError(() => 'Try again later');
   }
+  private handleImageError(error: HttpErrorResponse): any {
+    if (error.status === 404) {
+      return throwError(() => 'There is no guard with this id');
+    }
+    return throwError(() => 'Something happened, Try again later.');
+  }
 
   getGuards(ownerId: any | null, token: string | null) {
     const baseUrl = `${environment.APIURL}/Owner/guards`;
@@ -62,6 +68,8 @@ export class GuardServicesService {
     }
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.put(baseUrl, formData, { params, headers });
+    return this.http
+      .put(baseUrl, formData, { params, headers })
+      .pipe(catchError(this.handleImageError));
   }
 }

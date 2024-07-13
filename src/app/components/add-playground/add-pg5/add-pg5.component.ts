@@ -74,19 +74,13 @@ export class AddPG5Component implements OnInit {
       const validFileTypes = ['image/png', 'image/jpeg', 'image/jpg'];
       const maxFileSize = 10 * 1024 * 1024;
       if (!validFileTypes.includes(file.type)) {
-        isDocs
-          ? (this.msg2Error = 'نوع الملف غير صالح')
-          : (this.msgError = 'نوع الملف غير صالح');
-
+        this.toastSer.error('Invalid file type');
         return;
       }
       if (file.size > maxFileSize) {
-        isDocs
-          ? (this.msg2Error =
-              'حجم الملف يتجاوز 10 ميغابايت. يرجى تحميل ملف أصغر.')
-          : (this.msgError =
-              'حجم الملف يتجاوز 10 ميغابايت. يرجى تحميل ملف أصغر.');
-
+        this.toastSer.error(
+          'File size exceeds 10 MB. Please upload a smaller file'
+        );
         return;
       }
       if (isDocs) {
@@ -124,7 +118,7 @@ export class AddPG5Component implements OnInit {
           }
         },
         error: (err: any) => {
-          this.toastSer.success('an error occurred');
+          this.toastSer.error('an error occurred');
         },
       };
       this.fileSer

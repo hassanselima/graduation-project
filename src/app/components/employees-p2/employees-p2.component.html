@@ -4,16 +4,10 @@
       <h2>قم برفع صورة الموظف</h2>
       <div class="d-flex flex-column align-items-end gap-2 p-0 mb-2">
         <label class="form-label">صور الموظف</label>
-        <!-- <div *ngIf="msg" class="alert alert-success w-100 text-center">
-          {{ msg }}
-        </div>
-        <div *ngIf="msgError" class="alert alert-danger w-100 text-center">
-          {{ msgError }}
-        </div> -->
         <div class="upload-container">
           <div class="" *ngIf="!uploadedImageFile">
             <img src="assets/feather_upload-cloud.svg" alt="" />
-            <p class="drop-text">حدد ملفًا أو قم بالسحب والإسقاط هنا</p>
+            <p class="drop-text">حدد ملفًا</p>
             <p class="file-size-text">
               لا يزيد حجم الملف عن 10 ميغابايت JPG أو PNG
             </p>
@@ -22,12 +16,21 @@
             <p class="text-end">: الملفات المرفوعة</p>
             <ul>
               <div class="d-flex justify-content-between align-items-center">
-                <li>{{ uploadedImageFile.name }}</li>
-                <i
-                  class="fa-solid fa-xmark fa-xl"
-                  style="color: #00e63e"
+                <li class="w-25">{{ uploadedImageFile.name }}</li>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  class="bi bi-x-lg"
+                  viewBox="0 0 16 16"
+                  style="color: red; cursor: pointer"
                   (click)="delFile()"
-                ></i>
+                >
+                  <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+                  />
+                </svg>
               </div>
             </ul>
           </div>
@@ -42,21 +45,6 @@
           </button>
         </div>
       </div>
-
-      <div class="text-center">
-        <button class="btn next-btn shadow" DarkGreen (click)="next()">
-          اضافة
-          <img src="assets/Add Circle.svg" alt="next arrow" />
-        </button>
-      </div>
     </form>
-  </div>
-</div>
-<div class="msg">
-  <div *ngIf="msg" class="alert alert-success" role="alert">
-    Gurad image added successfully!
-  </div>
-  <div *ngIf="msgError" class="alert alert-danger" role="alert">
-    Something happened, Try again later.
   </div>
 </div>
