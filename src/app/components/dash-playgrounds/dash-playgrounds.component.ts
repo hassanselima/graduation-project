@@ -41,11 +41,11 @@ export class DashPlaygroundsComponent implements OnInit {
     const currentUrl = this.router.url;
 
     if (currentUrl.endsWith('/playgrounds/unbookable')) {
-      this.filterPgs(false, 1);
+      this.filterPgs(false, 2);
     } else if (currentUrl.endsWith('/playgrounds/bookable')) {
-      this.filterPgs(true, 1);
+      this.filterPgs(true, 2);
     } else if (currentUrl.endsWith('/playgrounds/notAccepted')) {
-      this.waitingPgs(2);
+      this.waitingPgs(1);
     }
   }
   addPg() {
