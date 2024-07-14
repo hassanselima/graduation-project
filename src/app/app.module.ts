@@ -55,6 +55,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { AngularToastifyModule, ToastService } from 'angular-toastify';
 import { ImgModalComponent } from './components/img-modal/img-modal.component';
+import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
 
 registerLocaleData(localeAr);
 @NgModule({
@@ -99,6 +100,7 @@ registerLocaleData(localeAr);
     EmployeesP2Component,
     DeleteModalComponent,
     ImgModalComponent,
+    FileUploaderComponent,
   ],
   imports: [
     BrowserModule,

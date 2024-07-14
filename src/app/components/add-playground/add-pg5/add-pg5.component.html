@@ -2,100 +2,29 @@
   <div class="w-50 mx-auto mt-4">
     <form class="form">
       <h2>قم برفع صور و اوراق ملكية الملعب</h2>
-      <div class="d-flex flex-column align-items-end gap-2 p-0 mb-2">
-        <label class="form-label">صور الملعب</label>
 
-        <div class="upload-container">
-          <div class="" *ngIf="!uploadedImageFile">
-            <img src="assets/feather_upload-cloud.svg" alt="" />
-            <p class="drop-text">حدد ملفًا</p>
-            <p class="file-size-text">
-              لا يزيد حجم الملف عن 10 ميغابايت JPG أو PNG
-            </p>
-          </div>
-          <div *ngIf="uploadedImageFile" class="uploaded-files">
-            <p class="text-end">: الملفات المرفوعة</p>
-            <ul>
-              <div class="d-flex justify-content-between align-items-center">
-                <li>{{ uploadedImageFile.name }}</li>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-x-lg"
-                  viewBox="0 0 16 16"
-                  style="color: red; cursor: pointer"
-                  (click)="delFile(false)"
-                >
-                  <path
-                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
-                  />
-                </svg>
-              </div>
-            </ul>
-          </div>
-          <input
-            type="file"
-            #fileInput
-            (change)="onFileSelected($event, false)"
-            class="form-control"
-          />
-          <button
-            class="btn add-file"
-            (click)="triggerFileInput($event, false)"
-          >
-            {{ uploadedImageFile ? "تحميل" : "اختيار ملف" }}
-          </button>
-        </div>
-      </div>
-      <div class="d-flex flex-column align-items-end gap-2 p-0 mb-2">
-        <label class="form-label">اوراق الملعب</label>
+      <app-file-uploader
+        label="صور الملعب"
+        [isDoc]="false"
+        [pgId]="pgId"
+        [ownToken]="ownToken"
+        (fileUploaded)="onFileUploadSuccess($event, false)"
+      ></app-file-uploader>
 
-        <div class="upload-container">
-          <div class="" *ngIf="!uploadedPaperFile">
-            <img src="assets/feather_upload-cloud.svg" alt="" />
-            <p class="drop-text">حدد ملفًا</p>
-            <p class="file-size-text">
-              لا يزيد حجم الملف عن 10 ميغابايت JPG أو PNG
-            </p>
-          </div>
-          <div *ngIf="uploadedPaperFile" class="uploaded-files">
-            <p class="text-end">: الملفات المرفوعة</p>
-            <ul>
-              <div class="d-flex justify-content-between align-items-center">
-                <li>{{ uploadedPaperFile.name }}</li>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-x-lg"
-                  viewBox="0 0 16 16"
-                  style="color: red; cursor: pointer"
-                  (click)="delFile(true)"
-                >
-                  <path
-                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
-                  />
-                </svg>
-              </div>
-            </ul>
-          </div>
-          <input
-            type="file"
-            #fileInput2
-            (change)="onFileSelected($event, true)"
-            class="form-control"
-          />
-          <button class="btn add-file" (click)="triggerFileInput($event, true)">
-            {{ uploadedPaperFile ? "تحميل" : "اختيار ملف" }}
-          </button>
-        </div>
-      </div>
+      <app-file-uploader
+        label="اوراق الملعب"
+        [isDoc]="true"
+        [pgId]="pgId"
+        [ownToken]="ownToken"
+        (fileUploaded)="onFileUploadSuccess($event, true)"
+      ></app-file-uploader>
 
-      <div class="text-center">
-        <button class="btn next-btn shadow" DarkGreen (click)="next()">
+      <div class="text-center mb-2">
+        <button
+          class="btn next-btn shadow w-75 mx-auto"
+          DarkGreen
+          (click)="next()"
+        >
           اضافة الملعب
           <img src="assets/Add Circle.svg" alt="next arrow" />
         </button>
