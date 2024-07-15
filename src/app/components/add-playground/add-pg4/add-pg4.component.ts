@@ -136,18 +136,20 @@ export class AddPG4Component implements OnInit {
         this.sharedData.setPgData(res.playground);
 
         if (this.pgData?.picture && this.action === 'edit') {
+          this.toastSer.success('Playground edited successfully');
           this.router.navigate(['/dashboard/playgrounds/add6'], {
             queryParams: { action: this.action },
           });
-        }
-        if (this.action === 'edit') {
-          this.toastSer.success('Playground edited successfully');
         } else {
-          this.toastSer.success('Playground added successfully');
+          this.toastSer.success(
+            this.action === 'add'
+              ? 'Playground added successfully'
+              : 'Playground edited successfully'
+          );
+          this.router.navigate(['/dashboard/playgrounds/add5'], {
+            queryParams: { action: this.action },
+          });
         }
-        this.router.navigate(['/dashboard/playgrounds/add5'], {
-          queryParams: { action: this.action },
-        });
       },
       error: (err: any) => {
         this.toastSer.error('something happened within adding playground');

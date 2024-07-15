@@ -25,7 +25,12 @@
         <p class="error-msg">404 غير متوفر</p>
         <p class="error-text">عذرًا، لا يمكننا العثور على تلك الصفحة.</p>
       </div>
-      <button DarkGreen class="btn button" routerLink="/Home">
+      <button
+        DarkGreen
+        class="btn button"
+        routerLink="/Home"
+        (click)="goForHome()"
+      >
         العودة إلى الصفحة الرئيسية
       </button>
     </div>
