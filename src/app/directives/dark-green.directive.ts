@@ -12,7 +12,6 @@ import {
 export class DarkGreenDirective implements OnInit {
   @Input() highlightedColor: string = '#5b9349';
   @Input() defaultColor: string = '#00b562';
-
   constructor(private elemRef: ElementRef) {}
   ngOnInit(): void {
     this.elemRef.nativeElement.style.backgroundColor = this.defaultColor;
